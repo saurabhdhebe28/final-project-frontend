@@ -1,0 +1,15 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    background-color: var(--primary);
+}
+.logo{
+    font-size: large;
+    font-weight: 600;
+    color: rgb(6, 87, 87);
+}
+.menu{
+    font-size: medium;
+    font-weight: 400;
+}

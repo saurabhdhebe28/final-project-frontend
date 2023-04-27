@@ -1,0 +1,9 @@
+<ul class="sidebar">
+    <li (click)="toggleDropdown()" class="item">OCR</li>
+    <ul *ngIf="isDropdownOpen">
+        <li class="dropdown" >Add ocr</li>
+        <li class="dropdown">ocr list</li>
+    </ul>
+    <li class="item">Voucher</li>
+    <li class="item">Offers</li>
+</ul>
