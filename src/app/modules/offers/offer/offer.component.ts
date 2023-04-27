@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent {
+
+  // is this working 
   
 inp(e:any){
   return e
