@@ -1,0 +1,7 @@
+<div>
+  <label for="{{for}}">{{label}}</label>
+  <select name="{{for}}" id="{{for}}">
+    <option disabled selected value="">Select</option>
+    <option  *ngFor="let item of items"  value="{{item}}">{{item}}</option>
+  </select>
+</div>

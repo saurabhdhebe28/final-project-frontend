@@ -1,22 +1,11 @@
 <div class="container">
-    <app-input [label]="'Offer Code'" (e)="inp($event)" [placeholder]="'Enter code'"></app-input>
-    <app-input [label]="'Offer Title'" (e)="inp($event)" [placeholder]="'Enter offer text'"></app-input>
-    <app-input [label]="'Dropdown'" (e)="inp($event)" [placeholder]="'Enter '"></app-input>
-    <app-input [label]="'Brands'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Outlets'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Tier Code'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Offer Type'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Tier Code'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Sequence'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Voucher Limit(Per User)'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Quantity'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Offer Threeshold Notification'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Tags'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Tag Groups'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Trending Offer'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'Status'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [label]="'All Time Active'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [type]="'date'" [label]="'Offer Start'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [type]="'date'" [label]="'Offer Expiry'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
-    <app-input [type]="'File'" [label]="'Brand Image'" (e)="inp($event)" [placeholder]="'Enter the name'"></app-input>
+    <app-input [label]="'Offer Title'" (e)="inp($event)" [placeholder]="'Enter offer title'"></app-input>
+    <app-input [type]="'File'" [label]="'Offer image'" (e)="inp($event)" [placeholder]="'Select image'"></app-input>
+    <app-input [label]="'Offer Code'" (e)="inp($event)" [placeholder]="'Enter offer code'"></app-input>
+    <app-dropdown [label]="'Merchant'" [items]="['Nike','Puma']" ></app-dropdown>
+    <app-dropdown [label]="'Brands'" [items]="['Mama Earth','Lenskart']" ></app-dropdown>
+    <app-input [label]="'Min Amount'" (e)="inp($event)" [placeholder]="'Select Min Amount '"></app-input> 
+    <app-dropdown [label]="'Offer Type'" [items]="['PIN','Merchant Code']" ></app-dropdown>
+    <app-input [label]="'Limit'" (e)="inp($event)" [placeholder]="'Select  '"></app-input>
+    <app-input [type]="'Date'" [label]="'Offer Expiry Date'" (e)="inp($event)" ></app-input>
 </div>
