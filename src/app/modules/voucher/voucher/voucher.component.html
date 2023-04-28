@@ -1,4 +1,72 @@
-<div class="container">
+<form [formGroup]="voucherForm" action="">
+
+    <div>
+        <label for="voucherTitle">Offer Title<span>*</span></label>
+        <input (keyup)="getError('voucherTitle')" type="text" #voucherTitle formControlName="voucherTitle" placeholder="Please enter title for the voucher" />
+        <small *ngIf="error.voucherTitle">Voucher title is required</small>
+    </div>
+
+    <div>
+        <label for="voucherImage">Voucher Image <span>*</span></label>
+
+        <input type="file" formControlName="voucherImage" #fileInput (change)="getFileDetails(fileInput)" />
+        <small *ngIf="error.offerImage">Voucher Image is required</small>
+
+        <!-- <input type="text" (keyup)="getError('offerCode')" formControlName="offerCode" placeholder="Please enter offer code" />
+        <small *ngIf="error.email">Enter offer code </small> -->
+    </div>
+
+    <div>
+        <label for="pointRate">Point Rate<span>*</span></label>
+        <input type="text" (keyup)="getError('pointRate')" formControlName="pointRate" placeholder="Please enter points" />
+        <small *ngIf="error.pointRate">Enter points </small>
+    </div>
+
+    <label for="merchant">Merchant <span>*</span></label>
+    <select name="Merchant" id="Merchant">
+        <option disabled selected value="">Select</option>
+        <option *ngFor="let Merchant of merchants" value="{{Merchant}}">{{Merchant}}</option>
+    </select>
+
+    <label for="brands">Brands <span>*</span></label>
+    <select name="Brands" id="Brands">
+        <option disabled selected value="">Select</option>
+        <option *ngFor="let Brand of Brands" value="{{Brand}}">{{Brand}}</option>
+    </select>
+
+    <div>
+        <label for="denominationStep">Denomination Step <span>*</span></label>
+        <input type="text" (keyup)="getError('denominationStep')" formControlName="denominationStep" placeholder="Please denomination step" />
+        <small *ngIf="error.denominationStep">Enter denomination step </small>
+    </div>
+
+    <div>
+        <label for="denominationStart">Denomination Start <span>*</span></label>
+        <input type="text" (keyup)="getError('denominationStart')" formControlName="denominationStart" placeholder="Please denomination start" />
+        <small *ngIf="error.denominationStart">Enter denomination start </small>
+    </div>
+
+    <div>
+        <label for="denominationEnd">Denomination End <span>*</span></label>
+        <input type="text" (keyup)="getError('denominationEnd')" formControlName="denominationEnd" placeholder="Please denomination end" />
+        <small *ngIf="error.denominationEnd">Enter denomination end </small>
+    </div>
+
+    <div>
+        <label for="denominationStep">Voucher Expiry Date <span>*</span></label>
+        <input type="date" (keyup)="getError('voucherExpiryDate')" formControlName="voucherExpiryDate" />
+    </div>
+
+    <div>
+        <label for="voucherCode">Voucher code <span>*</span></label>
+        <input type="text" (keyup)="getError('voucherCode')" formControlName="voucherCode" placeholder="Please enter voucher code" />
+        <small *ngIf="error.voucherCode">Enter voucher code </small>
+    </div>
+
+    <!-- <input [disabled]="testForm.invalid (click)="submit()"> -->
+</form>
+
+<!-- <div class="container">
     <app-input [label]="'Voucher Title'" (e)="inp($event)" [placeholder]="'Enter title'"></app-input>
     <app-input [type]="'File'" [label]="'Image'" (e)="inp($event)" [placeholder]="'Select image'"></app-input>
     <app-input [label]="'Point rate'" (e)="inp($event)" [placeholder]="'Enter point rate'"></app-input>
@@ -9,4 +77,4 @@
     <app-input [label]="'Denomination end'" (e)="inp($event)" [placeholder]="'Enter denomination'"></app-input>
     <app-input [type]="'Date'" [label]="'Expiry Date'" (e)="inp($event)" ></app-input>
     <app-input [label]="'Voucher Code'" (e)="inp($event)" [placeholder]="'Enter voucher code'"></app-input>
-</div>
+</div> -->

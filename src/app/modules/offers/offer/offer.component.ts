@@ -6,38 +6,50 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.css']
 })
-
 export class OfferComponent {
-  details: any;
-  error: any = {};
-  Brands:any = ['Puma','Nike']
-  merchants:any = ['Godrej','Mamaearth']
-  testForm = new FormGroup({
-    fname: new FormControl('', Validators.required),
-    // lname: new FormControl('', Validators.required),
-    // email: new FormControl('', [Validators.required, Validators.email]),
-    // password: new FormControl('', [
-    //   Validators.required,
-    //   Validators.minLength(8),
-    //   Validators.maxLength(12),
-    // ]),
-  });
-  inp(e:any){
-  return e
-}
-getFileDetails(fileInput: any) {
-  console.log('Selected file name: ', fileInput.target.files[0].name);
-}
-getError(name: any) {
-  this.details = this.testForm.get(name);
-  switch (name) {
-    case 'fname':
-      this.error.fname = this.details.errors;
-      break;
-  
+  offers = new FormGroup({
+    offerTitle: new FormControl(''),
+    offerImage: new FormControl(''),
+    offerCode: new FormControl(''),
+    merchant: new FormControl(''),
+    brands: new FormControl(''),
+    minAmount: new FormControl(''),
+    offerType: new FormControl(''),
+    limit: new FormControl(''),
+    offerExpiryDate: new FormControl('')
+  })
+error: any;
+merchants: any;
+Brands: any;
 
-    default:
-      break;
+  constructor() { }
+
+  get offerTitle() {
+    return this.offers.get('offerTitle')
   }
-}
+  get offerImage() {
+    return this.offers.get('offerImage')
+  }
+  get offerCode() {
+    return this.offers.get('offerCode')
+  }
+  get merchant() {
+    return this.offers.get('merchant')
+  }
+  get brands() {
+    return this.offers.get('brands')
+  }
+
+
+  inp(e: any) {
+    return e
+  }
+
+  getError(b: any) {
+    return null
+  }
+
+  getFileDetails(b: any) {
+    return null
+  }
 }
