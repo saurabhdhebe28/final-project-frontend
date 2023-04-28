@@ -9,11 +9,13 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class OcrService {
 
   constructor(private httpClient: HttpClient) { }
-  addOcr(url: string) {
-    return this.httpClient.post('http://localhost:3001/api/url', url)
+  addOcr(url: any): Observable<any> {
+    let endpoint = 'http://localhost:3001/api/url'
+    return this.httpClient.post<any>(endpoint, url)
   }
 
   ocrList(): Observable<any> {
-    return this.httpClient.get('http://localhost:3001/api/ocrList')
+    let endpoint = 'http://localhost:3001/api/orcList'
+    return this.httpClient.get<any>(endpoint)
   }
 }

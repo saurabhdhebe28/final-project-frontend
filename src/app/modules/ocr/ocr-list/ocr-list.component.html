@@ -1,1 +1,32 @@
-<p>ocr-list works!</p>
+<div class="table">
+    <table class="table-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">RequestedBy-SignedBy-Counter</th>
+                <th scope="col">Location Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">city</th>
+                <th scope="col">SDC Time</th>
+                <th scope="col">TIN</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">TTypeCounter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let value of data" | paginate:{itemPerPage:5,currentPage:p}>
+                <td>{{value.requestedBy}}-{{value.signedBy}}-{{value.totalCounter}}</td>
+                <td>{{value.locationName}}</td>
+                <td>{{value.address}}</td>
+                <td>{{value.city}}</td>
+                <td>{{value.sdcTime}}</td>
+                <td>{{value.tin}}</td>
+                <td>{{value.totalAmount}}</td>
+                <td>{{value.transactionTypeCounter}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div>
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>

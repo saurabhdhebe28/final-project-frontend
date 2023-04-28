@@ -1,2 +1,21 @@
-<app-input #url [label]="'Add URL'" [placeholder]="'Enter Url'"></app-input>
-<app-button [button]="'Create Ocr'" (click)="urlToDb(url.inpValue)"></app-button>
+<div class="url">
+    <form [formGroup]="urlData" (ngSubmit)="urlToDb()">
+        <div class="form-group">
+            <label for="url">Enter Url here</label>
+            <br>
+            <input type="text" name="url" placeholder="Enter Url here" formControlName="url">
+            <br>
+            <br>
+            <div *ngIf="url && url.touched && url.invalid">
+                <div style="color: red;" *ngIf="url.errors?.['required']">Please Provide Url</div>
+                <div style="color: red;" *ngIf="url.errors?.['pattern']">Please Provide valid url</div>
+            </div>
+        </div>
+        <br>
+        <div class="button">
+            <button type="submit" class="btn btn-primary" [disabled]="!url?.valid">Add Ocr</button>
+
+        </div>
+    </form>
+
+</div>

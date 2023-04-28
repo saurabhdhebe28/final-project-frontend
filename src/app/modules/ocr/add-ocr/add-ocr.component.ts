@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OcrService } from '../ocr.service';
-import {FormBuilder,FormControl,FormGroup,Validator, Validators} from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-add-ocr',
@@ -8,21 +8,23 @@ import {FormBuilder,FormControl,FormGroup,Validator, Validators} from '@angular/
   styleUrls: ['./add-ocr.component.css']
 })
 export class AddOcrComponent {
-  url = new FormGroup({
-    url : new FormControl('',[Validators.required])
+  urlData = new FormGroup({
+    url: new FormControl('', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
   })
-  inpValue: any;
-  response!: any;
-  constructor(private http: OcrService) { }
 
-  urlToDb(url: string) {
-    // this.inpValue = url
-    let body: any = {
-      url: url
+  constructor(private ocrService: OcrService) { }
+  get url() {
+    return this.urlData.get('url')
+  }
+  urlToDb() {
+    let body = {
+      url: this.url?.value
     }
-    this.http.addOcr(body).subscribe((data) => {
+
+    this.ocrService.addOcr(body).subscribe((data) => {
       console.log(data)
-      
+    }, (err) => {
+      console.log(err.error);
     })
   }
 }

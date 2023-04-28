@@ -1,0 +1,8 @@
+th {
+    border: 2px solid black;
+    background-color: red;
+}
+
+tr td {
+    border: 2px solid black;
+}

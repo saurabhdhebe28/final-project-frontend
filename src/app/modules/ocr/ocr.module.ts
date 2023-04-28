@@ -2,21 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OcrRoutingModule } from './ocr-routing.module';
-// import { OcrComponent } from './ocr/ocr.component';
 import { AddOcrComponent } from './add-ocr/add-ocr.component';
 import { OcrListComponent } from './ocr-list/ocr-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule, PaginationControlsComponent } from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [
     // OcrComponent,
     AddOcrComponent,
-    OcrListComponent
+    OcrListComponent,
+    PaginationControlsComponent
   ],
   imports: [
     CommonModule,
-    OcrRoutingModule,SharedModule
+    OcrRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class OcrModule { }
