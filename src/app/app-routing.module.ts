@@ -3,12 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'voucher',
-    loadChildren:()=>import('./modules/voucher/voucher.module').then((b)=>b.VoucherModule)
+    path: '',
+    redirectTo: 'offers',
+    pathMatch: "full"
   },
   {
-    path:'offers',
-    loadChildren:()=>import('./modules/offers/offers.module').then((b)=>b.OffersModule)
+    path: 'voucher',
+    loadChildren: () => import('./modules/voucher/voucher.module').then((b) => b.VoucherModule)
+  },
+  {
+    path: 'offers',
+    loadChildren: () => import('./modules/offers/offers.module').then((b) => b.OffersModule)
+  },
+  {
+    path: 'ocr',
+    loadChildren: () => import('./modules/ocr/ocr.module').then((b) => b.OcrModule)
   }
 ];
 
