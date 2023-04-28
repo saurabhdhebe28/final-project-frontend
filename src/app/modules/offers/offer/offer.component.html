@@ -1,11 +1,78 @@
-<div class="container">
-    <app-input [label]="'Offer Title'" (e)="inp($event)" [placeholder]="'Enter offer title'"></app-input>
-    <app-input [type]="'File'" [label]="'Offer image'" (e)="inp($event)" [placeholder]="'Select image'"></app-input>
-    <app-input [label]="'Offer Code'" (e)="inp($event)" [placeholder]="'Enter offer code'"></app-input>
-    <app-dropdown [label]="'Merchant'" [items]="['Nike','Puma']" ></app-dropdown>
-    <app-dropdown [label]="'Brands'" [items]="['Mama Earth','Lenskart']" ></app-dropdown>
-    <app-input [label]="'Min Amount'" (e)="inp($event)" [placeholder]="'Select Min Amount '"></app-input> 
-    <app-dropdown [label]="'Offer Type'" [items]="['PIN','Merchant Code']" ></app-dropdown>
-    <app-input [label]="'Limit'" (e)="inp($event)" [placeholder]="'Select  '"></app-input>
-    <app-input [type]="'Date'" [label]="'Offer Expiry Date'" (e)="inp($event)" ></app-input>
+
+<form [formGroup]="testForm" action="">
+  <div>
+    <label for="offerTitle">Offer Title</label>
+    <input
+      (keyup)="getError('offerTitle')"
+      type="text"
+      #offerTitle
+      formControlName="offerTitle"
+      placeholder="Enter offer title"
+    />
+    <small *ngIf="error.offerTitle">Offer Title Name is required</small>
+  </div>
+
+  <div>
+
+  <input
+  type="file" formControlName="offerImage" #fileInput (change)="getFileDetails(fileInput)"
+  />
+  <small *ngIf="error.offerImage">Offer Image is required</small>
+  <input
+    type="text"
+    (keyup)="getError('offerCode')"
+    formControlName="offerCode"
+    placeholder="Enter offer code"
+  />
+  <small *ngIf="error.email">please input valid email </small>
 </div>
+
+  <label for="Merchant">Merchant <span>*</span></label>
+  <select name="Merchant" id="Merchant">
+    <option disabled selected value="">Select</option>
+    <option  *ngFor="let Merchant of merchants"  value="{{Merchant}}">{{Merchant}}</option>
+  </select>
+
+  <label for="Brands">Brands <span>*</span></label>
+  <select name="Brands" id="Brands">
+    <option disabled selected value="">Select</option>
+    <option  *ngFor="let Brand of Brands"  value="{{Brand}}">{{Brand}}</option>
+  </select>
+
+  <input
+    type="text"
+    (keyup)="getError('minAmount')"
+    formControlName="minAmount"
+    placeholder="Select Min Amount"
+  />
+
+  <div>
+    <label for="Brands">Brands <span>*</span></label>
+    <select name="Brands" id="Brands">
+      <option disabled selected value="">Select</option>
+      <option  *ngFor="let Brand of Brands"  value="{{Brand}}">{{Brand}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="offerType">offer Type <span>*</span></label>
+    <select name="Type" id="Type">
+      <option disabled selected value="">Select</option>
+      <option  *ngFor="let Brand of Brands"  value="{{Brand}}">{{Brand}}</option>
+    </select>
+  </div>
+
+  <small *ngIf="error.minAmount">min amount allowed</small>
+  <input
+    type="text"
+    (keyup)="getError('minAmount')"
+    formControlName="minAmount"
+    placeholder="Select Min Amount"
+  />
+  <small *ngIf="error.minAmount">min amount allowed</small>
+
+
+
+  <!-- <input [disabled]="testForm.invalid (click)="submit()"> -->
+</form>
+

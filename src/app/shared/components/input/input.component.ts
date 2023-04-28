@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -9,11 +10,12 @@ export class InputComponent {
 @Input() label:string=''
 @Input() type:string='text'
 @Input() placeholder:string=''
+@Input() control!: FormControl;
 @Output() e=new EventEmitter<String>()
 inpValue:any;
 
 inp(){
-  this.e.emit(this.inpValue)
+  this.e.emit(this.inpValue);
 }
 
 }

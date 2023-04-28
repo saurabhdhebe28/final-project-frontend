@@ -1,4 +1,4 @@
 <div class="container ">
     <label for="">{{label}} <span>*</span></label>
-    <input type="{{type}}" (keyup)="inp()" [(ngModel)]="inpValue" placeholder="{{placeholder}}">
+    <input type="{{type}}" [formControl]="control" (keyup)="inp()" [(ngModel)]="inpValue" placeholder="{{placeholder}}">
 </div>

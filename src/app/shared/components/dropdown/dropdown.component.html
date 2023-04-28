@@ -1,5 +1,5 @@
 <div>
-  <label for="{{for}}">{{label}}</label>
+  <label for="{{for}}">{{label}} <span>*</span></label>
   <select name="{{for}}" id="{{for}}">
     <option disabled selected value="">Select</option>
     <option  *ngFor="let item of items"  value="{{item}}">{{item}}</option>
