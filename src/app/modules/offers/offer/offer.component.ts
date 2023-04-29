@@ -4,26 +4,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-offer',
   templateUrl: './offer.component.html',
-  styleUrls: ['./offer.component.css']
+  styleUrls: ['./offer.component.css'],
 })
 export class OfferComponent {
- 
-  inpValue:any={
-    offerTitle:'',
-    offerImage:'',
-    offerCode:'',
-    merchant:'',
-    brands:'',
-    minAmount:'',
-    offerType:'',
-    limit:'',
-    offerExpiryDate:''
+  inpValue: any = {
+    offerTitle: '',
+    offerImage: '',
+    offerCode: '',
+    merchant: '',
+    brands: '',
+    minAmount: '',
+    offerType: '',
+    limit: '',
+    offerExpiryDate: '',
   };
-  details:any={};
+  details: any = {};
   error: any = {};
-  offerData:any={}
-  merchants: any=['amazon','flipkart'];
-  Brands: any=['Puma','Nike'];
+  merchants: any = ['amazon', 'flipkart'];
+  Brands: any = ['Puma', 'Nike'];
 
   offers = new FormGroup({
     offerTitle: new FormControl('', Validators.required),
@@ -34,14 +32,13 @@ export class OfferComponent {
     minAmount: new FormControl('', Validators.required),
     offerType: new FormControl('', Validators.required),
     limit: new FormControl('', Validators.required),
-    offerExpiryDate: new FormControl('', Validators.required),
+    date: new FormControl('', Validators.required),
   });
 
-  constructor() {
-  }
-getData(name:any){
-  this.offerData[name] = this.inpValue[name];
-  this.details = this.offers.get(name);
+  constructor() {}
+
+  getData(name: any) {
+    this.details = this.offers.get(name);
     switch (name) {
       case 'offerTitle':
         this.error.offerTitle = this.details.errors;
@@ -67,20 +64,18 @@ getData(name:any){
       case 'limit':
         this.error.limit = this.details.errors;
         break;
-      case 'offerExpiryDate':
-        this.error.offerExpiryDate = this.details.errors;
+      case 'date':
+        this.error.date = this.details.errors;
         break;
 
       default:
         break;
     }
-    console.log(this.offerData);
-    console.log(this.details.errors,'details');
-    
-}
+  }
 
-submit(){
-  return null;
-}
 
+
+  createOffer() {
+    console.log(this.inpValue);
+  }
 }

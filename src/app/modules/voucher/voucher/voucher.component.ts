@@ -21,7 +21,6 @@ export class VoucherComponent {
   };
   details:any={};
   error: any = {};
-  voucherData:any={}
   merchants: any=['amazon','flipkart'];
   Brands: any=['Puma','Nike'];
 
@@ -41,7 +40,6 @@ export class VoucherComponent {
   })
 
 getData(name:any){
-  this.voucherData[name] = this.inpValue[name];
   this.details = this.voucherForm.get(name);
   console.log('details',this.details);
   
@@ -80,11 +78,9 @@ getData(name:any){
       default:
         break;
     }
-    console.log(this.voucherData);
-    console.log(this.details.errors,'details');
 }
 
-submit(){
-  return null;
+createOffer() {
+  console.log(this.inpValue);
 }
 }

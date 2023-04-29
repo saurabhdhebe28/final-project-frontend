@@ -72,6 +72,26 @@
   </div>
 
   <div>
+    <label for="offerType">Offer Type <span>*</span></label>
+    <select
+      formControlName="offerType"
+      [(ngModel)]="inpValue.offerType"
+      (ngModelChange)="getData('offerType')"
+      name="offerType"
+      id="offerType"
+    >
+      <option disabled selected value="">Select</option>
+      <option value="PIN">
+        PIN Type
+      </option>
+      <option value="Offer">
+        Offer Type
+      </option>
+    </select>
+    <small *ngIf="error.offerType">Select Offer Type </small>
+  </div>
+
+  <div>
     <label for="minAmount">Minimun Amount<span>*</span></label>
     <input
       #minAmount
@@ -106,6 +126,10 @@
       (ngModelChange)="getData('date')"
       formControlName="date"
     />
-    <small *ngIf="error.offerExpiryDate">Please Select Date </small>
+    <small *ngIf="error.date">Please Select Date </small>
   </div>
+
+  <button (click)="createOffer()" [disabled]="details.errors">
+    Create Offer
+  </button>
 </form>

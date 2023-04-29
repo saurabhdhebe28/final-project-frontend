@@ -134,5 +134,9 @@
     <small *ngIf="error.voucherCode">Enter voucher code </small>
   </div>
 
+
+  <button (click)="createOffer()" [disabled]="details.errors">
+    Create Voucher
+  </button>
 </form>
 
