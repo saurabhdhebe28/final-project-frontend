@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-voucher',
@@ -7,70 +7,84 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./voucher.component.css']
 })
 export class VoucherComponent {
-  // inp(e:any){
-  //   return e
-  // }
+  inpValue:any={
+    voucherTitle:'',
+    voucherImage:'',
+    pointRate:'',
+    merchant:'',
+    brands:'',
+    denominationStep:'',
+    denominationStart:'',
+    denominationEnd:'',
+    offerExpiryDate:'',
+    voucherCode:''
+  };
+  details:any={};
+  error: any = {};
+  voucherData:any={}
+  merchants: any=['amazon','flipkart'];
+  Brands: any=['Puma','Nike'];
+
+  constructor() {}
 
   voucherForm = new FormGroup({
-    voucherTitle: new FormControl(''),
-    voucherImage: new FormControl(''),
-    pointRate: new FormControl(''),
-    merchant: new FormControl(''),
-    brands: new FormControl(''),
-    denominationStep: new FormControl(''),
-    denominationStart: new FormControl(''),
-    denominationEnd: new FormControl(''),
-    voucherExpiryDate: new FormControl(''),
-    voucherCode: new FormControl('')
+    voucherTitle: new FormControl('',Validators.required),
+    voucherImage: new FormControl('',Validators.required),
+    pointRate: new FormControl('',Validators.required),
+    merchant: new FormControl('',Validators.required),
+    brands: new FormControl('',Validators.required),
+    denominationStep: new FormControl('',Validators.required),
+    denominationStart: new FormControl('',Validators.required),
+    denominationEnd: new FormControl('',Validators.required),
+    voucherExpiryDate: new FormControl('',Validators.required),
+    voucherCode: new FormControl('',Validators.required)
   })
-error: any;
-merchants: any;
-Brands: any;
 
-  constructor() { }
+getData(name:any){
+  this.voucherData[name] = this.inpValue[name];
+  this.details = this.voucherForm.get(name);
+  console.log('details',this.details);
+  
+    switch (name) {
+      case 'voucherTitle':
+        this.error.voucherTitle = this.details.errors;
+        break;
+      case 'voucherImage':
+        this.error.voucherImage = this.details.errors;
+        break;
+      case 'pointRate':
+        this.error.pointRate = this.details.errors;
+        break;
+      case 'merchant':
+        this.error.merchant = this.details.errors;
+        break;
+      case 'brands':
+        this.error.brands = this.details.errors;
+        break;
+      case 'denominationStep':
+        this.error.denominationStep = this.details.errors;
+        break;
+      case 'denominationStart':
+        this.error.denominationStart = this.details.errors;
+        break;
+      case 'denominationEnd':
+        this.error.denominationEnd = this.details.errors;
+        break;
+      case 'voucherExpiryDate':
+        this.error.voucherExpiryDate = this.details.errors;
+        break;
+      case 'voucherCode':
+        this.error.voucherCode = this.details.errors;
+        break;
 
-  get offerTitle() {
-    return this.voucherForm.get('voucherTitle')
-  }
-  get offerImage() {
-    return this.voucherForm.get('voucherImage')
-  }
-  get offerCode() {
-    return this.voucherForm.get('pointRate')
-  }
-  get merchant() {
-    return this.voucherForm.get('merchant')
-  }
-  get brands() {
-    return this.voucherForm.get('brands')
-  }
-  get denominationStep() {
-    return this.voucherForm.get('denominationStep')
-  }
-  get denominationStart() {
-    return this.voucherForm.get('denominationStart')
-  }
-  get denominationEnd() {
-    return this.voucherForm.get('denominationEnd')
-  }
-  get voucherExpiryDate() {
-    return this.voucherForm.get('voucherExpiryDate')
-  }
-  get voucherCode() {
-    return this.voucherForm.get('voucherCode')
-  }
+      default:
+        break;
+    }
+    console.log(this.voucherData);
+    console.log(this.details.errors,'details');
+}
 
-
-  inp(e: any) {
-    return e
-  }
-
-  getError(b: any) {
-    return null
-  }
-
-  getFileDetails(b: any) {
-    return null
-  }
-
+submit(){
+  return null;
+}
 }
