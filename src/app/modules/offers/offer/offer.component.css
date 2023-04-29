@@ -1,5 +1,18 @@
-.container{
+form{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+}
+div{
     display:flex;
-    flex-wrap:wrap;
-    gap:5%;
+    flex-direction:column;
+    margin: 10px;
+}
+input{
+    width:300px;
+    height:30px;
+    padding:2px 5px;
+}
+span{
+    color:red;
 }
