@@ -13,8 +13,7 @@ import { NgxPaginationModule, PaginationControlsComponent } from 'ngx-pagination
   declarations: [
     // OcrComponent,
     AddOcrComponent,
-    OcrListComponent,
-    PaginationControlsComponent
+    OcrListComponent
   ],
   imports: [
     CommonModule,

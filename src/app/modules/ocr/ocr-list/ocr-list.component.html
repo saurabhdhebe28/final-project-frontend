@@ -13,7 +13,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data" | paginate:{itemPerPage:5,currentPage:p}>
+            <tr *ngFor="let value of data | paginate
+            : {
+                itemsPerPage:itemsPerPage ,
+                currentPage:currentPage ,
+                totalItems: totalItem
+              }
+               let i=index ">
                 <td>{{value.requestedBy}}-{{value.signedBy}}-{{value.totalCounter}}</td>
                 <td>{{value.locationName}}</td>
                 <td>{{value.address}}</td>
@@ -27,6 +33,7 @@
     </table>
 
 </div>
-<div>
-    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+<br>
+<div class="fixed-bottom d-flex justify-content-end align-items-end">
+    <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
 </div>

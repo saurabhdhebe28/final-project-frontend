@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.service';
 
 
 @Injectable({
@@ -8,14 +9,24 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class OcrService {
 
-  constructor(private httpClient: HttpClient) { }
-  addOcr(url: any): Observable<any> {
-    let endpoint = 'http://localhost:3001/api/url'
-    return this.httpClient.post<any>(endpoint, url)
-  }
+  // constructor(private httpClient: HttpClient) { }
+  // addOcr(url: any) {
+  //   let endpoint = 'http://localhost:3001/api/url'
+  //   return this.httpClient.post<any>(endpoint, url)
+  // }
 
-  ocrList(): Observable<any> {
+  // ocrList(): Observable<any> {
+  //   let endpoint = 'http://localhost:3001/api/orcList'
+  //   return this.httpClient.get<any>(endpoint)
+  // }
+  constructor(private apiAdapter: ApiAdapterService) { }
+
+  addOcr(url: any) {
+    let endpoint = 'http://localhost:3001/api/url'
+    return this.apiAdapter.post(endpoint, url)
+  }
+  ocrList() {
     let endpoint = 'http://localhost:3001/api/orcList'
-    return this.httpClient.get<any>(endpoint)
+    return this.apiAdapter.get(endpoint)
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OcrService } from '../ocr.service';
+import { PaginatePipeArgs } from 'ngx-pagination';
+
 
 @Component({
   selector: 'app-ocr-list',
@@ -22,6 +24,6 @@ export class OcrListComponent implements OnInit {
     })
   }
   onPageChange(event: any) {
-
+    this.currentPage = event
   }
 }

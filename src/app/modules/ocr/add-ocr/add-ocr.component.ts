@@ -9,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@ang
 })
 export class AddOcrComponent {
   urlData = new FormGroup({
-    url: new FormControl('', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
+    url: new FormControl('', [Validators.required, Validators.pattern(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i)])
   })
 
   constructor(private ocrService: OcrService) { }
@@ -21,10 +21,8 @@ export class AddOcrComponent {
       url: this.url?.value
     }
 
-    this.ocrService.addOcr(body).subscribe((data) => {
-      console.log(data)
-    }, (err) => {
-      console.log(err.error);
+    this.ocrService.addOcr(body).subscribe((response) => {
+
     })
   }
 }
