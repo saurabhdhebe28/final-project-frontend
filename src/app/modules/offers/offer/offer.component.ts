@@ -7,49 +7,68 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent {
+  value:any;
+  details:any={};
+  error: any = {};
+  offerData:any={}
+  merchants: any=['amazon','flipkart'];
+  Brands: any=['Puma','Nike'];
+
   offers = new FormGroup({
-    offerTitle: new FormControl(''),
-    offerImage: new FormControl(''),
-    offerCode: new FormControl(''),
-    merchant: new FormControl(''),
-    brands: new FormControl(''),
-    minAmount: new FormControl(''),
-    offerType: new FormControl(''),
-    limit: new FormControl(''),
-    offerExpiryDate: new FormControl('')
-  })
-error: any;
-merchants: any;
-Brands: any;
+    offerTitle: new FormControl('', Validators.required),
+    offerImage: new FormControl('', Validators.required),
+    offerCode: new FormControl('', Validators.required),
+    merchant: new FormControl('', Validators.required),
+    brands: new FormControl('', Validators.required),
+    minAmount: new FormControl('', Validators.required),
+    offerType: new FormControl('', Validators.required),
+    limit: new FormControl('', Validators.required),
+    offerExpiryDate: new FormControl('', Validators.required),
+  });
 
-  constructor() { }
+  constructor() {
+  }
+getData(name:any){
+  this.offerData[name] = this.value;
+  this.details = this.offers.get(name);
+    switch (name) {
+      case 'offerTitle':
+        this.error.offerTitle = this.details.errors;
+        break;
+      case 'offerImage':
+        this.error.offerImage = this.details.errors;
+        break;
+      case 'offerCode':
+        this.error.offerCode = this.details.errors;
+        break;
+      case 'merchant':
+        this.error.merchant = this.details.errors;
+        break;
+      case 'brands':
+        this.error.brands = this.details.errors;
+        break;
+      case 'minAmount':
+        this.error.minAmount = this.details.errors;
+        break;
+      case 'offerType':
+        this.error.offerType = this.details.errors;
+        break;
+      case 'limit':
+        this.error.limit = this.details.errors;
+        break;
+      case 'offerExpiryDate':
+        this.error.offerExpiryDate = this.details.errors;
+        break;
 
-  get offerTitle() {
-    return this.offers.get('offerTitle')
-  }
-  get offerImage() {
-    return this.offers.get('offerImage')
-  }
-  get offerCode() {
-    return this.offers.get('offerCode')
-  }
-  get merchant() {
-    return this.offers.get('merchant')
-  }
-  get brands() {
-    return this.offers.get('brands')
-  }
+      default:
+        break;
+    }
+    console.log(this.offerData);
+    console.log(this.details.errors,'details');
+    
+}
 
-
-  inp(e: any) {
-    return e
-  }
-
-  getError(b: any) {
-    return null
-  }
-
-  getFileDetails(b: any) {
-    return null
-  }
+submit(){
+  return null;
+}
 }
