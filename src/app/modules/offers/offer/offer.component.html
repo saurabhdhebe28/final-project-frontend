@@ -3,7 +3,7 @@
       <label for="offerTitle">Offer Title<span>*</span></label>
       <input
         (keyup)="getData('offerTitle')"
-        [(ngModel)]="value"
+        [(ngModel)]="inpValue.offerTitle"
         type="text"
         formControlName="offerTitle"
         placeholder="Please enter title for the offer"
@@ -15,62 +15,65 @@
       <label for="offerImage">Offer Image<span>*</span></label>
       <input
         type="file"
-        [(ngModel)]="value"
+        [(ngModel)]="inpValue.offerImage"
         formControlName="offerImage"
-        (keyup)="getData('offerImage')"
+        (ngModelChange)="getData('offerImage')"
       />
       <small *ngIf="error.offerImage">Offer Image is required</small>
     </div>
   
     <div>
-      <label for="offerCode">Offer Code1{{'string'}}<span>*</span></label>
+      <label for="offerCode">Offer Code<span>*</span></label>
       <input
         type="text"
         (keyup)="getData('offerCode')"
-        [(ngModel)]="value"
+        [(ngModel)]="inpValue.offerCode"
         formControlName="offerCode"
         placeholder="Please enter offer code"
       />
-      <small *ngIf="error.email">Enter offer code  </small>
+      <small *ngIf="error.offerCode">Enter offer offerCode  </small>
     </div>
     
     <div>
       <label for="Merchant">Merchant <span>*</span></label>
-      <select name="Merchant" id="Merchant">
-        <option disabled selected value="">Select</option>
+        <select formControlName="merchant" [(ngModel)]="inpValue.merchant" (ngModelChange)="getData('merchant')" name="Merchant" id="Merchant">
+        <option selected disabled  value="">Select</option>
         <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
           {{Merchant}}
         </option>
         <option value="hi">hi</option>
       </select>
+      <small *ngIf="error.merchant">Select Merchant </small>
     </div>
   
     <div>
-      <label for="Brands">Brands <span>*</span></label>
-      <select name="Brands" id="Brands">
+      <label for="brands">Brands <span>*</span></label>
+      <select formControlName="brands" [(ngModel)]="inpValue.brands" (ngModelChange)="getData('brands')" name="brands" id="brands">
         <option disabled selected value="">Select</option>
         <option *ngFor="let Brand of Brands" value="{{ Brand }}">
           {{ Brand }}
         </option>
       </select>
+      <small *ngIf="error.brands">Select Merchant </small>
     </div>
   
     <div>
       <label for="minAmount">Minimun Amount<span>*</span></label>
       <input
         type="text"
-        [(ngModel)]="value"
+        [(ngModel)]="inpValue.minAmount"
         (keyup)="getData('minAmount')"
         formControlName="minAmount"
         placeholder="Select Min Amount"
       />
+      <small *ngIf="error.minAmount">Enter Minimun Amount </small>
     </div>
   
     <div>
       <label for="limit">Limit<span>*</span></label>
       <input
         type="text"
-        [(ngModel)]="value"
+        [(ngModel)]="inpValue.limit"
         (keyup)="getData('limit')"
         formControlName="limit"
         placeholder="Enter limit"
@@ -82,10 +85,11 @@
       <label for="offerExpiryDate">Offer expiry code<span>*</span></label>
       <input
         type="date"
-        [(ngModel)]="value"
-        (keyup)="getData('date')"
-        formControlName="offerExpiryDate"
+        [(ngModel)]="inpValue.date"
+        (ngModelChange)="getData('date')"
+        formControlName="date"
       />
+      <small *ngIf="error.offerExpiryDate">Please Select Date </small>
     </div>
   </form>
   

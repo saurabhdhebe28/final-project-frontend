@@ -7,7 +7,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent {
-  value:any;
+ 
+  inpValue:any={
+    offerTitle:'',
+    offerImage:'',
+    offerCode:'',
+    merchant:'',
+    brands:'',
+    minAmount:'',
+    offerType:'',
+    limit:'',
+    offerExpiryDate:''
+  };
   details:any={};
   error: any = {};
   offerData:any={}
@@ -29,7 +40,7 @@ export class OfferComponent {
   constructor() {
   }
 getData(name:any){
-  this.offerData[name] = this.value;
+  this.offerData[name] = this.inpValue[name];
   this.details = this.offers.get(name);
     switch (name) {
       case 'offerTitle':
@@ -71,4 +82,5 @@ getData(name:any){
 submit(){
   return null;
 }
+
 }

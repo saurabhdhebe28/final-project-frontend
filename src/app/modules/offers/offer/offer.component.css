@@ -13,6 +13,6 @@ input{
     height:30px;
     padding:2px 5px;
 }
-span{
+span,small{
     color:red;
 }
