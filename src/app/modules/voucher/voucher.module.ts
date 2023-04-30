@@ -13,7 +13,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    VoucherRoutingModule,SharedModule
+    FormsModule,
+    VoucherRoutingModule,SharedModule,ReactiveFormsModule,
   ]
 })
 export class VoucherModule { }
