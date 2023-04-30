@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OffersRoutingModule } from './offers-routing.module';
 import { OfferComponent } from './offer/offer.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     OffersRoutingModule,
-    SharedModule
+    FormsModule,
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class OffersModule { }

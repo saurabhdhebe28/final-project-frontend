@@ -1,11 +1,135 @@
-<div class="container">
-    <app-input [label]="'Offer Title'" (e)="inp($event)" [placeholder]="'Enter offer title'"></app-input>
-    <app-input [type]="'File'" [label]="'Offer image'" (e)="inp($event)" [placeholder]="'Select image'"></app-input>
-    <app-input [label]="'Offer Code'" (e)="inp($event)" [placeholder]="'Enter offer code'"></app-input>
-    <app-dropdown [label]="'Merchant'" [items]="['Nike','Puma']" ></app-dropdown>
-    <app-dropdown [label]="'Brands'" [items]="['Mama Earth','Lenskart']" ></app-dropdown>
-    <app-input [label]="'Min Amount'" (e)="inp($event)" [placeholder]="'Select Min Amount '"></app-input> 
-    <app-dropdown [label]="'Offer Type'" [items]="['PIN','Merchant Code']" ></app-dropdown>
-    <app-input [label]="'Limit'" (e)="inp($event)" [placeholder]="'Select  '"></app-input>
-    <app-input [type]="'Date'" [label]="'Offer Expiry Date'" (e)="inp($event)" ></app-input>
-</div>
+<form [formGroup]="offers" action="">
+  <div>
+    <label for="offerTitle">Offer Title<span>*</span></label>
+    <input
+      #offerTitle
+      (keyup)="getData('offerTitle')"
+      [(ngModel)]="inpValue.offerTitle"
+      type="text"
+      formControlName="offerTitle"
+      placeholder="Please enter title for the offer"
+    />
+    <small *ngIf="error.offerTitle">Offer title is required</small>
+  </div>
+
+  <div>
+    <label for="offerImage">Offer Image<span>*</span></label>
+    <input
+      #offerImage
+      type="file"
+      [(ngModel)]="inpValue.offerImage"
+      formControlName="offerImage"
+      (ngModelChange)="getData('offerImage')"
+    />
+    <small *ngIf="error.offerImage">Offer Image is required</small>
+  </div>
+
+  <div>
+    <label for="offerCode">Offer Code<span>*</span></label>
+    <input
+      #offerCode
+      type="text"
+      (keyup)="getData('offerCode')"
+      [(ngModel)]="inpValue.offerCode"
+      formControlName="offerCode"
+      placeholder="Please enter offer code"
+    />
+    <small *ngIf="error.offerCode">Enter offer offerCode </small>
+  </div>
+
+  <div>
+    <label for="Merchant">Merchant <span>*</span></label>
+    <select
+      formControlName="merchant"
+      [(ngModel)]="inpValue.merchant"
+      (ngModelChange)="getData('merchant')"
+      name="Merchant"
+      id="Merchant"
+    >
+      <option selected disabled value="">Select</option>
+      <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
+        {{ Merchant }}
+      </option>
+    </select>
+    <small *ngIf="error.merchant">Select Merchant </small>
+  </div>
+
+  <div>
+    <label for="brands">Brands <span>*</span></label>
+    <select
+      formControlName="brands"
+      [(ngModel)]="inpValue.brands"
+      (ngModelChange)="getData('brands')"
+      name="brands"
+      id="brands"
+    >
+      <option disabled selected value="">Select</option>
+      <option *ngFor="let Brand of Brands" value="{{ Brand }}">
+        {{ Brand }}
+      </option>
+    </select>
+    <small *ngIf="error.brands">Select Merchant </small>
+  </div>
+
+  <div>
+    <label for="offerType">Offer Type <span>*</span></label>
+    <select
+      formControlName="offerType"
+      [(ngModel)]="inpValue.offerType"
+      (ngModelChange)="getData('offerType')"
+      name="offerType"
+      id="offerType"
+    >
+      <option disabled selected value="">Select</option>
+      <option value="PIN">
+        PIN Type
+      </option>
+      <option value="Offer">
+        Offer Type
+      </option>
+    </select>
+    <small *ngIf="error.offerType">Select Offer Type </small>
+  </div>
+
+  <div>
+    <label for="minAmount">Minimun Amount<span>*</span></label>
+    <input
+      #minAmount
+      type="text"
+      [(ngModel)]="inpValue.minAmount"
+      (keyup)="getData('minAmount')"
+      formControlName="minAmount"
+      placeholder="Select Min Amount"
+    />
+    <small *ngIf="error.minAmount">Enter Minimun Amount </small>
+  </div>
+
+  <div>
+    <label for="limit">Limit<span>*</span></label>
+    <input
+      #limit
+      type="text"
+      [(ngModel)]="inpValue.limit"
+      (keyup)="getData('limit')"
+      formControlName="limit"
+      placeholder="Enter limit"
+    />
+    <small *ngIf="error.limit">Please enter limit </small>
+  </div>
+
+  <div>
+    <label for="offerExpiryDate">Offer expiry code<span>*</span></label>
+    <input
+      #offerExpiryDate
+      type="date"
+      [(ngModel)]="inpValue.date"
+      (ngModelChange)="getData('date')"
+      formControlName="date"
+    />
+    <small *ngIf="error.date">Please Select Date </small>
+  </div>
+
+  <button (click)="createOffer()" [disabled]="details.errors">
+    Create Offer
+  </button>
+</form>
