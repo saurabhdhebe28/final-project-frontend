@@ -29,4 +29,8 @@ export class OcrService {
     let endpoint = 'http://localhost:3001/api/orcList'
     return this.apiAdapter.get(endpoint)
   }
+  ocrListSearch(requestedBy: any, tin: any) {
+    let endpoint = `http://localhost:3001/api/search?requestedBy=${requestedBy}&tin=${tin}`
+    return this.apiAdapter.get(endpoint)
+  }
 }

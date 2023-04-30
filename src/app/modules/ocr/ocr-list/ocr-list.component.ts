@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OcrService } from '../ocr.service';
-import { PaginatePipeArgs } from 'ngx-pagination';
+
 
 
 @Component({
@@ -10,7 +10,10 @@ import { PaginatePipeArgs } from 'ngx-pagination';
 })
 export class OcrListComponent implements OnInit {
   constructor(private http: OcrService) { }
-  itemsPerPage: number = 5
+  requestedBy: any = ''
+  tin: any = ''
+  disableButtonvalue = true
+  itemsPerPage: number = 4
   currentPage: number = 1
   totalItem: number = 0
   data: any
@@ -25,5 +28,16 @@ export class OcrListComponent implements OnInit {
   }
   onPageChange(event: any) {
     this.currentPage = event
+  }
+  disableButton() {
+    this.disableButtonvalue = !this.requestedBy && !this.tin
+  }
+  search() {
+    this.http.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
+      this.data = value.data
+
+      this.totalItem = this.data.length
+    })
+
   }
 }

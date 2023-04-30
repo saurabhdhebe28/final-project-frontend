@@ -1,5 +1,23 @@
+<div class="search">
+    <form class="form-inline" (ngSubmit)="search()">
+        <div class="form-group mr-2">
+            <label for="requestedBy">Requested By:</label>
+            <input type="text" class="form-control" placeholder="Enter Here" name="requestedBy"
+                [(ngModel)]="requestedBy" (input)="disableButton()">
+        </div>
+        <div class="form-group mr-2">
+            <label for="tin">TIN Number:</label>
+            <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="tin"
+                (input)="disableButton()">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
+        <button class="btn btn-dark" type="reset">Reset</button>
+    </form>
+</div>
+<br>
+<br>
 <div class="table">
-    <table class="table-primary">
+    <table *ngIf="data && data.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">RequestedBy-SignedBy-Counter</th>
@@ -31,9 +49,11 @@
             </tr>
         </tbody>
     </table>
-
+    <div *ngIf="!(data && data.length > 0)">
+        <p>No data available.</p>
+    </div>
 </div>
 <br>
-<div class="fixed-bottom d-flex justify-content-end align-items-end">
+<div class="sticky-bottom d-flex justify-content-center align-items-center">
     <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
 </div>
