@@ -1,9 +1,23 @@
 <ul class="sidebar">
-    <li (click)="toggleDropdown()" class="item">OCR</li>
-    <ul *ngIf="isDropdownOpen">
+    <li (click)="toggleDropdown('ocr')" class="item">OCR</li>
+    <ul *ngIf="isDropdownOpen?.ocr==true">
         <li class="dropdown" >Add ocr</li>
         <li class="dropdown">ocr list</li>
     </ul>
-    <li class="item">Voucher</li>
-    <li class="item">Offers</li>
+   
+    <li (click)="toggleDropdown('offers')" class="item">Offers</li>
+    <ul *ngIf="isDropdownOpen?.offers">
+        <li class="dropdown" >Add Offer</li>
+        <li class="dropdown">Offer List</li>
+        <li class="dropdown">Purchased Offer List</li>
+        <li class="dropdown">Redeemed Offer List</li>
+    </ul>
+
+    <li (click)="toggleDropdown('voucher')" class="item">Voucher</li>
+    <ul *ngIf="isDropdownOpen?.voucher">
+        <li class="dropdown" >Add Voucher</li>
+        <li class="dropdown">Voucher List</li>
+        <li class="dropdown">Purchased Voucher List</li>
+        <li class="dropdown">Redeemed Voucher List</li>
+    </ul>
 </ul>
