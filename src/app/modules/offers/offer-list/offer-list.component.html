@@ -1,0 +1,58 @@
+<div class="search">
+    <form class="form-inline" (ngSubmit)="search()">
+        <div class="form-group mr-2">
+            <label for="offerTitle">Offer Title</label>
+            <input type="text" class="form-control" placeholder="Enter Offer Title" name="offerTitle"
+                [(ngModel)]="offerTitle" (input)="disableButton()">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
+        <button class="btn btn-dark" type="reset">Reset</button>
+    </form>
+</div>
+<br>
+<br>
+<div class="table">
+    <table *ngIf="data && data.length != 0" class="table-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Offer Title</th>
+                <th scope="col">Offer Image</th>
+                <th scope="col">Offer Code</th>
+                <th scope="col">Merchant</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Offer Type</th>
+                <th scope="col">Minimum Amount</th>
+                <th scope="col">Limit</th>
+                <th scope="col">Expiry Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let value of data | paginate
+            : {
+                itemsPerPage:itemsPerPage ,
+                currentPage:currentPage ,
+                totalItems: totalItem
+              }
+               let i=index ">
+                <td>{{value.offerTitle}}</td>
+                <td>{{value.offerImage}}</td>
+                <td>{{value.offerCode}}</td>
+                <td>{{value.merchants}}</td>
+                <td>{{value.brands}}</td>
+                <td>{{value.minAmount}}</td>
+                <td>{{value.offerType}}</td>
+                <td>{{value.amtLimit}}</td>
+                <td>{{value.offerExpiryDate}}</td>
+                <td>{{value.termsAndConditions}}</td>
+                <td>{{value.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!(data && data.length > 0)">
+        <p>No data available.</p>
+    </div>
+</div>
+<br>
+<div class="sticky-bottom d-flex justify-content-center align-items-center">
+    <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
+</div>

@@ -34,7 +34,8 @@
       placeholder="Please enter points"
       [(ngModel)]="inpValue.pointRate"
     />
-    <small *ngIf="error.pointRate">Enter points </small>
+    <small *ngIf="error.pointRate?.required">Enter points </small>
+    <small *ngIf="error.pointRate?.pattern">Enter Numbers Only  </small>
   </div>
 
   <div>

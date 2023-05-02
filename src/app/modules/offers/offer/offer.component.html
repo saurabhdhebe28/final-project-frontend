@@ -19,7 +19,7 @@
       type="file"
       [(ngModel)]="inpValue.offerImage"
       formControlName="offerImage"
-      (ngModelChange)="getData('offerImage')"
+      (change)="getData('offerImage')"
     />
     <small *ngIf="error.offerImage">Offer Image is required</small>
   </div>

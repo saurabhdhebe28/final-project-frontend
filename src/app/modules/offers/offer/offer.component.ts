@@ -29,9 +29,9 @@ export class OfferComponent {
     offerCode: new FormControl('', Validators.required),
     merchant: new FormControl('', Validators.required),
     brands: new FormControl('', Validators.required),
-    minAmount: new FormControl('', Validators.required),
+    minAmount: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     offerType: new FormControl('', Validators.required),
-    limit: new FormControl('', Validators.required),
+    limit: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     date: new FormControl('', Validators.required),
   });
 
@@ -39,41 +39,8 @@ export class OfferComponent {
 
   getData(name: any) {
     this.details = this.offers.get(name);
-    switch (name) {
-      case 'offerTitle':
-        this.error.offerTitle = this.details.errors;
-        break;
-      case 'offerImage':
-        this.error.offerImage = this.details.errors;
-        break;
-      case 'offerCode':
-        this.error.offerCode = this.details.errors;
-        break;
-      case 'merchant':
-        this.error.merchant = this.details.errors;
-        break;
-      case 'brands':
-        this.error.brands = this.details.errors;
-        break;
-      case 'minAmount':
-        this.error.minAmount = this.details.errors;
-        break;
-      case 'offerType':
-        this.error.offerType = this.details.errors;
-        break;
-      case 'limit':
-        this.error.limit = this.details.errors;
-        break;
-      case 'date':
-        this.error.date = this.details.errors;
-        break;
-
-      default:
-        break;
-    }
+    this.error[name] = this.details.errors;
   }
-
-
 
   createOffer() {
     console.log(this.inpValue);
