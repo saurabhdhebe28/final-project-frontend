@@ -8,6 +8,9 @@ import { OcrModule } from './modules/ocr/ocr.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ResponseInterceptor } from './services/interceptor/response/response.interceptor';
+import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { AuthModule } from './modules/auth/auth.module';
 
 
 @NgModule({
@@ -19,6 +22,7 @@ import { ResponseInterceptor } from './services/interceptor/response/response.in
     AppRoutingModule,
     SharedModule,
     OcrModule,
+    AuthModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 10000,

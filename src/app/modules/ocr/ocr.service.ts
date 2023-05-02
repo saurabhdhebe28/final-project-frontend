@@ -22,15 +22,15 @@ export class OcrService {
   constructor(private apiAdapter: ApiAdapterService) { }
 
   addOcr(url: any) {
-    let endpoint = 'http://localhost:3001/api/url'
+    let endpoint = 'http://localhost:3001/orc/url'
     return this.apiAdapter.post(endpoint, url)
   }
   ocrList() {
-    let endpoint = 'http://localhost:3001/api/orcList'
+    let endpoint = 'http://localhost:3001/orc/orcList'
     return this.apiAdapter.get(endpoint)
   }
   ocrListSearch(requestedBy: any, tin: any) {
-    let endpoint = `http://localhost:3001/api/search?requestedBy=${requestedBy}&tin=${tin}`
+    let endpoint = `http://localhost:3001/orc/search?requestedBy=${requestedBy}&tin=${tin}`
     return this.apiAdapter.get(endpoint)
   }
 }
