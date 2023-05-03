@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OfferService } from '../offer.service';
 
 @Component({
   selector: 'app-offer',
@@ -9,19 +10,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class OfferComponent {
   inpValue: any = {
     offerTitle: '',
-    offerImage: '',
     offerCode: '',
     merchant: '',
     brands: '',
     minAmount: '',
     offerType: '',
     limit: '',
-    offerExpiryDate: '',
+    offerExpiry: '',
+    terms: '',
   };
   details: any = {};
   error: any = {};
   merchants: any = ['amazon', 'flipkart'];
   Brands: any = ['Puma', 'Nike'];
+  files:any={
+    offerImage:''
+  }
 
   offers = new FormGroup({
     offerTitle: new FormControl('', Validators.required),
@@ -29,13 +33,20 @@ export class OfferComponent {
     offerCode: new FormControl('', Validators.required),
     merchant: new FormControl('', Validators.required),
     brands: new FormControl('', Validators.required),
-    minAmount: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+    minAmount: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
     offerType: new FormControl('', Validators.required),
-    limit: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
-    date: new FormControl('', Validators.required),
+    limit: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
+    offerExpiry: new FormControl('', Validators.required),
+    terms: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private offerService:OfferService) {}
 
   getData(name: any) {
     this.details = this.offers.get(name);
@@ -43,15 +54,26 @@ export class OfferComponent {
     this.error[name] = this.details.errors;
   }
 
-    createOffer() {
-      
-      if (this.offers.invalid) {
-        // Show error message
-        console.log(this.offers);
-        return;
-      }
-  
-      // Submit form data
-      console.log(this.offers.value);
-    }
+  file(e:any){
+   this.files.offerImage= e.target.files[0]
+   console.log(this.files);
+   
   }
+
+  createOffer() {
+    const formData = new FormData();
+    formData.append('offerTitle',this.inpValue.offerTitle)
+    formData.append('offerImage',this.files.offerImage)
+    formData.append('offerCode',this.inpValue.offerCode)
+    formData.append('merchant',this.inpValue.merchant)
+    formData.append('brand',this.inpValue.brands)
+    formData.append('minAmount',this.inpValue.minAmount)
+    formData.append('offerType',this.inpValue.offerType)
+    formData.append('limit',this.inpValue.limit)
+    formData.append('offerExpiry',this.inpValue.offerExpiry)
+    formData.append('terms',this.inpValue.terms)
+    this.offerService.craeteOffer('http://localhost:3000/offers/create-offer',formData).subscribe((data:any)=>{
+      console.log(data)
+    })
+  }
+}

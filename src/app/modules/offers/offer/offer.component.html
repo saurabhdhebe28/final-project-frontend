@@ -15,11 +15,12 @@
   <div>
     <label for="offerImage">Offer Image<span>*</span></label>
     <input
-      #offerImage
+      #offerImageori
       type="file"
       [(ngModel)]="inpValue.offerImage"
       formControlName="offerImage"
       (ngModelChange)="getData('offerImage')"
+      (change)="file($event)"
     />
     <small *ngIf="error.offerImage">Offer Image is required</small>
   </div>
@@ -81,12 +82,8 @@
       id="offerType"
     >
       <option disabled selected value="">Select</option>
-      <option value="PIN">
-        PIN Type
-      </option>
-      <option value="Offer">
-        Offer Type
-      </option>
+      <option value="PIN">PIN</option>
+      <option value="Offer">Merchant Code</option>
     </select>
     <small *ngIf="error.offerType">Select Offer Type </small>
   </div>
@@ -122,14 +119,24 @@
     <input
       #offerExpiryDate
       type="date"
-      [(ngModel)]="inpValue.date"
-      (ngModelChange)="getData('date')"
-      formControlName="date"
+      [(ngModel)]="inpValue.offerExpiry"
+      (ngModelChange)="getData('offerExpiry')"
+      formControlName="offerExpiry"
     />
     <small *ngIf="error.date">Please Select Date </small>
   </div>
 
-  <button (click)="createOffer()" >
-    Create Offer
-  </button>
+  <div>
+    <label for="terms">Offer expiry code<span>*</span></label>
+    <input
+      #offerExpiryDate
+      type="text"
+      [(ngModel)]="inpValue.terms"
+      (ngModelChange)="getData('terms')"
+      formControlName="terms"
+    />
+    <small *ngIf="error.terms">Please Select Date </small>
+  </div>
+
+  <button (click)="createOffer()">Create Offer</button>
 </form>

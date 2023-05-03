@@ -11,4 +11,7 @@ export class OfferService {
   getOffer(url:any){
     return this.apiAdapter.get(url)
   }
+  craeteOffer(url:any,data:any){
+    return this.apiAdapter.post(url,data)
+  }
 }
