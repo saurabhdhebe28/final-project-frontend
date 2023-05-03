@@ -9,7 +9,7 @@
       formControlName="offerTitle"
       placeholder="Please enter title for the offer"
     />
-    <small *ngIf="error.offerTitle">Offer title is required</small>
+    <small *ngIf="error?.offerTitle">Offer title is required</small>
   </div>
 
   <div>
@@ -17,11 +17,11 @@
     <input
       #offerImage
       type="file"
-      [(ngModel)]="inpValue.offerImage"
       formControlName="offerImage"
       (change)="getData('offerImage')"
+      (change)="file($event)"
     />
-    <small *ngIf="error.offerImage">Offer Image is required</small>
+    <small *ngIf="error?.offerImage">Offer Image is required</small>
   </div>
 
   <div>
@@ -34,7 +34,7 @@
       formControlName="offerCode"
       placeholder="Please enter offer code"
     />
-    <small *ngIf="error.offerCode">Enter offer offerCode </small>
+    <small *ngIf="error?.offerCode">Enter offer offerCode </small>
   </div>
 
   <div>
@@ -51,14 +51,14 @@
         {{ Merchant }}
       </option>
     </select>
-    <small *ngIf="error.merchant">Select Merchant </small>
+    <small *ngIf="error?.merchant">Select Merchant </small>
   </div>
 
   <div>
     <label for="brands">Brands <span>*</span></label>
     <select
       formControlName="brands"
-      [(ngModel)]="inpValue.brands"
+      [(ngModel)]="inpValue.brand"
       (ngModelChange)="getData('brands')"
       name="brands"
       id="brands"
@@ -68,7 +68,7 @@
         {{ Brand }}
       </option>
     </select>
-    <small *ngIf="error.brands">Select Merchant </small>
+    <small *ngIf="error?.brands">Select Merchant </small>
   </div>
 
   <div>
@@ -88,7 +88,7 @@
         Offer Type
       </option>
     </select>
-    <small *ngIf="error.offerType">Select Offer Type </small>
+    <small *ngIf="error?.offerType">Select Offer Type </small>
   </div>
 
   <div>
@@ -101,7 +101,7 @@
       formControlName="minAmount"
       placeholder="Select Min Amount"
     />
-    <small *ngIf="error.minAmount">Enter Minimun Amount </small>
+    <small *ngIf="error?.minAmount">Enter Minimun Amount </small>
   </div>
 
   <div>
@@ -114,19 +114,32 @@
       formControlName="limit"
       placeholder="Enter limit"
     />
-    <small *ngIf="error.limit">Please enter limit </small>
+    <small *ngIf="error?.limit">Please enter limit </small>
   </div>
 
   <div>
-    <label for="offerExpiryDate">Offer expiry code<span>*</span></label>
+    <label for="offerExpiry">Offer expiry Date<span>*</span></label>
     <input
       #offerExpiryDate
       type="date"
-      [(ngModel)]="inpValue.date"
-      (ngModelChange)="getData('date')"
-      formControlName="date"
+      [(ngModel)]="inpValue.offerExpiry"
+      (ngModelChange)="getData('offerExpiry')"
+      formControlName="offerExpiry"
     />
-    <small *ngIf="error.date">Please Select Date </small>
+    <small *ngIf="error?.offerExpiry">Please Select Date </small>
+  </div>
+
+  <div>
+    <label for="termsAndConditions">Terms and Conditions<span>*</span></label>
+    <input
+      #limit
+      type="text"
+      [(ngModel)]="inpValue.termsAndConditions"
+      (keyup)="getData('termsAndConditions')"
+      formControlName="termsAndConditions"
+      placeholder="Enter termsAndConditions"
+    />
+    <small *ngIf="error?.termsAndConditions">Please enter Terms And Conditions </small>
   </div>
 
   <button (click)="createOffer()" [disabled]="details.errors">

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OfferService } from '../offer.service';
 
 @Component({
   selector: 'app-offer',
@@ -7,17 +8,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./offer.component.css'],
 })
 export class OfferComponent {
+   selectedFile:any
+
   inpValue: any = {
     offerTitle: '',
-    offerImage: '',
     offerCode: '',
     merchant: '',
-    brands: '',
+    brand: '',
     minAmount: '',
     offerType: '',
     limit: '',
-    offerExpiryDate: '',
+    offerExpiry: '',
   };
+  files:any={};
   details: any = {};
   error: any = {};
   merchants: any = ['amazon', 'flipkart'];
@@ -32,17 +35,31 @@ export class OfferComponent {
     minAmount: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     offerType: new FormControl('', Validators.required),
     limit: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
-    date: new FormControl('', Validators.required),
+    offerExpiry: new FormControl('', Validators.required),
+    termsAndConditions: new FormControl('',Validators.required)
   });
 
-  constructor() {}
-
+  constructor(private offerService:OfferService) {}
+file(e:any){
+  // console.log(e.target.files[0],'files')
+  this.selectedFile = e.target.files[0];
+  // console.log(this.selectedFile,'selected');
+  this.files.offerImage =  this.selectedFile 
+  // console.log(this.files);
+  
+}
   getData(name: any) {
     this.details = this.offers.get(name);
     this.error[name] = this.details.errors;
   }
 
   createOffer() {
-    console.log(this.inpValue);
+    const formData = new FormData()
+    console.log(this.files.offerImage,'selectedFile')
+    formData.append('offerImage',this.selectedFile,this.selectedFile.name)
+    console.log(formData,'form')
+    this.offerService.createOffer('http://localhost:3000/offer/create-offer',this.inpValue).subscribe((data:any)=>{
+    console.log(data);
+    })
   }
 }
