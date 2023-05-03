@@ -17,8 +17,11 @@
     margin-top: 5px;
     padding: 5px;
     border-bottom: 1px ridge gray;
-    background-color: aliceblue;
 }
-.item:active{
-   
+ul{
+    padding:0px 0px 0px 0px;
+}
+a{
+    text-decoration: none;
+    color: black;
 }

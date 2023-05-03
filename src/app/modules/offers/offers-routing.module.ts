@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OfferComponent } from './offer/offer.component';
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { PurchasedListComponent } from './purchased-list/purchased-list.component';
+import { RedeemOfferListComponent } from './redeem-offer-list/redeem-offer-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'purchased-offer-list',
     component: PurchasedListComponent,
+  },
+  {
+    path: 'redeemed-offer-list',
+    component: RedeemOfferListComponent,
   },
 ];
 
