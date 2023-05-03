@@ -6,7 +6,7 @@ import { AddOcrComponent } from './add-ocr/add-ocr.component';
 import { OcrListComponent } from './ocr-list/ocr-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxPaginationModule, PaginationControlsComponent } from 'ngx-pagination';
+import { NgxPaginationModule,  } from 'ngx-pagination';
 
 
 @NgModule({

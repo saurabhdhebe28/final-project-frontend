@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     ButtonComponent,NavComponent,SidebarComponent, DropdownComponent
   ],
   imports: [
-    CommonModule,FormsModule,ReactiveFormsModule
+    CommonModule,FormsModule,ReactiveFormsModule,RouterLink
   ],
   exports: [
     InputComponent,
