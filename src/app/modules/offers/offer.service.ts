@@ -11,4 +11,8 @@ export class OfferService {
   getOffer(url:any){
     return this.apiAdapter.get(url)
   }
+  createOffer(url:any,body:any){
+    return this.apiAdapter.post(url,body)
+
+  }
 }
