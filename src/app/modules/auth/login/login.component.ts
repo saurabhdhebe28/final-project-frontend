@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   loginForm = this.formBuilder.group({
     emailId: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
     password: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(3)]]
@@ -17,9 +18,10 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
-      if(data.status==true){
-      localStorage.setItem('token', data.token)
-      this.router.navigate(['/offers'])
+      if (data.status == true) {
+        this.authService.loginStatus()
+        localStorage.setItem('token', data.token)
+        this.router.navigate(['/offers'])
       }
     })
   }

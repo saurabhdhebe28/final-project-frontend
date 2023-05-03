@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, retry } from 'rxjs';
 import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.service';
 
 @Injectable({
@@ -7,9 +7,18 @@ import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.servi
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private apiAdpter: ApiAdapterService) { }
-
-
+  constructor(private apiAdpter: ApiAdapterService) {
+    const status = localStorage.getItem('token');
+    if (status) {
+      this.loggedIn.next(true);
+    }
+  }
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+  loginStatus() {
+    this.loggedIn.next(true)
+  }
   signUp(data: any) {
     let endpoint = 'http://localhost:3000/auth/signUp'
     return this.apiAdpter.post(endpoint, data)
@@ -19,6 +28,12 @@ export class AuthService {
     return this.apiAdpter.post(endpoint, data)
   }
   isLogin() {
-    return localStorage.getItem('token')
+    if (localStorage.getItem('token')) {
+      return true
+    }
+    else {
+      return false
+    }
+
   }
 }

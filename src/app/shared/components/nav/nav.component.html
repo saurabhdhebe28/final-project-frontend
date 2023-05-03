@@ -4,10 +4,10 @@
     </div>
     <div class="menu">
         <div *ngIf="!isLogin">
-            <button (click)="toLogin()" class="btn btn-secondary">Login</button>
+            <button (click)="toLogin()" class="btn btn-primary">Login</button>
         </div>
         <div *ngIf="isLogin">
-            <button (click)="logOut()" class="btn btn-secondary">LogOut</button>
+            <button (click)="logOut()" class="btn btn-danger">LogOut</button>
         </div>
 
     </div>

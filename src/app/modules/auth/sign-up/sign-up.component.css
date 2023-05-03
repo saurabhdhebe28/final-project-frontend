@@ -5,6 +5,8 @@
 
 
 .signup {
+    border: 1px solid blue;
+    border-radius: 10px;
     margin: 70px 30px 70px 130px;
     width: 100%;
 }
