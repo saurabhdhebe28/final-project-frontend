@@ -35,13 +35,14 @@ export class OfferComponent {
     date: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor() { }
 
   getData(name: any) {
     this.details = this.offers.get(name);
     switch (name) {
       case 'offerTitle':
         this.error.offerTitle = this.details.errors;
+        console.log(this.error.offerTitle)
         break;
       case 'offerImage':
         this.error.offerImage = this.details.errors;

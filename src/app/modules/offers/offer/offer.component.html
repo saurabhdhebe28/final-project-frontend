@@ -1,85 +1,53 @@
 <form [formGroup]="offers" action="">
   <div>
     <label for="offerTitle">Offer Title<span>*</span></label>
-    <input
-      #offerTitle
-      (keyup)="getData('offerTitle')"
-      [(ngModel)]="inpValue.offerTitle"
-      type="text"
-      formControlName="offerTitle"
-      placeholder="Please enter title for the offer"
-    />
+    <input #offerTitle (keyup)="getData('offerTitle')" [(ngModel)]="inpValue.offerTitle" type="text"
+      formControlName="offerTitle" placeholder="Please enter title for the offer" />
     <small *ngIf="error.offerTitle">Offer title is required</small>
   </div>
 
   <div>
     <label for="offerImage">Offer Image<span>*</span></label>
-    <input
-      #offerImage
-      type="file"
-      [(ngModel)]="inpValue.offerImage"
-      formControlName="offerImage"
-      (ngModelChange)="getData('offerImage')"
-    />
+    <input #offerImage type="file" [(ngModel)]="inpValue.offerImage" formControlName="offerImage"
+      (ngModelChange)="getData('offerImage')" />
     <small *ngIf="error.offerImage">Offer Image is required</small>
   </div>
 
   <div>
     <label for="offerCode">Offer Code<span>*</span></label>
-    <input
-      #offerCode
-      type="text"
-      (keyup)="getData('offerCode')"
-      [(ngModel)]="inpValue.offerCode"
-      formControlName="offerCode"
-      placeholder="Please enter offer code"
-    />
+    <input #offerCode type="text" (keyup)="getData('offerCode')" [(ngModel)]="inpValue.offerCode"
+      formControlName="offerCode" placeholder="Please enter offer code" />
     <small *ngIf="error.offerCode">Enter offer offerCode </small>
   </div>
 
   <div>
     <label for="Merchant">Merchant <span>*</span></label>
-    <select
-      formControlName="merchant"
-      [(ngModel)]="inpValue.merchant"
-      (ngModelChange)="getData('merchant')"
-      name="Merchant"
-      id="Merchant"
-    >
+    <select formControlName="merchant" [(ngModel)]="inpValue.merchant" (ngModelChange)="getData('merchant')"
+      name="Merchant" id="Merchant">
       <option selected disabled value="">Select</option>
       <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
         {{ Merchant }}
       </option>
     </select>
-    <small *ngIf="error.merchant">Select Merchant </small>
+    <small *ngIf="error.merchant && offers.touched">Select Merchant </small>
   </div>
 
   <div>
     <label for="brands">Brands <span>*</span></label>
-    <select
-      formControlName="brands"
-      [(ngModel)]="inpValue.brands"
-      (ngModelChange)="getData('brands')"
-      name="brands"
-      id="brands"
-    >
+    <select formControlName="brands" [(ngModel)]="inpValue.brands" (ngModelChange)="getData('brands')" name="brands"
+      id="brands">
       <option disabled selected value="">Select</option>
       <option *ngFor="let Brand of Brands" value="{{ Brand }}">
         {{ Brand }}
       </option>
     </select>
-    <small *ngIf="error.brands">Select Merchant </small>
+    <small *ngIf="error.brands && offers.touched">Select Merchant </small>
   </div>
 
   <div>
     <label for="offerType">Offer Type <span>*</span></label>
-    <select
-      formControlName="offerType"
-      [(ngModel)]="inpValue.offerType"
-      (ngModelChange)="getData('offerType')"
-      name="offerType"
-      id="offerType"
-    >
+    <select formControlName="offerType" [(ngModel)]="inpValue.offerType" (ngModelChange)="getData('offerType')"
+      name="offerType" id="offerType">
       <option disabled selected value="">Select</option>
       <option value="PIN">
         PIN Type
@@ -88,45 +56,28 @@
         Offer Type
       </option>
     </select>
-    <small *ngIf="error.offerType">Select Offer Type </small>
+    <small *ngIf="error.offerType && offers.touched">Select Offer Type </small>
   </div>
 
   <div>
     <label for="minAmount">Minimun Amount<span>*</span></label>
-    <input
-      #minAmount
-      type="text"
-      [(ngModel)]="inpValue.minAmount"
-      (keyup)="getData('minAmount')"
-      formControlName="minAmount"
-      placeholder="Select Min Amount"
-    />
+    <input #minAmount type="text" [(ngModel)]="inpValue.minAmount" (keyup)="getData('minAmount')"
+      formControlName="minAmount" placeholder="Select Min Amount" />
     <small *ngIf="error.minAmount">Enter Minimun Amount </small>
   </div>
 
   <div>
     <label for="limit">Limit<span>*</span></label>
-    <input
-      #limit
-      type="text"
-      [(ngModel)]="inpValue.limit"
-      (keyup)="getData('limit')"
-      formControlName="limit"
-      placeholder="Enter limit"
-    />
+    <input #limit type="text" [(ngModel)]="inpValue.limit" (keyup)="getData('limit')" formControlName="limit"
+      placeholder="Enter limit" />
     <small *ngIf="error.limit">Please enter limit </small>
   </div>
 
   <div>
     <label for="offerExpiryDate">Offer expiry code<span>*</span></label>
-    <input
-      #offerExpiryDate
-      type="date"
-      [(ngModel)]="inpValue.date"
-      (ngModelChange)="getData('date')"
-      formControlName="date"
-    />
-    <small *ngIf="error.date">Please Select Date </small>
+    <input #offerExpiryDate type="date" [(ngModel)]="inpValue.date" (ngModelChange)="getData('date')"
+      formControlName="date" />
+    <small *ngIf="error.date && offers.touched">Please Select Date </small>
   </div>
 
   <button (click)="createOffer()" [disabled]="details.errors">

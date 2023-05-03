@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,8 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  isDropdownOpen=false;
-  toggleDropdown(){
-    this.isDropdownOpen=!this.isDropdownOpen
+  constructor(private router: Router) { }
+  isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen
+  }
+
+  toOcrList() {
+    this.router.navigate(['/ocr/ocrList'])
+  }
+  toOcrAdd() {
+    this.router.navigate(['/ocr/addOcr'])
   }
 }

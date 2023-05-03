@@ -17,8 +17,10 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
+      if(data.status==true){
       localStorage.setItem('token', data.token)
       this.router.navigate(['/offers'])
+      }
     })
   }
 }
