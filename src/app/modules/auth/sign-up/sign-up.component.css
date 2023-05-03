@@ -1,0 +1,17 @@
+.root {
+    margin: 0;
+    padding: 0;
+}
+
+
+.signup {
+    margin: 70px 30px 70px 130px;
+    width: 100%;
+}
+
+
+form {
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+}

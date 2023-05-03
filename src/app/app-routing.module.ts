@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'ocr',
     loadChildren: () => import('./modules/ocr/ocr.module').then((b) => b.OcrModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((b) => b.AuthModule)
   }
 ];
 

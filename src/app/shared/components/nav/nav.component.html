@@ -3,6 +3,12 @@
         GROUP3
     </div>
     <div class="menu">
-        Sign In
+        <div *ngIf="!isLogin">
+            <button (click)="toLogin()" class="btn btn-secondary">Login</button>
+        </div>
+        <div *ngIf="isLogin">
+            <button (click)="logOut()" class="btn btn-secondary">LogOut</button>
+        </div>
+
     </div>
 </nav>
