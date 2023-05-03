@@ -50,9 +50,11 @@ file(e:any){
 }
   getData(name: any) {
     this.details = this.offers.get(name);
+    console.log(this.details);
     this.error[name] = this.details.errors;
   }
 
+  
   createOffer() {
     const formData = new FormData()
     console.log(this.files.offerImage,'selectedFile')

@@ -8,11 +8,11 @@ const routes: Routes = [
   
   {
     path:'',
-    redirectTo:'add-voucher',
+    redirectTo:'create-voucher',
     pathMatch:'full'
   },
   {
-    path:'add-voucher',
+    path:'create-voucher',
     component:VoucherComponent
   },
   {
@@ -21,6 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'purchased-voucher-list',
+    component: PurchasedListComponent,
+  },
+  {
+    path: 'redeemed-voucher-list',
     component: PurchasedListComponent,
   },
 ];

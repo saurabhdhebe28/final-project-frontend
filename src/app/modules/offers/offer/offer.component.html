@@ -18,8 +18,7 @@
       #offerImage
       type="file"
       formControlName="offerImage"
-      (change)="getData('offerImage')"
-      (change)="file($event)"
+      (ngModelChange)="getData('offerImage')"
     />
     <small *ngIf="error?.offerImage">Offer Image is required</small>
   </div>
@@ -142,7 +141,7 @@
     <small *ngIf="error?.termsAndConditions">Please enter Terms And Conditions </small>
   </div>
 
-  <button (click)="createOffer()" [disabled]="details.errors">
+  <button (click)="createOffer()" >
     Create Offer
   </button>
 </form>
