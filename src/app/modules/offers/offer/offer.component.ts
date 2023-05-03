@@ -39,10 +39,19 @@ export class OfferComponent {
 
   getData(name: any) {
     this.details = this.offers.get(name);
+    console.log(this.details);
     this.error[name] = this.details.errors;
   }
 
-  createOffer() {
-    console.log(this.inpValue);
+    createOffer() {
+      
+      if (this.offers.invalid) {
+        // Show error message
+        console.log(this.offers);
+        return;
+      }
+  
+      // Submit form data
+      console.log(this.offers.value);
+    }
   }
-}

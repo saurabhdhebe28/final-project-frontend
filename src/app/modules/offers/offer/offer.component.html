@@ -19,7 +19,7 @@
       type="file"
       [(ngModel)]="inpValue.offerImage"
       formControlName="offerImage"
-      (change)="getData('offerImage')"
+      (ngModelChange)="getData('offerImage')"
     />
     <small *ngIf="error.offerImage">Offer Image is required</small>
   </div>
@@ -129,7 +129,7 @@
     <small *ngIf="error.date">Please Select Date </small>
   </div>
 
-  <button (click)="createOffer()" [disabled]="details.errors">
+  <button (click)="createOffer()" >
     Create Offer
   </button>
 </form>
