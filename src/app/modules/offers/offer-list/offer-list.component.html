@@ -15,7 +15,6 @@
     <table *ngIf="data && data.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Offer Title</th>
                 <th scope="col">Offer Image</th>
                 <th scope="col">Offer Code</th>
                 <th scope="col">Merchant</th>
@@ -24,10 +23,11 @@
                 <th scope="col">Minimum Amount</th>
                 <th scope="col">Limit</th>
                 <th scope="col">Expiry Date</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of getOffers() | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -35,16 +35,15 @@
               }
                let i=index ">
                 <td>{{value.offerTitle}}</td>
-                <td>{{value.offerImage}}</td>
                 <td>{{value.offerCode}}</td>
                 <td>{{value.merchants}}</td>
                 <td>{{value.brands}}</td>
-                <td>{{value.minAmount}}</td>
                 <td>{{value.offerType}}</td>
+                <td>{{value.minAmount}}</td>
                 <td>{{value.amtLimit}}</td>
                 <td>{{value.offerExpiryDate}}</td>
-                <td>{{value.termsAndConditions}}</td>
-                <td>{{value.status}}</td>
+                <td (click)="redeem(value.offerCode)" *ngIf="value.status=='Available'"><button>Redeem</button></td>
+                <td *ngIf="value.status=='Unavailable'">Redeemed Offer</td>
             </tr>
         </tbody>
     </table>

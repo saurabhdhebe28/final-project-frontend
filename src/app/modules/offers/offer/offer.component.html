@@ -9,17 +9,18 @@
       formControlName="offerTitle"
       placeholder="Please enter title for the offer"
     />
-    <small *ngIf="error?.offerTitle">Offer title is required</small>
+    <small *ngIf="error.offerTitle">Offer title is required</small>
   </div>
 
   <div>
     <label for="offerImage">Offer Image<span>*</span></label>
     <input
-      #offerImage
+      #offerImageori
       type="file"
       [(ngModel)]="inpValue.offerImage"
       formControlName="offerImage"
       (ngModelChange)="getData('offerImage')"
+      (change)="file($event)"
     />
     <small *ngIf="error.offerImage">Offer Image is required</small>
   </div>
@@ -39,8 +40,13 @@
 
   <div>
     <label for="Merchant">Merchant <span>*</span></label>
-    <select formControlName="merchant" [(ngModel)]="inpValue.merchant" (ngModelChange)="getData('merchant')"
-      name="Merchant" id="Merchant">
+    <select
+      formControlName="merchant"
+      [(ngModel)]="inpValue.merchant"
+      (ngModelChange)="getData('merchant')"
+      name="Merchant"
+      id="Merchant"
+    >
       <option selected disabled value="">Select</option>
       <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
         {{ Merchant }}
@@ -68,15 +74,16 @@
 
   <div>
     <label for="offerType">Offer Type <span>*</span></label>
-    <select formControlName="offerType" [(ngModel)]="inpValue.offerType" (ngModelChange)="getData('offerType')"
-      name="offerType" id="offerType">
+    <select
+      formControlName="offerType"
+      [(ngModel)]="inpValue.offerType"
+      (ngModelChange)="getData('offerType')"
+      name="offerType"
+      id="offerType"
+    >
       <option disabled selected value="">Select</option>
-      <option value="PIN">
-        PIN Type
-      </option>
-      <option value="Offer">
-        Offer Type
-      </option>
+      <option value="PIN">PIN</option>
+      <option value="Offer">Merchant Code</option>
     </select>
     <small *ngIf="error.offerType">Select Offer Type </small>
   </div>
@@ -119,7 +126,17 @@
     <small *ngIf="error.offerExpiry">Please Select Date </small>
   </div>
 
-  <button (click)="createOffer()" >
-    Create Offer
-  </button>
+  <div>
+    <label for="terms">Offer expiry code<span>*</span></label>
+    <input
+      #offerExpiryDate
+      type="text"
+      [(ngModel)]="inpValue.terms"
+      (ngModelChange)="getData('terms')"
+      formControlName="terms"
+    />
+    <small *ngIf="error.terms">Please Select Date </small>
+  </div>
+
+  <button (click)="createOffer()">Create Offer</button>
 </form>
