@@ -22,12 +22,22 @@ export class OfferListComponent {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
       this.data = value.data
     })
+    return this.data;
   }
   onPageChange(event: any) {
     this.currentPage = event
   }
   disableButton() {
     this.disableButtonvalue = !this.offerTitle
+  }
+
+  redeem(code:any){
+    const body = {offerCode:code}
+    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',body).subscribe((data:any)=>{
+      console.log(data);
+      
+    });
+    this.getOffers();
   }
   search() {
     // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {

@@ -50,13 +50,11 @@ export class OfferComponent {
 
   getData(name: any) {
     this.details = this.offers.get(name);
-    console.log(this.details);
     this.error[name] = this.details.errors;
   }
 
   file(e:any){
    this.files.offerImage= e.target.files[0]
-   console.log(this.files);
    
   }
 
@@ -72,6 +70,7 @@ export class OfferComponent {
     formData.append('limit',this.inpValue.limit)
     formData.append('offerExpiry',this.inpValue.offerExpiry)
     formData.append('terms',this.inpValue.terms)
+    
     this.offerService.craeteOffer('http://localhost:3000/offers/create-offer',formData).subscribe((data:any)=>{
       console.log(data)
     })

@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/modules/auth/auth.service';
 })
 export class NavComponent  {
   constructor(private router: Router, private authService: AuthService) {
-    console.log(this.authService.isLogin())
   }
   isLogin: boolean = false
 

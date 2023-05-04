@@ -13,4 +13,7 @@ export class OfferService {
   craeteOffer(url: any, data: any) {
     return this.apiAdapter.post(url, data);
   }
+  redeemOffer(url:any,data:any){
+    return this.apiAdapter.post(url,data);
+  }
 }
