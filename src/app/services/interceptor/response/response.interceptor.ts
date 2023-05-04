@@ -22,7 +22,6 @@ export class ResponseInterceptor implements HttpInterceptor {
         if (evt instanceof HttpResponse) {
           if (evt.body) {
             let data: any = evt.body
-            console.log(data)
             if (data.status == false || data.success == false) {
               this.toastre.error(`Error:${data.data || data.success.message}`)
             }

@@ -3,10 +3,16 @@
 } */
 
 th {
-    border: 2px solid black;
-    background-color: red;
+    /* border: 2px solid black; */
+    background-color: grey;
 }
 
-tr td {
+/* tr td {
     border: 2px solid black;
+} */
+
+.searchBtn {
+
+    margin-top: 20px;
+    margin-left: 250px
 }
