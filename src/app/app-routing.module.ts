@@ -6,18 +6,18 @@ import { LoginGuard } from './guards/login/login.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'offers',
+    redirectTo: 'auth',
     pathMatch: "full"
   },
   {
     path: 'voucher',
     loadChildren: () => import('./modules/voucher/voucher.module').then((b) => b.VoucherModule),
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'offers',
     loadChildren: () => import('./modules/offers/offers.module').then((b) => b.OffersModule),
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'ocr',
@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((b) => b.AuthModule),
-    canActivate:[LoginGuard]
+    canActivate: [LoginGuard]
   }
 ];
 

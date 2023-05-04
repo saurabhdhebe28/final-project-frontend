@@ -11,6 +11,7 @@ import { ResponseInterceptor } from './services/interceptor/response/response.in
 import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { HeaderInterceptor } from './services/interceptor/header/header.interceptor';
 
 
 @NgModule({
@@ -35,6 +36,11 @@ import { AuthModule } from './modules/auth/auth.module';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
       multi: true
     }
   ],

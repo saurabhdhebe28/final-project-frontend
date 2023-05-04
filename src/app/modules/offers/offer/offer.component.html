@@ -108,15 +108,15 @@
   </div>
 
   <div>
-    <label for="offerExpiryDate">Offer expiry code<span>*</span></label>
+    <label for="offerExpiry">Offer expiry code<span>*</span></label>
     <input
       #offerExpiryDate
       type="date"
-      [(ngModel)]="inpValue.date"
-      (ngModelChange)="getData('date')"
-      formControlName="date"
+      [(ngModel)]="inpValue.offerExpiry"
+      (ngModelChange)="getData('offerExpiry')"
+      formControlName="offerExpiry"
     />
-    <small *ngIf="error.date">Please Select Date </small>
+    <small *ngIf="error.offerExpiry">Please Select Date </small>
   </div>
 
   <button (click)="createOffer()" >

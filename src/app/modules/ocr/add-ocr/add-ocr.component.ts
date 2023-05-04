@@ -20,9 +20,9 @@ export class AddOcrComponent {
     let body = {
       url: this.url?.value
     }
-
+    console.log(body)
     this.ocrService.addOcr(body).subscribe((response) => {
-
+      console.log(response)
     })
   }
 }
