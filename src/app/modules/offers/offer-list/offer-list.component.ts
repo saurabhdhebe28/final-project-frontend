@@ -20,8 +20,10 @@ export class OfferListComponent {
   }
   getOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
+      
       this.data = value.data
     })
+
     return this.data;
   }
   onPageChange(event: any) {

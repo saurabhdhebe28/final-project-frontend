@@ -7,7 +7,7 @@ import { OfferService } from '../../offers/offer.service';
   styleUrls: ['./purchased-list.component.css']
 })
 export class PurchasedListComponent {
-  getUrl:string='http://localhost:3000/voucher/purchased-vouchers';
+  getUrl:string='http://localhost:3000/voucher/redeem-voucher-list';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4

@@ -1,6 +1,6 @@
 <form [formGroup]="voucherForm" action="">
   <div>
-    <label for="voucherTitle">Offer Title<span>*</span></label>
+    <label for="voucherTitle">Voucher Title<span>*</span></label>
     <input
     #voucherTitle
       (keyup)="getData('voucherTitle')"
@@ -135,8 +135,20 @@
     <small *ngIf="error.voucherCode">Enter voucher code </small>
   </div>
 
+  <div>
+    <label for="terms">Terms and Conditions<span>*</span></label>
+    <input
+      #offerExpiryDate
+      type="text"
+      [(ngModel)]="inpValue.terms"
+      (ngModelChange)="getData('terms')"
+      formControlName="terms"
+    />
+    <small *ngIf="error.terms">Please Select Date </small>
+  </div>
 
-  <button (click)="createOffer()" [disabled]="details.errors">
+
+  <button (click)="createVoucher()" [disabled]="details.errors">
     Create Voucher
   </button>
 </form>

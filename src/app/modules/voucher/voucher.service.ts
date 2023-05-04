@@ -7,7 +7,9 @@ import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.servi
 export class VoucherService {
 
   constructor(private apiAdapter:ApiAdapterService) { }
-  
+  createVoucher(url:any,data:any){
+    return this.apiAdapter.post(url,data)
+  }
   getVoucher(url:any){
     return this.apiAdapter.get(url)
   }
