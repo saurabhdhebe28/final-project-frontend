@@ -10,6 +10,9 @@ import { AuthService } from 'src/app/modules/auth/auth.service';
 export class NavComponent {
   isLogin: boolean = false
   constructor(private router: Router, private authService: AuthService) {
+    this.authService.isLoggedIn.subscribe((data) => {
+      this.isLogin=data
+    })
   }
   setLog() {
     this.isLogin = localStorage.getItem('token') ? true : false
