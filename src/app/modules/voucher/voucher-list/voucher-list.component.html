@@ -25,12 +25,11 @@
                 <th scope="col">Denomination Start</th>
                 <th scope="col">Denomination End</th>
                 <th scope="col">Terms And Conditions</th>
-                <th scope="col">Status</th>
                 <th scope="col">Expiry Date</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of getVoucher() | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -48,7 +47,8 @@
                 <td>{{value.voucherExpiryDate}}</td>
                 <td>{{value.voucherCode}}</td>
                 <td>{{value.termsAndConditions}}</td>
-                <td>{{value.status}}</td>
+                <!-- <td (click)="redeem(value.offerCode)" *ngIf="value.status=='Available'"><button>Redeem</button></td>
+                <td *ngIf="value.status=='Unavailable'">Redeemed Offer</td> -->
             </tr>
         </tbody>
     </table>

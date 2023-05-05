@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OfferService } from '../../offers/offer.service';
+import { VoucherService } from '../voucher.service';
 
 @Component({
   selector: 'app-purchased-list',
@@ -7,19 +8,19 @@ import { OfferService } from '../../offers/offer.service';
   styleUrls: ['./purchased-list.component.css']
 })
 export class PurchasedListComponent {
-  getUrl:string='http://localhost:3000/voucher/redeem-voucher-list';
+  getUrl:string='http://localhost:3000/voucher/redeem-voucher';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
   totalItem: number = 0
   data: any;
-  constructor(private offerService: OfferService) { }
+  constructor(private voucherService: VoucherService) { }
   ngOnInit(): void {
     this.getPurchasedVouchers()
   }
   getPurchasedVouchers() {
-    this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
+    this.voucherService.getVoucher(this.getUrl).subscribe((value: any) => {
       this.data = value.data
     })
   }

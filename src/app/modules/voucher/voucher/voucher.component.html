@@ -20,6 +20,7 @@
       [(ngModel)]="inpValue.voucherImage"
       formControlName="voucherImage"
       (ngModelChange)="getData('voucherImage')"
+      (change)="file($event)"
     />
     <small *ngIf="error.voucherImage">Voucher Image is required</small>
   </div>
@@ -136,15 +137,15 @@
   </div>
 
   <div>
-    <label for="terms">Terms and Conditions<span>*</span></label>
+    <label for="termsAndConditions">Terms and Conditions<span>*</span></label>
     <input
       #offerExpiryDate
       type="text"
-      [(ngModel)]="inpValue.terms"
-      (ngModelChange)="getData('terms')"
-      formControlName="terms"
+      [(ngModel)]="inpValue.termsAndConditions"
+      (ngModelChange)="getData('termsAndConditions')"
+      formControlName="termsAndConditions"
     />
-    <small *ngIf="error.terms">Please Select Date </small>
+    <small *ngIf="error.termsAndConditions">Write terms and conditions </small>
   </div>
 
 

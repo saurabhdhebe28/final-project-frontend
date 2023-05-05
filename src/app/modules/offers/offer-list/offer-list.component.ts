@@ -7,7 +7,7 @@ import { OfferService } from '../offer.service';
   styleUrls: ['./offer-list.component.css']
 })
 export class OfferListComponent {
-  getUrl:string='http://localhost:3000/offers/get-offers';
+  getUrl: string = 'http://localhost:3000/offers/get-offers';
   offerTitle: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
@@ -20,7 +20,6 @@ export class OfferListComponent {
   }
   getOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
-      
       this.data = value.data
     })
 
@@ -33,11 +32,11 @@ export class OfferListComponent {
     this.disableButtonvalue = !this.offerTitle
   }
 
-  redeem(code:any){
-    const body = {offerCode:code}
-    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',body).subscribe((data:any)=>{
+  redeem(code: any) {
+    const body = { offerCode: code }
+    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer', body).subscribe((data: any) => {
       console.log(data);
-      
+
     });
     this.getOffers();
   }

@@ -21,9 +21,10 @@ constructor(private voucherService:VoucherService){}
     this.getVoucher()
   }
   getVoucher() {
-    this.voucherService.getVoucher(this.getUrl).subscribe((voucher: any) => {
+    this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
       this.data = voucher.data
     })
+    return this.data
   }
   onPageChange(event: any) {
     this.currentPage = event
@@ -38,5 +39,13 @@ constructor(private voucherService:VoucherService){}
     //   this.totalItem = this.data.length
     // })
 
+  }
+  redeem(code: any) {
+    const body = { offerCode: code }
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
+      console.log(data);
+
+    });
+    this.getVoucher();
   }
 }
