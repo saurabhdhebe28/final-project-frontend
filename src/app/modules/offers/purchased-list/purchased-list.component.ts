@@ -7,7 +7,7 @@ import { OfferService } from '../offer.service';
   styleUrls: ['./purchased-list.component.css']
 })
 export class PurchasedListComponent {
-  getUrl:string='http://localhost:3000/offers/purchased-offers';
+  getUrl:string='http://localhost:3000/offers/get-assign-offer';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
@@ -20,14 +20,24 @@ export class PurchasedListComponent {
   }
   getPurchasedOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
+      console.log(value.data);
+      
       this.data = value.data
     })
+    
+    
+    return this.data
   }
   onPageChange(event: any) {
     this.currentPage = event
   }
   disableButton() {
     this.disableButtonvalue = !this.firstName
+  }
+
+  redeem(id:any){
+    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',{purchaseOfferId:id}).subscribe();
+    this.ngOnInit();
   }
   search() {
     // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {

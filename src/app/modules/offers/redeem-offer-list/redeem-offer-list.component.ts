@@ -7,7 +7,7 @@ import { OfferService } from '../offer.service';
   styleUrls: ['./redeem-offer-list.component.css']
 })
 export class RedeemOfferListComponent {
-  getUrl:string='http://localhost:3000/offers/redeemed-offers';
+  getUrl:string='http://localhost:3000/offers/redeem-list';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
