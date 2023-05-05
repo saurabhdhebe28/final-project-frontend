@@ -23,6 +23,9 @@
                 <th scope="col">Voucher Title</th>
                 <th scope="col">Expiry Date</th>
                 <th scope="col">Terms & Conditions</th>
+                <th scope="col">Status</th>
+
+                
             </tr>
         </thead>
         <tbody>
@@ -41,6 +44,9 @@
                 <td>{{value.voucherTitle}}</td>
                 <td>{{value.offerExpiryDate}}</td>
                 <td>{{value.termsAndConditions}}</td>
+                <td (click)="redeem(value.purchase_offer_id)" *ngIf="value.status=='Available'">
+                    <button>Redeem</button></td>
+                <td *ngIf="value.status=='Unavailable'">Redeemed</td>
             </tr>
         </tbody>
     </table>

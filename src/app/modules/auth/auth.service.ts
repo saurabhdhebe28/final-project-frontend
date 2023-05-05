@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, retry } from 'rxjs';
 import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.service';
+require('.')
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private apiAdpter: ApiAdapterService) {
+  constructor(private apiAdpter: ApiAdapterService ) {
     const status = localStorage.getItem('token');
     if (status) {
       this.loggedIn.next(true);

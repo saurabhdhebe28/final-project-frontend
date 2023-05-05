@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OfferService } from '../offer.service';
-
 @Component({
   selector: 'app-offer',
   templateUrl: './offer.component.html',

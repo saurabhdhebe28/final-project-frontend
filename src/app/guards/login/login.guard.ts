@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
       return true
     }
     this.toastre.success('You are already Login')
-    return this.router.navigate(['/offers'])
+    return this.router.navigate(['/ocr'])
   }
 
 }

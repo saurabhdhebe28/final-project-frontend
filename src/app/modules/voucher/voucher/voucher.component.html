@@ -1,6 +1,6 @@
 <form [formGroup]="voucherForm" action="">
   <div>
-    <label for="voucherTitle">Offer Title<span>*</span></label>
+    <label for="voucherTitle">Voucher Title<span>*</span></label>
     <input
     #voucherTitle
       (keyup)="getData('voucherTitle')"
@@ -20,6 +20,7 @@
       [(ngModel)]="inpValue.voucherImage"
       formControlName="voucherImage"
       (ngModelChange)="getData('voucherImage')"
+      (change)="file($event)"
     />
     <small *ngIf="error.voucherImage">Voucher Image is required</small>
   </div>
@@ -135,8 +136,20 @@
     <small *ngIf="error.voucherCode">Enter voucher code </small>
   </div>
 
+  <div>
+    <label for="termsAndConditions">Terms and Conditions<span>*</span></label>
+    <input
+      #offerExpiryDate
+      type="text"
+      [(ngModel)]="inpValue.termsAndConditions"
+      (ngModelChange)="getData('termsAndConditions')"
+      formControlName="termsAndConditions"
+    />
+    <small *ngIf="error.termsAndConditions">Write terms and conditions </small>
+  </div>
 
-  <button (click)="createOffer()" [disabled]="details.errors">
+
+  <button (click)="createVoucher()" [disabled]="details.errors">
     Create Voucher
   </button>
 </form>

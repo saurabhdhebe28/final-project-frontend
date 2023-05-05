@@ -20,8 +20,6 @@ export class PurchasedListComponent {
   }
   getPurchasedOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
-      console.log(value.data);
-      
       this.data = value.data
     })
     
@@ -36,8 +34,10 @@ export class PurchasedListComponent {
   }
 
   redeem(id:any){
-    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',{purchaseOfferId:id}).subscribe();
-    this.ngOnInit();
+    this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',{purchaseOfferId:id}).subscribe((data:any)=>{
+      this.ngOnInit()
+    });
+
   }
   search() {
     // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
