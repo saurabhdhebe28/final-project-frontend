@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, retry } from 'rxjs';
 import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.service';
-require('.')
 
 @Injectable({
   providedIn: 'root'

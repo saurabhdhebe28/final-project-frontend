@@ -33,7 +33,10 @@ export class PurchasedListComponent {
   }
 
   redeem(id:any){
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseOfferId:id}).subscribe((data:any)=>{
+    console.log('id', this.data);
+    
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
+      this.ngOnInit();
     });
   }
   search() {

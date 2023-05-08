@@ -35,7 +35,7 @@ export class PurchasedListComponent {
 
   redeem(id:any){
     this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',{purchaseOfferId:id}).subscribe((data:any)=>{
-      this.ngOnInit()
+      this.ngOnInit();
     });
 
   }
@@ -45,6 +45,5 @@ export class PurchasedListComponent {
 
     //   this.totalItem = this.data.length
     // })
-
   }
 }
