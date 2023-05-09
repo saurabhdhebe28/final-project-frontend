@@ -7,7 +7,7 @@ import { VoucherService } from '../voucher.service';
   styleUrls: ['./voucher-list.component.css']
 })
 export class VoucherListComponent {
-  getUrl:string='http://localhost:3000/voucher/get-voucher';
+  getUrl: string = 'http://localhost:3000/voucher/get-voucher';
   voucherTitle: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
@@ -15,15 +15,16 @@ export class VoucherListComponent {
   totalItem: number = 0
   data: any;
 
-constructor(private voucherService:VoucherService){}
+  constructor(private voucherService: VoucherService) { }
 
   ngOnInit(): void {
     this.getVoucher()
   }
   getVoucher() {
-    this.voucherService.getVoucher(this.getUrl).subscribe((voucher: any) => {
+    this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
       this.data = voucher.data
     })
+
   }
   onPageChange(event: any) {
     this.currentPage = event
@@ -32,11 +33,19 @@ constructor(private voucherService:VoucherService){}
     this.disableButtonvalue = !this.voucherTitle
   }
   search() {
-    // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
-    //   this.data = value.data
+    this.data.map((value: any) => {
+      if (value.voucherTitle == this.voucherTitle) {
+        this.data = [value]
+      }
+    })
 
-    //   this.totalItem = this.data.length
-    // })
+  }
+  redeem(code: any) {
+    const body = { offerCode: code }
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
+      console.log(data);
 
+    });
+    this.getVoucher();
   }
 }

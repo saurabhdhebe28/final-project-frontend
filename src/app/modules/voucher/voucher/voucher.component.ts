@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { VoucherService } from '../voucher.service';
+
 
 @Component({
   selector: 'app-voucher',
@@ -9,7 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class VoucherComponent {
   inpValue:any={
     voucherTitle:'',
-    voucherImage:'',
     pointRate:'',
     merchant:'',
     brands:'',
@@ -17,14 +18,16 @@ export class VoucherComponent {
     denominationStart:'',
     denominationEnd:'',
     voucherExpiryDate:'',
-    voucherCode:''
+    voucherCode:'',
+    termsAndConditions:''
   };
   details:any={};
   error: any = {};
   merchants: any=['amazon','flipkart'];
   Brands: any=['Puma','Nike'];
+  files:any={voucherImage:''}
 
-  constructor() {
+  constructor( private voucherService:VoucherService) {
   }
 
   voucherForm = new FormGroup({
@@ -37,7 +40,9 @@ export class VoucherComponent {
     denominationStart: new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")]),
     denominationEnd: new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")]),
     voucherExpiryDate: new FormControl('',Validators.required),
-    voucherCode: new FormControl('',Validators.required)
+    voucherCode: new FormControl('',Validators.required),
+    termsAndConditions: new FormControl('',Validators.required),
+
   })
 
 getData(name:any){
@@ -45,7 +50,26 @@ getData(name:any){
   this.error[name] = this.details.errors
 }
 
-createOffer() {
-  console.log(this.inpValue);
+file(e:any){
+  this.files.voucherImage=e.target.files[0]
+}
+createVoucher() {
+  const formData = new FormData()
+  formData.append('voucherTitle',this.inpValue.voucherTitle)
+  formData.append('voucherImage',this.files.voucherImage)
+  formData.append('pointRate',this.inpValue.pointRate)
+  formData.append('merchant',this.inpValue.merchant)
+  formData.append('brands',this.inpValue.brands)
+  formData.append('denominationStep',this.inpValue.denominationStep)
+  formData.append('denominationStart',this.inpValue.denominationStart)
+  formData.append('denominationEnd',this.inpValue.denominationEnd)
+  formData.append('voucherExpiryDate',this.inpValue.voucherExpiryDate)
+  formData.append('voucherCode',this.inpValue.voucherCode)
+  formData.append('termsAndConditions',this.inpValue.termsAndConditions)
+  
+  this.voucherService.createVoucher('http://localhost:3000/voucher/create-voucher',formData).subscribe((data:any)=>{
+    console.log(data)
+  })
+
 }
 }

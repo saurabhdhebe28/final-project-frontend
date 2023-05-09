@@ -23,11 +23,10 @@
                 <th scope="col">Minimum Amount</th>
                 <th scope="col">Limit</th>
                 <th scope="col">Expiry Date</th>
-                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of getOffers() | paginate
+            <tr *ngFor="let value of data | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -42,8 +41,6 @@
                 <td>{{value.minAmount}}</td>
                 <td>{{value.amtLimit}}</td>
                 <td>{{value.offerExpiryDate}}</td>
-                <td (click)="redeem(value.offerCode)" *ngIf="value.status=='Available'"><button>Redeem</button></td>
-                <td *ngIf="value.status=='Unavailable'">Redeemed Offer</td>
             </tr>
         </tbody>
     </table>
