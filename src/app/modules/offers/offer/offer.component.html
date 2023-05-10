@@ -37,8 +37,8 @@
       formControlName="offerCode"
       placeholder="Please enter offer code"
     />
-    <small *ngIf="error.offerCode?.required">Enter offer offerCode </small>
-    <small *ngIf="error.offerCode?.maxLength">Code is Too lon g </small>
+    <small *ngIf="error.offerCode?.required">Enter offerCode </small>
+    <small *ngIf="error.offerCode?.maxlength">max 10 characters allowed</small>
   </div>
 
   <div>

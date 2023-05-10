@@ -34,6 +34,7 @@ export class VoucherListComponent {
       this.searchData= voucher.data;
       this.data = voucher.data;
     })
+    return this.data
   }
 
   onPageChange(event: any) {
@@ -61,5 +62,4 @@ export class VoucherListComponent {
     });
     this.getVoucher();
   }
-
 }

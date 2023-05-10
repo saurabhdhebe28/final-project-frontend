@@ -79,7 +79,7 @@ export class OfferComponent {
 
   getData(name: any) {
     this.details[name] = this.offers.get(name);
-    this.error[name] = this.details[name].errors;
+    this.error[name] = this.details[name].errors;    
   }
 
   file(e: any) {
@@ -93,7 +93,7 @@ export class OfferComponent {
       }
     }
   }
-  
+
   createOffer() {
     const formData = new FormData();
     formData.append('offerTitle', this.inpValue.offerTitle);
