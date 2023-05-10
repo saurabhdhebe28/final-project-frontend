@@ -33,6 +33,8 @@
                 <th scope="col">TIN</th>
                 <th scope="col">Total Amount</th>
                 <th scope="col">TTypeCounter</th>
+                <th scope="col">view</th>
+
             </tr>
         </thead>
         <tbody>
@@ -51,6 +53,12 @@
                 <td>{{value.tin}}</td>
                 <td>{{value.totalAmount}}</td>
                 <td>{{value.transactionTypeCounter}}</td>
+                <td *ngIf="value.isUrl" class="clickable-cell" (click)="redirect(value.location)">
+                    <span class="click-text"> Click Here</span>
+                </td>
+                <td *ngIf="!value.isUrl" class="clickable-cell" (click)="download(value.location)">
+                    <span class="click-text">DownLoad</span>
+                </td>
             </tr>
         </tbody>
     </table>

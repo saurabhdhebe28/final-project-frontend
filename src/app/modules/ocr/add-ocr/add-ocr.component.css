@@ -1,0 +1,11 @@
+/* .url {
+    border: 2px solid black;
+    height: 60%;
+} */
+
+.htmlBox {
+    margin-left: 100px;
+    border: 2px solid black;
+    width: 80%;
+    overflow: auto;
+}

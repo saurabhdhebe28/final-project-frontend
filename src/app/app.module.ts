@@ -26,7 +26,7 @@ import { HeaderInterceptor } from './services/interceptor/header/header.intercep
     AuthModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 1000,
+      timeOut: 5000,
       positionClass: 'toast-top-center'
     }),
     BrowserAnimationsModule
