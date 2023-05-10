@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VoucherService } from '../voucher.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-voucher-list',
@@ -14,30 +15,33 @@ export class VoucherListComponent {
   currentPage: number = 1
   totalItem: number = 0
   data: any;
+  searchData:any;
 
-  constructor(private voucherService: VoucherService) { }
+  constructor(private voucherService: VoucherService,private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.getVoucher()
+    this.getVoucher();
   }
   getVoucher() {
-    this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
+    this.voucherService.getVoucher(this.getUrl).subscribe((voucher: any) => {
       this.data = voucher.data
     })
-
   }
+
   onPageChange(event: any) {
     this.currentPage = event
   }
+
   disableButton() {
     this.disableButtonvalue = !this.voucherTitle
   }
+
   search() {
-    this.data.map((value: any) => {
-      if (value.voucherTitle == this.voucherTitle) {
-        this.data = [value]
-      }
-    })
+    // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
+    //   this.data = value.data
+
+    //   this.totalItem = this.data.length
+    // })
 
   }
   redeem(code: any) {

@@ -7,11 +7,13 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
+  
   isDropdownOpen: any = {
     ocr: false,
     offers: false,
     voucher: false,
   };
+
   toggleDropdown(name: any) {
     this.isDropdownOpen[name] == false
       ? (this.isDropdownOpen[name] = true)

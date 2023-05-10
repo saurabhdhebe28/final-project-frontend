@@ -22,7 +22,9 @@
       (ngModelChange)="getData('offerImage')"
       (change)="file($event)"
     />
-    <small *ngIf="error.offerImage">Offer Image is required</small>
+    <small *ngIf="error.offerImage?.required && details?.offerImage?.touched">Offer Image is required</small>
+    <small *ngIf="error.offerImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
+    <small *ngIf="error.offerImage?.size && details?.offerImage?.touched">Max Size 500KB allowed</small>
   </div>
 
   <div>
@@ -35,7 +37,8 @@
       formControlName="offerCode"
       placeholder="Please enter offer code"
     />
-    <small *ngIf="error.offerCode">Enter offer offerCode </small>
+    <small *ngIf="error.offerCode?.required">Enter offerCode </small>
+    <small *ngIf="error.offerCode?.maxlength">max 10 characters allowed</small>
   </div>
 
   <div>
@@ -52,7 +55,7 @@
         {{ Merchant }}
       </option>
     </select>
-    <small *ngIf="error.merchant">Select Merchant </small>
+    <small *ngIf="error.merchant && details?.merchant?.touched">Select Merchant </small>
   </div>
 
   <div>
@@ -69,7 +72,7 @@
         {{ Brand }}
       </option>
     </select>
-    <small *ngIf="error.brands">Select Merchant </small>
+    <small *ngIf="error.brands && details?.brands?.touched">Select Merchant </small>
   </div>
 
   <div>
@@ -85,7 +88,7 @@
       <option value="PIN">PIN</option>
       <option value="Merchant Code">Merchant Code</option>
     </select>
-    <small *ngIf="error.offerType">Select Offer Type </small>
+    <small *ngIf="error.offerType && details?.offerType?.touched">Select Offer Type </small>
   </div>
 
   <div>
@@ -98,7 +101,8 @@
       formControlName="minAmount"
       placeholder="Select Min Amount"
     />
-    <small *ngIf="error.minAmount">Enter Minimun Amount </small>
+    <small *ngIf="error.minAmount?.required">This field is required </small>
+    <small *ngIf="error.minAmount?.pattern">Only numbers are allowed</small>
   </div>
 
   <div>
@@ -111,7 +115,8 @@
       formControlName="limit"
       placeholder="Enter limit"
     />
-    <small *ngIf="error.limit">Please enter limit </small>
+    <small *ngIf="error.limit?.pattern">Only numbers are allowed</small>
+    <small *ngIf="error.limit?.required">limit field is required </small>
   </div>
 
   <div>
@@ -120,23 +125,28 @@
       #offerExpiryDate
       type="date"
       [(ngModel)]="inpValue.offerExpiry"
-      (ngModelChange)="getData('offerExpiry')"
+      (change)="getData('offerExpiry')"
+      (blur)="checkDate()"
       formControlName="offerExpiry"
+      [min]="minDate"
     />
-    <small *ngIf="error.offerExpiry">Please Select Date </small>
+    <small *ngIf="error.offerExpiry?.required && details?.offerExpiry?.touched">Please Select Date </small>
+    <small *ngIf="error.offerExpiry?.date && details?.offerExpiry?.touched">Please Select valid Date </small>
   </div>
 
   <div>
-    <label for="terms">Offer expiry code<span>*</span></label>
-    <input
+    <label for="terms">Terms & Conditions<span>*</span></label>
+    <textarea
       #offerExpiryDate
       type="text"
       [(ngModel)]="inpValue.terms"
       (ngModelChange)="getData('terms')"
       formControlName="terms"
-    />
-    <small *ngIf="error.terms">Enter terms and Conditions </small>
+    ></textarea>
+    <small *ngIf="error.terms && details?.terms?.touched">Enter terms and Conditions </small>
   </div>
 
-  <button (click)="createOffer()">Create Offer</button>
 </form>
+<div class="btn">
+  <button (click)="createOffer()" [disabled]="!offers.valid">Create Offer</button>
+</div>

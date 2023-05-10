@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OfferService } from '../offer.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-purchased-list',
@@ -14,17 +15,23 @@ export class PurchasedListComponent {
   currentPage: number = 1
   totalItem: number = 0
   data: any;
-  constructor(private offerService: OfferService) { }
+  searchData:any;
+
+  constructor(private offerService: OfferService,private datePipe: DatePipe) { }
   ngOnInit(): void {
     this.getPurchasedOffers()
   }
   getPurchasedOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
+      value.data.map((ele: any) => {
+        ele.offerExpiryDate = this.datePipe.transform(
+          ele.offerExpiryDate,
+          'dd-MM-yyyy'
+        );
+      });
       this.data = value.data
+      this.searchData = value.data
     })
-    
-    
-    return this.data
   }
   onPageChange(event: any) {
     this.currentPage = event
@@ -35,16 +42,18 @@ export class PurchasedListComponent {
 
   redeem(id:any){
     this.offerService.redeemOffer('http://localhost:3000/offers/redeem-offer',{purchaseOfferId:id}).subscribe((data:any)=>{
-      this.ngOnInit()
-    });
+      this.ngOnInit();
+    }
+    );
 
   }
   search() {
-    // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
-    //   this.data = value.data
-
-    //   this.totalItem = this.data.length
-    // })
-
+    this.searchData = this.data
+    if (!this.firstName) {
+      this.ngOnInit()
+     }
+     this.searchData = this.data.filter((value: any) => {
+      return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
+    });
   }
 }

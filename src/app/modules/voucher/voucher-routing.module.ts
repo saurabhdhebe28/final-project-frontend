@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VoucherComponent } from './voucher/voucher.component';
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { PurchasedListComponent } from './purchased-list/purchased-list.component';
+import { RedeemVoucherListComponent } from './redeem-voucher-list/redeem-voucher-list.component';
 
 const routes: Routes = [
   
@@ -25,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'redeemed-voucher-list',
-    component: PurchasedListComponent,
+    component: RedeemVoucherListComponent,
   },
 ];
 

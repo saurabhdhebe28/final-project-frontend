@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { VoucherService } from '../voucher.service';
+import { imageValidator } from 'src/app/validation/image-validation';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class VoucherComponent {
 
   voucherForm = new FormGroup({
     voucherTitle: new FormControl('',Validators.required),
-    voucherImage: new FormControl('',Validators.required),
+    voucherImage: new FormControl('',[Validators.required,imageValidator]),
     pointRate: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     merchant: new FormControl('',Validators.required),
     brands: new FormControl('',Validators.required),
@@ -46,12 +47,20 @@ export class VoucherComponent {
   })
 
 getData(name:any){
-  this.details = this.voucherForm.get(name);
-  this.error[name] = this.details.errors
+  this.details[name] = this.voucherForm.get(name);
+    this.error[name] = this.details[name].errors;
 }
 
 file(e:any){
-  this.files.voucherImage=e.target.files[0]
+  this.files.voucherImage=e.target.files[0];
+  if (!this.error.voucherImage) {
+    if (this.files.voucherImage.size > 500000) {
+      this.voucherForm.get('voucherImage')?.setValue('');
+      this.error['voucherImage'] = { size: true };
+    } else {
+      this.error['voucherImage'] = { size: false };
+    }
+  }
 }
 createVoucher() {
   const formData = new FormData()

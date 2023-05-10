@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OfferService } from '../../offers/offer.service';
+import { VoucherService } from '../voucher.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-redeem-voucher-list',
@@ -7,20 +9,28 @@ import { OfferService } from '../../offers/offer.service';
   styleUrls: ['./redeem-voucher-list.component.css']
 })
 export class RedeemVoucherListComponent {
-  getUrl:string='http://localhost:3000/offers/redeem-voucher';
+  getUrl:string='http://localhost:3000/voucher/redeem-list';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
   totalItem: number = 0
   data: any;
-  constructor(private offerService: OfferService) { }
+  searchData: any;
+  constructor(private voucherService: VoucherService,private datePipe: DatePipe) { }
   ngOnInit(): void {
-    this.getPurchasedOffers()
+    this.getPurchaseVoucher()
   }
-  getPurchasedOffers() {
-    this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
+  getPurchaseVoucher() {
+    this.voucherService.getVoucher(this.getUrl).subscribe((value: any) => {
+      value.data.map((ele: any) => {
+        ele.offerExpiryDate = this.datePipe.transform(
+          ele.offerExpiryDate,
+          'dd-MM-yyyy'
+        );
+      });
       this.data = value.data
+      this.searchData = value.data
     })
   }
   onPageChange(event: any) {
@@ -30,11 +40,12 @@ export class RedeemVoucherListComponent {
     this.disableButtonvalue = !this.firstName
   }
   search() {
-    // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
-    //   this.data = value.data
-
-    //   this.totalItem = this.data.length
-    // })
-
+      this.searchData = this.data
+      if (!this.firstName) {
+        this.ngOnInit()
+       }
+       this.searchData = this.data.filter((value: any) => {
+        return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
+      });
   }
 }

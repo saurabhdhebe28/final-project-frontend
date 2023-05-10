@@ -1,10 +1,20 @@
 /* input {
     width: 250px;
 } */
+.search {
+    margin-top: 20px;
+    margin-left: 200px;
+}
 
 th {
-    /* border: 2px solid black; */
-    background-color: grey;
+    background-color: #6E58A4;
+    color: white;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    border: 1px solid black;
 }
 
 /* tr td {
@@ -12,9 +22,8 @@ th {
 } */
 
 .searchBtn {
-
     margin-top: 20px;
-    margin-left: 250px
+    margin-left: 170px
 }
 
 .clickable-cell {
@@ -27,4 +36,9 @@ th {
     color: #007bff;
     font-weight: bold;
     text-decoration: underline;
+}
+
+.wrap {
+    position: relative;
+    margin-left: 330px;
 }
