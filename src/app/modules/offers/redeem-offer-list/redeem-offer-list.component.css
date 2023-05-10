@@ -1,0 +1,30 @@
+*{
+    margin-top: 10px;
+}
+.right{
+    margin-left: 100px;
+}
+label{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+th{
+    text-transform: uppercase;
+    background-color: #6E58A4;
+    color: white;
+}
+td{
+    font-size: small;
+    background-color: white;
+
+}
+th, td{
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+.searchbtn {
+    margin: 20px 10px 20px 0;
+}
+input{
+    width: 500px;
+}

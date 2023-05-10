@@ -20,7 +20,7 @@ const routes: Routes = [
     component: OfferListComponent,
   },
   {
-    path: 'purchased-offer-list',
+    path: 'assigned-offer-list',
     component: PurchasedListComponent,
   },
   {

@@ -3,20 +3,18 @@
         <div class="form-group mr-2">
             <label for="voucherTitle">Voucher Title</label>
             <input type="text" class="form-control"  placeholder="Enter Voucher Title" name="voucherTitle"
-                [(ngModel)]="voucherTitle" (input)="disableButton()">
+                [(ngModel)]="voucherTitle" (keyup)="search()">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
-        <button class="btn btn-dark" type="reset">Reset</button>
+        <button class="searchbtn btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
     </form>
 </div>
 <br>
 <br>
 <div class="table">
-    <table *ngIf="data && data.length != 0" class="table-primary">
+    <table *ngIf="searchData && searchData.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Voucher Title</th>
-                <th scope="col">Voucher Image</th>
                 <th scope="col">Voucher Code</th>
                 <th scope="col">Point Rate</th>
                 <th scope="col">Merchant</th>
@@ -24,12 +22,12 @@
                 <th scope="col">Denomination Step</th>
                 <th scope="col">Denomination Start</th>
                 <th scope="col">Denomination End</th>
-                <th scope="col">Terms And Conditions</th>
                 <th scope="col">Expiry Date</th>
+                <th scope="col">Terms And Conditions</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of searchData | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -37,7 +35,7 @@
               }
                let i=index ">
                 <td>{{value.voucherTitle}}</td>
-                <td>{{value.voucherImage}}</td>
+                <td>{{value.voucherCode}}</td>
                 <td>{{value.pointRate}}</td>
                 <td>{{value.merchants}}</td>
                 <td>{{value.brands}}</td>
@@ -45,14 +43,11 @@
                 <td>{{value.denominationStart}}</td>
                 <td>{{value.denominationEnd}}</td>
                 <td>{{value.voucherExpiryDate}}</td>
-                <td>{{value.voucherCode}}</td>
                 <td>{{value.termsAndConditions}}</td>
-                <!-- <td (click)="redeem(value.offerCode)" *ngIf="value.status=='Available'"><button>Redeem</button></td>
-                <td *ngIf="value.status=='Unavailable'">Redeemed Offer</td> -->
             </tr>
         </tbody>
     </table>
-    <div *ngIf="!(data && data.length > 0)">
+    <div *ngIf="!(searchData && searchData.length > 0)">
         <p>No data available.</p>
     </div>
 </div>

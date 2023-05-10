@@ -22,7 +22,9 @@
       (ngModelChange)="getData('voucherImage')"
       (change)="file($event)"
     />
-    <small *ngIf="error.voucherImage">Voucher Image is required</small>
+    <small *ngIf="error.voucherImage?.required && details?.voucherImage?.touched">Voucher Image is required</small>
+    <small *ngIf="error.voucherImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
+    <small *ngIf="error.voucherImage?.size && details?.offerImage?.touched">Max Size 500KB allowed</small>
   </div>
 
   <div>
@@ -53,7 +55,7 @@
         {{ Merchant }}
       </option>
     </select>
-    <small *ngIf="error.merchant">Select Merchant </small>
+    <small *ngIf="error.merchant && details?.merchant?.touched">Select Merchant </small>
   </div>
 
   <div>
@@ -70,7 +72,7 @@
         {{ Brand }}
       </option>
     </select>
-    <small *ngIf="error.brands">Select Merchant </small>
+    <small *ngIf="error.brands && details?.brands?.touched">Select Merchant </small>
   </div>
 
   <div>
@@ -121,6 +123,7 @@
       [(ngModel)]="inpValue.voucherExpiryDate"
       formControlName="voucherExpiryDate"
     />
+    <small *ngIf="error.voucherExpiryDate && details?.voucherExpiryDate?.touched">Enter denomination end </small>
   </div>
 
   <div>
@@ -134,23 +137,25 @@
       placeholder="Please enter voucher code"
     />
     <small *ngIf="error.voucherCode">Enter voucher code </small>
+    <small *ngIf="error.offerImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
   </div>
 
   <div>
     <label for="termsAndConditions">Terms and Conditions<span>*</span></label>
-    <input
+    <textarea
       #offerExpiryDate
       type="text"
       [(ngModel)]="inpValue.termsAndConditions"
       (ngModelChange)="getData('termsAndConditions')"
       formControlName="termsAndConditions"
-    />
-    <small *ngIf="error.termsAndConditions">Write terms and conditions </small>
+    ></textarea>
+    <small *ngIf="error.termsAndConditions  && details?.termsAndConditions?.touched">Write terms and conditions </small>
   </div>
 
-
+</form>
+<div>
   <button (click)="createVoucher()" [disabled]="details.errors">
     Create Voucher
   </button>
-</form>
+</div>
 

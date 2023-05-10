@@ -1,21 +1,22 @@
+<div class="right">
+
 <div class="search">
     <form class="form-inline" (ngSubmit)="search()">
         <div class="form-group mr-2">
-            <label for="offerTitle">Offer Title</label>
+            <label for="offerTitle">Offer Title:</label>
             <input type="text" class="form-control" placeholder="Enter Offer Title" name="offerTitle"
-                [(ngModel)]="offerTitle" (input)="disableButton()">
+                [(ngModel)]="offerTitle" (keyup)="search()">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
-        <button class="btn btn-dark" type="reset">Reset</button>
+        <button class="searchbtn btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
     </form>
 </div>
 <br>
 <br>
 <div class="table">
-    <table *ngIf="data && data.length != 0" class="table-primary">
+    <table *ngIf="searchData && searchData.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Offer Image</th>
+                <th scope="col">Offer Title</th>
                 <th scope="col">Offer Code</th>
                 <th scope="col">Merchant</th>
                 <th scope="col">Brand</th>
@@ -26,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of searchData | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -44,11 +45,12 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="!(data && data.length > 0)">
+    <div *ngIf="!(searchData && searchData.length > 0)">
         <p>No data available.</p>
     </div>
 </div>
 <br>
 <div class="sticky-bottom d-flex justify-content-center align-items-center">
-    <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
 </div>

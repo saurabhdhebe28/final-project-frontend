@@ -3,16 +3,15 @@
         <div class="form-group mr-2">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" placeholder="Enter First Name" name="firstName"
-                [(ngModel)]="firstName" (input)="disableButton()">
+                [(ngModel)]="firstName" (keyup)="search()">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
-        <button class="btn btn-dark" type="reset">Reset</button>
+        <button class="btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
     </form>
 </div>
 <br>
 <br>
 <div class="table">
-    <table *ngIf="data && data.length != 0" class="table-primary">
+    <table *ngIf="searchData && searchData.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">First Name</th>
@@ -24,12 +23,10 @@
                 <th scope="col">Expiry Date</th>
                 <th scope="col">Terms & Conditions</th>
                 <th scope="col">Status</th>
-
-                
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of searchData | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -50,7 +47,7 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="!(data && data.length > 0)">
+    <div *ngIf="!(searchData && searchData.length > 0)">
         <p>No data available.</p>
     </div>
 </div>
