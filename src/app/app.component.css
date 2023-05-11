@@ -1,4 +1,7 @@
 div{
     display:flex;
-    gap:5%
+    gap: 1%;
+}
+.right{
+    background-color: #C9E1C1;
 }

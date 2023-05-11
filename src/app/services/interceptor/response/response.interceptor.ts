@@ -22,17 +22,26 @@ export class ResponseInterceptor implements HttpInterceptor {
         if (evt instanceof HttpResponse) {
           if (evt.body) {
             let data: any = evt.body
-            if (data.status == false || data.success == false) {
-              this.toastre.error(`Error:${data.data || data.success.message}`)
+            if (data.status == false || data.status == 'false') {
+              if (data.data) {
+                this.toastre.error(`Error:${data.data}`)
+              }
+              if (data.message) {
+                this.toastre.error(`error:${data.message}`)
+              }
             }
-
             if (data.errors) {
               let obj = Object.keys(data.errors)
               let errorKey = obj[0]
               this.toastre.error(data.errors[errorKey][0])
             }
-            if ((data.success == true || data.status == true) && typeof data.data == 'string') {
-              this.toastre.success(`${data.data}`)
+            if ((data.status == true && (typeof data.data == 'string' || typeof data.message == 'string')|| data.status =='true')) {
+              if (data.message) {
+                this.toastre.success(`${data.message}`)
+              }
+              if (typeof data.data == 'string') {
+                this.toastre.success(`${data.data}`)
+              }
             }
           }
         }

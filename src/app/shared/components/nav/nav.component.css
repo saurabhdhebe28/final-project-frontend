@@ -2,12 +2,13 @@
     display: flex;
     justify-content: space-between;
     padding:10px;
-    background-color: var(--secondary);
+    background-color: #6E58A4;;
 }
 .logo{
     font-size: large;
     font-weight: 600;
-    color: rgb(6, 87, 87);
+    color: white;
+    
 }
 .menu{
     font-size: medium;

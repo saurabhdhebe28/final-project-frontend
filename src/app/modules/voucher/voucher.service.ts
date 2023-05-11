@@ -16,5 +16,8 @@ export class VoucherService {
   redeemVoucher(url:any,data:any){
     return this.apiAdapter.post(url,data);
   }
+  assignVoucher(url:any,data:any){
+    return this.apiAdapter.post(url,data)
+  }
 
 }

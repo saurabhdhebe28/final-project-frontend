@@ -1,18 +1,34 @@
+<div class="right">
+
+    <div class="search">
+        <form class="form-inline" (ngSubmit)="search()">
+            <div class="form-group mr-2">
+                <label for="userId">User ID</label>
+                <input type="text" class="form-control" placeholder="Enter User ID" name="userId"
+                    [(ngModel)]="userId"/>
+            </div>
+            <div class="form-group mr-2">
+                <label for="offerId">Offer ID</label>
+                <input type="text" class="form-control" placeholder="Enter Offer ID" name="offerId"
+                    [(ngModel)]="offerId"/>
+            </div>
+            <button class="btn btn-primary" (click)="assign()">Assign</button>
+        </form>
+    </div>
 <div class="search">
     <form class="form-inline" (ngSubmit)="search()">
         <div class="form-group mr-2">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" placeholder="Enter First Name" name="firstName"
-                [(ngModel)]="firstName" (input)="disableButton()">
+                [(ngModel)]="firstName" (keyup)="search()">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="disableButtonvalue">Search</button>
         <button class="btn btn-dark" type="reset">Reset</button>
     </form>
 </div>
 <br>
 <br>
 <div class="table">
-    <table *ngIf="data && data.length != 0" class="table-primary">
+    <table *ngIf="searchData && searchData.length != 0" class="table-primary">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">First Name</th>
@@ -23,10 +39,12 @@
                 <th scope="col">Offer Type</th>
                 <th scope="col">Expiry Date</th>
                 <th scope="col">Terms & Conditions</th>
+                <th scope="col">Status</th>
+
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let value of data | paginate
+            <tr *ngFor="let value of searchData | paginate
             : {
                 itemsPerPage:itemsPerPage ,
                 currentPage:currentPage ,
@@ -41,14 +59,17 @@
                 <td>{{value.offerType}}</td>
                 <td>{{value.offerExpiryDate}}</td>
                 <td>{{value.termsAndConditions}}</td>
+                <td (click)="redeem(value.purchase_offer_id)"  *ngIf="value.status=='Available'"><button class="redeem">Redeem</button></td>
+                <td *ngIf="value.status=='Unavailable'">Redeemed</td>
             </tr>
         </tbody>
     </table>
-    <div *ngIf="!(data && data.length > 0)">
+    <div *ngIf="!(searchData && searchData.length > 0)">
         <p>No data available.</p>
     </div>
 </div>
 <br>
 <div class="sticky-bottom d-flex justify-content-center align-items-center">
     <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
+</div>
 </div>

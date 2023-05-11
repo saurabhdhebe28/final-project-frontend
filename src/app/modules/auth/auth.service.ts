@@ -7,7 +7,7 @@ import { ApiAdapterService } from 'src/app/services/apiAdapter/api-adapter.servi
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private apiAdpter: ApiAdapterService) {
+  constructor(private apiAdpter: ApiAdapterService ) {
     const status = localStorage.getItem('token');
     if (status) {
       this.loggedIn.next(true);

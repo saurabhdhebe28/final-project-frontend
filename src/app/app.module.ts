@@ -8,10 +8,9 @@ import { OcrModule } from './modules/ocr/ocr.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ResponseInterceptor } from './services/interceptor/response/response.interceptor';
-import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
-import { LoginComponent } from './modules/auth/login/login.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { HeaderInterceptor } from './services/interceptor/header/header.interceptor';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -27,12 +26,13 @@ import { HeaderInterceptor } from './services/interceptor/header/header.intercep
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 1000,
-      positionClass: 'toast-top-center'
+      positionClass: 'toast-top-right'
     }),
     BrowserAnimationsModule
 
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseInterceptor,
