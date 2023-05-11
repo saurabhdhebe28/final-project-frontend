@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OcrService } from '../ocr.service';
 import { saveAs } from 'file-saver';
+// import { log } from 'console';
 
 
 
@@ -23,9 +24,14 @@ export class OcrListComponent implements OnInit {
   }
   getOcrData() {
     this.http.ocrList().subscribe((value: any) => {
+      if(typeof value.data != 'string'){
       this.data = value.data
       this.totalItem = this.data.length
+      typeof(this.data)
+      }
+      
     })
+    
   }
   onPageChange(event: any) {
     this.currentPage = event
