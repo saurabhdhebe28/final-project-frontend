@@ -24,8 +24,8 @@ export class RedeemVoucherListComponent {
   getPurchaseVoucher() {
     this.voucherService.getVoucher(this.getUrl).subscribe((value: any) => {
       value.data.map((ele: any) => {
-        ele.offerExpiryDate = this.datePipe.transform(
-          ele.offerExpiryDate,
+        ele.voucherExpiryDate = this.datePipe.transform(
+          ele.voucherExpiryDate,
           'dd-MM-yyyy'
         );
       });
@@ -41,9 +41,9 @@ export class RedeemVoucherListComponent {
   }
   search() {
       this.searchData = this.data
-      if (!this.firstName) {
-        this.ngOnInit()
-       }
+      // if (!this.firstName) {
+      //   this.ngOnInit()
+      //  }
        this.searchData = this.data.filter((value: any) => {
         return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
       });

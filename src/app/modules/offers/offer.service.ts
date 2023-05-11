@@ -16,4 +16,7 @@ export class OfferService {
   redeemOffer(url:any,data:any){
     return this.apiAdapter.post(url,data);
   }
+  assignOffer(url:any,data:any){
+    return this.apiAdapter.post(url,data)
+  }
 }
