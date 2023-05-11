@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OfferService } from '../offer.service';
 import { imageValidator } from 'src/app/validation/image-validation';
 import { DatePipe } from '@angular/common';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-offer',
   templateUrl: './offer.component.html',

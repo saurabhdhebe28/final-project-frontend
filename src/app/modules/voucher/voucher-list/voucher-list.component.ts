@@ -34,7 +34,6 @@ export class VoucherListComponent {
       this.searchData= voucher.data;
       this.data = voucher.data;
     })
-
   }
 
   onPageChange(event: any) {
@@ -54,11 +53,11 @@ export class VoucherListComponent {
       return value.voucherTitle?.toLowerCase().startsWith(this.voucherTitle?.toLowerCase())
     });
   }
-
   redeem(code: any) {
     const body = { offerCode: code }
     this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
       console.log(data);
+
     });
     this.getVoucher();
   }
