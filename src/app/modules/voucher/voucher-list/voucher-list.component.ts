@@ -15,9 +15,9 @@ export class VoucherListComponent {
   currentPage: number = 1
   totalItem: number = 0
   data: any;
-  searchData:any;
+  searchData: any;
 
-  constructor(private voucherService: VoucherService,private datePipe: DatePipe) { }
+  constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getVoucher();

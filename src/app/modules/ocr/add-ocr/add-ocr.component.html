@@ -27,58 +27,74 @@
     </form>
 
 </div> -->
-
-<div class="select">
-    <label for="optionSelect">Select an option:</label>
-    <select id="optionSelect" [(ngModel)]="selectedOption">
-        <option value="">-- Select Option --</option>
-        <option value="url">URL</option>
-        <option value="file">File</option>
-    </select>
-</div>
-<br>
-<br>
-<div *ngIf="selectedOption === 'url'">
-    <form [formGroup]="urlData" (ngSubmit)="urlToDb()">
-        <div class="form-group">
-            <label for="url">Enter Url here</label>
-            <br>
-            <input type="text" name="url" class="form-control" placeholder="Enter Url here" formControlName="url"
-                (change)="onUrlSelect($event)">
-            <br>
-            <br>
-            <div *ngIf="url && url.touched && url.invalid">
-                <div style="color: red;" *ngIf="url.errors?.['required']">Please Provide Url</div>
-                <div style="color: red;" *ngIf="url.errors?.['pattern']">Please Provide valid url</div>
-            </div>
-        </div>
-        <div class="button">
-            <button type="submit" class="btn btn-primary" [disabled]="!url?.valid">Add Ocr</button>
-        </div>
-    </form>
-    <div *ngIf="urlData.valid">
-        <iframe [src]="inputUrl" width="100%" height="400"></iframe>
+<div class="container">
+    <div class="select">
+        <label for="optionSelect"><strong>Select Method</strong> </label>
+        <br>
+        <select id="optionSelect" [(ngModel)]="selectedOption">
+            <option value="">-- Select Method --</option>
+            <option value="url">URL</option>
+            <option value="file">File</option>
+        </select>
     </div>
-</div>
 
-<div *ngIf="selectedOption === 'file'">
-    <form [formGroup]="fileData" (ngSubmit)="fileTOdb()">
-        <div class="form-group">
-            <label>Upload Your File Here</label>
-            <br>
-            <input type="file" formControlName="file" (change)="onFileSelect($event)">
-            <br>
-            <div style="color: red;"
-                *ngIf="fileData.get('file')?.invalid && (fileData.get('file')?.dirty || fileData.get('file')?.touched)">
-                <div *ngIf="fileData.get('file')?.hasError('required')">File is required.</div>
-                <div *ngIf="fileData.get('file')?.hasError('invalidExtension')">Invalid file extension. Only .html files
-                    are allowed.</div>
-            </div>
-        </div>
-        <div class="button">
-            <button type="submit" class="btn btn-primary" [disabled]="!fileData.valid">Upload Image</button>
-        </div>
-    </form>
+    <!-- <div class="options">
+        <label><strong>Select Method</strong></label>
+        <br>
+        <label>
+            <input type='radio' name="option" value="url" [(ngModel)]="selectedOption"> URL
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="option" value="file" [(ngModel)]="selectedOption"> File
+        </label>
+    </div> -->
     <br>
-    <div class="htmlBox" *ngIf="fileData.valid" [innerHTML]="htmlContent" [style.height.px]="'500'"></div>
+    <br>
+    <div class="url" *ngIf="selectedOption === 'url'">
+        <form [formGroup]="urlData" (ngSubmit)="urlToDb()">
+            <div class="form-group">
+                <label for="url">Enter Url here</label>
+                <br>
+                <input type="text" name="url" class="form-control" placeholder="Enter Url here" formControlName="url"
+                    (change)="onUrlSelect($event)">
+                <br>
+                <br>
+                <div *ngIf="url && url.touched && url.invalid">
+                    <div style="color: red;" *ngIf="url.errors?.['required']">Please Provide Url</div>
+                    <div style="color: red;" *ngIf="url.errors?.['pattern']">Please Provide valid url</div>
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit" class="btn btn-primary" [disabled]="!url?.valid">Add Ocr</button>
+            </div>
+        </form>
+        <div *ngIf="urlData.valid">
+            <iframe [src]="inputUrl" width="100%" height="400"></iframe>
+        </div>
+    </div>
+
+    <div class="file" *ngIf="selectedOption === 'file'">
+        <form [formGroup]="fileData" (ngSubmit)="fileTOdb()">
+            <div class="form-group">
+                <label>Upload Your File Here</label>
+                <br>
+                <input type="file" formControlName="file" (change)="onFileSelect($event)">
+                <br>
+                <div style="color: red;"
+                    *ngIf="fileData.get('file')?.invalid && (fileData.get('file')?.dirty || fileData.get('file')?.touched)">
+                    <div *ngIf="fileData.get('file')?.hasError('required')">File is required.</div>
+                    <div *ngIf="fileData.get('file')?.hasError('invalidExtension')">Invalid file extension. Only .html
+                        files
+                        are allowed.</div>
+                </div>
+            </div>
+            <br>
+            <div class="button">
+                <button type="submit" class="btn btn-primary" [disabled]="!fileData.valid">Upload Image</button>
+            </div>
+        </form>
+        <br>
+        <div class="htmlBox" *ngIf="fileData.valid" [innerHTML]="htmlContent" [style.height.px]="'500'"></div>
+    </div>
 </div>
