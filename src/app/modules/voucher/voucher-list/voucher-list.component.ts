@@ -22,9 +22,17 @@ export class VoucherListComponent {
   ngOnInit(): void {
     this.getVoucher();
   }
-  getVoucher() {
-    this.voucherService.getVoucher(this.getUrl).subscribe((voucher: any) => {
-      this.data = voucher.data
+
+  getVoucher(){
+    this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
+      voucher.data.map((ele: any) => {
+        ele.voucherExpiryDate = this.datePipe.transform(
+          ele.voucherExpiryDate,
+          'dd-MM-yyyy'
+        );
+      });
+      this.searchData= voucher.data;
+      this.data = voucher.data;
     })
   }
 
@@ -37,12 +45,13 @@ export class VoucherListComponent {
   }
 
   search() {
-    // this.offerService.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
-    //   this.data = value.data
-
-    //   this.totalItem = this.data.length
-    // })
-
+    this.searchData = this.data
+    if (!this.voucherTitle) {
+     this.ngOnInit()
+    }
+    this.searchData =this.data.filter((value: any) => {
+      return value.voucherTitle?.toLowerCase().startsWith(this.voucherTitle?.toLowerCase())
+    });
   }
   redeem(code: any) {
     const body = { offerCode: code }

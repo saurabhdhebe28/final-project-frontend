@@ -23,10 +23,12 @@
       (change)="file($event)"
     />
     <small *ngIf="error.voucherImage?.required && details?.voucherImage?.touched">Voucher Image is required</small>
-    <small *ngIf="error.voucherImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
-    <small *ngIf="error.voucherImage?.size && details?.offerImage?.touched">Max Size 500KB allowed</small>
+    <small *ngIf="error.voucherImage?.image && details?.voucherImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
+    <small *ngIf="error.voucherImage?.size && details?.voucherImage?.touched">Max Size 500KB allowed</small>
   </div>
 
+
+  
   <div>
     <label for="pointRate">Point Rate<span>*</span></label>
     <input
@@ -41,6 +43,7 @@
     <small *ngIf="error.pointRate?.pattern">Enter Numbers Only  </small>
   </div>
 
+  
   <div>
     <label for="Merchant">Merchant <span>*</span></label>
     <select
@@ -120,11 +123,14 @@
     #voucherExpiryDate
       type="date"
       (keyup)="getData('voucherExpiryDate')"
+      (blur)="checkDate()"
       [(ngModel)]="inpValue.voucherExpiryDate"
       formControlName="voucherExpiryDate"
+      [min]="minDate"
     />
-    <small *ngIf="error.voucherExpiryDate && details?.voucherExpiryDate?.touched">Enter denomination end </small>
-  </div>
+
+    <small *ngIf="error.voucherExpiryDate?.required && details?.voucherExpiryDate?.touched">Please Select Date </small>
+    <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date </small>  </div>
 
   <div>
     <label for="voucherCode">Voucher code <span>*</span></label>
@@ -136,8 +142,8 @@
       [(ngModel)]="inpValue.voucherCode"
       placeholder="Please enter voucher code"
     />
-    <small *ngIf="error.voucherCode">Enter voucher code </small>
-    <small *ngIf="error.offerImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
+    <small *ngIf="error.voucherCode?.required">Enter voucher code </small>
+    <small *ngIf="error.voucherCode?.maxlength">max 10 characters allowed</small>
   </div>
 
   <div>
