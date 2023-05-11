@@ -27,8 +27,8 @@ export class PurchasedListComponent {
   getPurchasedVouchers() {
     this.voucherService.getVoucher(this.getUrl).subscribe((value: any) => {
       value.data.map((ele: any) => {
-        ele.offerExpiryDate = this.datePipe.transform(
-          ele.offerExpiryDate,
+        ele.voucherExpiryDate = this.datePipe.transform(
+          ele.voucherExpiryDate,
           'dd-MM-yyyy'
         );
       });
