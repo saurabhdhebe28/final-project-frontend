@@ -101,19 +101,7 @@ createVoucher() {
   formData.append('termsAndConditions',this.inpValue.termsAndConditions)
   
   this.voucherService.createVoucher('http://localhost:3000/voucher/create-voucher',formData).subscribe((data:any)=>{
-    console.log(data)
-    this.inpValue={
-      voucherTitle:'',
-      pointRate:'',
-      merchant:'',
-      brands:'',
-      denominationStep:'',
-      denominationStart:'',
-      denominationEnd:'',
-      voucherExpiryDate:'',
-      voucherCode:'',
-      termsAndConditions:''
-    };
+    this.voucherForm.reset()
   })
 
 }

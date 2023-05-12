@@ -110,18 +110,7 @@ export class OfferComponent {
     this.offerService
       .craeteOffer('http://localhost:3000/offers/create-offer', formData)
       .subscribe((data: any) => {
-        console.log(data);
-        this.inpValue = {
-          offerTitle: '',
-          offerCode: '',
-          merchant: '',
-          brands: '',
-          minAmount: '',
-          offerType: '',
-          limit: '',
-          offerExpiry: '',
-          terms: '',
-        };
+       this.offers.reset()
       });
 
   }
