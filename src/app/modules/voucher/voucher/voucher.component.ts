@@ -101,7 +101,7 @@ createVoucher() {
   formData.append('termsAndConditions',this.inpValue.termsAndConditions)
   
   this.voucherService.createVoucher('http://localhost:3000/voucher/create-voucher',formData).subscribe((data:any)=>{
-    console.log(data)
+    this.voucherForm.reset()
   })
 
 }
