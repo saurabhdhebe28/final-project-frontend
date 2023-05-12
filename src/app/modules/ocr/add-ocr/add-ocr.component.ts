@@ -54,7 +54,6 @@ export class AddOcrComponent {
     const fileReader: FileReader = new FileReader();
     fileReader.onload = (e: any) => {
       this.htmlContent = e.target.result;
-      // console.log(this.htmlContent)
       this.files.htmlTemplate = this.htmlContent
     };
     fileReader.readAsText(file);

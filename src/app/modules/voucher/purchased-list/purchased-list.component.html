@@ -10,7 +10,7 @@
             <input type="text" class="form-control" placeholder="Enter Voucher ID" name="voucherId"
                 [(ngModel)]="voucherId"/>
         </div>
-        <button class="btn btn-primary" (click)="purchase()">Purchase</button>
+        <button class="btn btn-primary" [disabled]="!userId || !voucherId" (click)="purchase()">Purchase</button>
     </form>
 </div>
 
