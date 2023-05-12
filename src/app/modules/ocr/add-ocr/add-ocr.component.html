@@ -56,20 +56,18 @@
             <div class="form-group">
                 <label for="url">Enter Url here</label>
                 <br>
-                <input type="text" name="url" class="form-control" placeholder="Enter Url here" formControlName="url"
-                    (change)="onUrlSelect($event)">
-                <br>
-                <br>
-                <div *ngIf="url && url.touched && url.invalid">
+                <input type="text" name="url" class="form-control" placeholder="Enter Url here" formControlName="url">
+                <div *ngIf="url && url.touched && url.dirty">
                     <div style="color: red;" *ngIf="url.errors?.['required']">Please Provide Url</div>
                     <div style="color: red;" *ngIf="url.errors?.['pattern']">Please Provide valid url</div>
                 </div>
             </div>
+            <br>
             <div class="button">
                 <button type="submit" class="btn btn-primary" [disabled]="!url?.valid">Add Ocr</button>
             </div>
         </form>
-        <div *ngIf="urlData.valid">
+        <div *ngIf="urlData.valid && iframe">
             <iframe [src]="inputUrl" width="100%" height="400"></iframe>
         </div>
     </div>

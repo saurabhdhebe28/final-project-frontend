@@ -22,6 +22,7 @@ export class SignUpComponent {
 
   onSubmit() {
     this.authService.signUp(this.signUpForm.value).subscribe((data) => {
+      this.signUpForm.reset()
       this.router.navigate(['/auth/login'])
     })
   }

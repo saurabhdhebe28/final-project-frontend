@@ -43,6 +43,10 @@ export class OcrService {
   }
   downLoadFile(header: any) {
     let endpoint = 'http://localhost:3000/orc/download_file'
-    return this.apiAdapter.getWithHeaders(endpoint,header)
+    return this.apiAdapter.getWithHeaders(endpoint, header)
+  }
+  getHeaders(data: any) {
+    let endpoint = `http://localhost:3000/orc/get_header?url=${data}`
+    return this.apiAdapter.getwithBody(endpoint)
   }
 }

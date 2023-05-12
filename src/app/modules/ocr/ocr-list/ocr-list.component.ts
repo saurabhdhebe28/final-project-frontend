@@ -24,14 +24,13 @@ export class OcrListComponent implements OnInit {
   }
   getOcrData() {
     this.http.ocrList().subscribe((value: any) => {
-      if(typeof value.data != 'string'){
-      this.data = value.data
-      this.totalItem = this.data.length
-      typeof(this.data)
+      if (typeof value.data != 'string') {
+        this.data = value.data
+        this.totalItem = this.data.length
       }
-      
+
     })
-    
+
   }
   onPageChange(event: any) {
     this.currentPage = event
