@@ -30,7 +30,7 @@ export class OfferListComponent {
           'dd-MM-yyyy'
         );
       });
-      this.searchData= value.data;
+      this.searchData= value.data;      
       this.data = value.data;
     });
   }
