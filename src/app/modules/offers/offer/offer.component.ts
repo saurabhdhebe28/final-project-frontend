@@ -24,7 +24,7 @@ export class OfferComponent {
   };
   details: any = {};
   error: any = {};
-  merchants: any = ['amazon', 'flipkart'];
+  merchants: any = ['Amazon', 'Flipkart'];
   Brands: any = ['Puma', 'Nike'];
   files: any = {
     offerImage: '',

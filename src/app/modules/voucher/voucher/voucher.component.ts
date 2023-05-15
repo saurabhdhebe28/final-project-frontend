@@ -25,7 +25,7 @@ export class VoucherComponent {
   };
   details:any={};
   error: any = {};
-  merchants: any=['amazon','flipkart'];
+  merchants: any=['Amazon','Flipkart'];
   Brands: any=['Puma','Nike'];
   files:any={voucherImage:''}
   today:any
