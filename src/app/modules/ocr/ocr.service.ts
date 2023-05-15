@@ -19,7 +19,7 @@ export class OcrService {
   //   let endpoint = 'http://localhost:3001/api/orcList'
   //   return this.httpClient.get<any>(endpoint)
   // }
-  
+
   constructor(private apiAdapter: ApiAdapterService) { }
 
   addOcr(url: any) {
@@ -33,5 +33,20 @@ export class OcrService {
   ocrListSearch(requestedBy: any, tin: any) {
     let endpoint = `http://localhost:3000/orc/search?requestedBy=${requestedBy}&tin=${tin}`
     return this.apiAdapter.get(endpoint)
+  }
+  gethtmlTemplate(url: any) {
+    // let endpoint = 'http://localhost:3000/orc/'
+  }
+  addOcrByFile(data: any) {
+    let endpoint = 'http://localhost:3000/orc/add_ocr_by_file'
+    return this.apiAdapter.post(endpoint, data)
+  }
+  downLoadFile(header: any) {
+    let endpoint = 'http://localhost:3000/orc/download_file'
+    return this.apiAdapter.getWithHeaders(endpoint, header)
+  }
+  getHeaders(data: any) {
+    let endpoint = `http://localhost:3000/orc/get_header?url=${data}`
+    return this.apiAdapter.getwithBody(endpoint)
   }
 }

@@ -1,0 +1,25 @@
+/* .url {
+    border: 2px solid black;
+    height: 60%;
+} */
+
+.htmlBox {
+    margin-left: 100px;
+    border: 2px solid black;
+    width: 80%;
+    overflow: auto;
+}
+
+.select {
+    margin-top: 150px;
+    margin-left: 150px;
+}
+
+.url {
+    /* border: 1px blue solid; */
+    margin-left: 150px;
+}
+
+.file {
+    margin-left: 150px;
+}

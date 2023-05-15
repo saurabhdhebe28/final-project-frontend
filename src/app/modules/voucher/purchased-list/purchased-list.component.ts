@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VoucherService } from '../voucher.service';
 import { DatePipe } from '@angular/common';
+import { OfferService } from '../../offers/offer.service';
 
 @Component({
   selector: 'app-purchased-list',
@@ -33,7 +34,7 @@ export class PurchasedListComponent {
       });
       this.data = value.data
       this.searchData = value.data
-
+      
     })
   }
   onPageChange(event: any) {
@@ -43,18 +44,20 @@ export class PurchasedListComponent {
     this.disableButtonvalue = !this.firstName
   }
 
-  redeem(id: any) {
+  redeem(id:any){
     console.log('id', this.data);
-
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', { purchaseVoucherId: id }).subscribe((data: any) => {
-      this.ngOnInit();
+    
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
+      this.userId='';
+      this.voucherId='';
+    this.ngOnInit();
     });
   }
   search() {
     this.searchData = this.data
-    // if (!this.firstName) {
-    //   this.ngOnInit()
-    // }
+    if (!this.firstName) {
+      this.ngOnInit()
+    }
     this.searchData = this.data.filter((value: any) => {
       return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
     });

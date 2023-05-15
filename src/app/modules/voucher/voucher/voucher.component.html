@@ -32,7 +32,7 @@
   <div>
     <label for="pointRate">Point Rate<span>*</span></label>
     <input
-    #pointRate
+    #pointRate 
       type="text"
       (keyup)="getData('pointRate')"
       formControlName="pointRate"
@@ -128,9 +128,9 @@
       formControlName="voucherExpiryDate"
       [min]="minDate"
     />
-
     <small *ngIf="error.voucherExpiryDate?.required && details?.voucherExpiryDate?.touched">Please Select Date </small>
-    <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date </small>  </div>
+    <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date </small>  
+</div>
 
   <div>
     <label for="voucherCode">Voucher code <span>*</span></label>
@@ -142,8 +142,8 @@
       [(ngModel)]="inpValue.voucherCode"
       placeholder="Please enter voucher code"
     />
-    <small *ngIf="error.voucherCode">Enter voucher code </small>
-    <small *ngIf="error.offerImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
+    <small *ngIf="error.voucherCode?.required">Enter voucher code </small>
+    <small *ngIf="error.voucherCode?.maxlength">max 10 characters allowed</small>
   </div>
 
   <div>
@@ -164,4 +164,3 @@
     Create Voucher
   </button>
 </div>
-

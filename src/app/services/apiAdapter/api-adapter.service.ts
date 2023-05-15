@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,14 @@ export class ApiAdapterService {
   get(url: string): Observable<any> {
     return this.http.get(url)
   }
+  getWithHeaders(url: string, header: any) {
+    return this.http.get(url, header)
+  }
   post(url: string, data: any = ''): Observable<any> {
     return this.http.post(url, data)
   }
+  getwithBody(path: string): Observable<any> {
+    return this.http.get(path);
+  }
 }
+

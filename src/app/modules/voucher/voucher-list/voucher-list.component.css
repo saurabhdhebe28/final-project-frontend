@@ -10,11 +10,12 @@ label{
 }
 th{
     text-transform: uppercase;
-    background-color: bisque;
+    background-color: #6E58A4;
+    color: white;
 }
 td{
-    vertical-align: text-top;
     font-size: small;
+    background-color: white;
 
 }
 th, td{
