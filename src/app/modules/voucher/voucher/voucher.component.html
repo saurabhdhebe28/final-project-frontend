@@ -32,7 +32,7 @@
   <div>
     <label for="pointRate">Point Rate<span>*</span></label>
     <input
-    #pointRate
+    #pointRate 
       type="text"
       (keyup)="getData('pointRate')"
       formControlName="pointRate"
@@ -128,9 +128,9 @@
       formControlName="voucherExpiryDate"
       [min]="minDate"
     />
-
     <small *ngIf="error.voucherExpiryDate?.required && details?.voucherExpiryDate?.touched">Please Select Date </small>
-    <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date </small>  </div>
+    <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date </small>  
+</div>
 
   <div>
     <label for="voucherCode">Voucher code <span>*</span></label>

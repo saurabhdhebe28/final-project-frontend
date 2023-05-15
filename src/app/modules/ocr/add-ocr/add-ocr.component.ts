@@ -18,6 +18,7 @@ export class AddOcrComponent {
     htmlTemplate: ''
   }
   inputUrl: any
+  iframe: boolean = false
 
   fileExtensionValidator(allowedExtension: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -44,17 +45,30 @@ export class AddOcrComponent {
   fileData = new FormGroup({
     file: new FormControl('', [Validators.required, this.fileExtensionValidator('html')])
   })
-  onUrlSelect(event: any) {
-    this.inputUrl = this.sanitizer.bypassSecurityTrustResourceUrl(event.target.value);
+  // onUrlSelect(event: any) {
+  //   if (this.urlData.valid) {
+  //     this.ocrService.getHeaders(event.target.value).subscribe((response) => {
+  //       let header = response.data
+  //       console.log(header);
 
-  }
+  //       if (!header['x-frame-options']) {
+  //         this.iframe = true
+  //         this.inputUrl = event.target.value
+  //       }
+  //       console.log(this.iframe)
+  //     })
+
+  //   }
+
+
+
+  // }
   onFileSelect(event: any) {
     const file: File = event.target.files[0];
     this.files.file = file
     const fileReader: FileReader = new FileReader();
     fileReader.onload = (e: any) => {
       this.htmlContent = e.target.result;
-      // console.log(this.htmlContent)
       this.files.htmlTemplate = this.htmlContent
     };
     fileReader.readAsText(file);
@@ -70,7 +84,7 @@ export class AddOcrComponent {
       url: this.url?.value
     }
     this.ocrService.addOcr(body).subscribe((response) => {
-
+      this.urlData.reset()
     })
   }
 
@@ -79,7 +93,7 @@ export class AddOcrComponent {
     formData.append('file', this.files.file)
     formData.append('htmlTemplate', this.files.htmlTemplate)
     this.ocrService.addOcrByFile(formData).subscribe((data) => {
-      console.log(data)
+      this.fileData.reset()
     })
   }
 

@@ -28,7 +28,6 @@ export class OcrListComponent implements OnInit {
       if (typeof value.data != 'string') {
         this.data = value.data
         this.totalItem = this.data.length
-        typeof (this.data)
       }
 
     })
