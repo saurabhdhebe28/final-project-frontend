@@ -1,15 +1,68 @@
-<div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
+<div class="right">
+    <div class="search">
+      <form class="form-inline" (ngSubmit)="search()">
         <div class="form-group mr-2">
-            <label for="voucherTitle">Voucher Title</label>
-            <input type="text" class="form-control"  placeholder="Enter Voucher Title" name="voucherTitle"
-                [(ngModel)]="voucherTitle" (keyup)="search()">
+          <label for="voucherTitle">Voucher Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Voucher Title"
+            name="voucherTitle"
+            [(ngModel)]="voucherTitle"
+            (keyup)="inp()"
+          />
         </div>
-        <button class="searchbtn btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
-    </form>
-</div>
-<br>
-<br>
+        <div class="form-group mr-2">
+          <label for="voucherCode">Voucher Code:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Voucher Code"
+            name="voucherCode"
+            [(ngModel)]="voucherCode"
+            (keyup)="inp()"
+          />
+        </div>
+        <div class="form-group mr-2">
+          <label for="merchants">Merchant:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter merchant"
+            name="merchants"
+            [(ngModel)]="merchants"
+            (keyup)="inp()"
+          />
+        </div>
+        <div class="form-group mr-2">
+          <label for="brands">Brand:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Brand"
+            name="brands"
+            [(ngModel)]="brands"
+            (keyup)="inp()"
+          />
+        </div>
+      </form>
+      <div>
+        <button
+          class="searchbtn btn btn-primary"
+          [disabled]="
+            !this.voucherTitle && !this.voucherCode && !this.merchants && !this.brands
+          "
+          (click)="search()"
+        >
+          Search
+        </button>
+        <button class="searchbtn btn btn-dark" (click)="ngOnInit()" type="reset">
+          Reset
+        </button>
+      </div>
+    </div>
+    <br />
+    <br />
 <div class="table">
     <table *ngIf="searchData && searchData.length != 0" class="table-primary">
         <thead class="thead-dark">
