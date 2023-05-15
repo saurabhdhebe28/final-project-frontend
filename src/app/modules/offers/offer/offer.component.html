@@ -1,3 +1,4 @@
+<div class="hero">
 <form [formGroup]="offers" action="">
   <div>
     <label for="offerTitle">Offer Title<span>*</span></label>
@@ -149,4 +150,5 @@
 </form>
 <div class="btn">
   <button (click)="createOffer()" [disabled]="!offers.valid">Create Offer</button>
+</div>
 </div>

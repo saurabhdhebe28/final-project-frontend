@@ -1,3 +1,6 @@
+.hero{
+    margin-left:100px;
+}
 form{
     display: flex;
     justify-content: start;
