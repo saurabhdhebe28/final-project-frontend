@@ -22,6 +22,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         if (evt instanceof HttpResponse) {
           if (evt.body) {
             let data: any = evt.body
+
             if (data.status == false || data.status == 'false') {
               if (data.data) {
                 this.toastre.error(`Error:${data.data}`)
@@ -35,7 +36,7 @@ export class ResponseInterceptor implements HttpInterceptor {
               let errorKey = obj[0]
               this.toastre.error(data.errors[errorKey][0])
             }
-            if ((data.status == true && (typeof data.data == 'string' || typeof data.message == 'string')|| data.status =='true')) {
+            if ((data.status == true && (typeof data.data == 'string' || typeof data.message == 'string') || data.status == 'true')) {
               if (data.message) {
                 this.toastre.success(`${data.message}`)
               }

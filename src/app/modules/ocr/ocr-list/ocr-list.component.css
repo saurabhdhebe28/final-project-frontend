@@ -3,7 +3,7 @@
 } */
 .search {
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 50px;
 }
 
 th {
@@ -26,7 +26,7 @@ td {
 
 .searchBtn {
     margin-top: 20px;
-    margin-left: 170px
+    margin-left: 350px
 }
 
 .clickable-cell {

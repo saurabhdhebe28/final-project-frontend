@@ -14,6 +14,7 @@ export class OcrListComponent implements OnInit {
   constructor(private http: OcrService) { }
   requestedBy: any = ''
   tin: any = ''
+  city: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
@@ -24,23 +25,28 @@ export class OcrListComponent implements OnInit {
   }
   getOcrData() {
     this.http.ocrList().subscribe((value: any) => {
-      if(typeof value.data != 'string'){
-      this.data = value.data
-      this.totalItem = this.data.length
-      typeof(this.data)
+      if (typeof value.data != 'string') {
+        this.data = value.data
+        this.totalItem = this.data.length
+        typeof (this.data)
       }
-      
+
     })
-    
+
   }
   onPageChange(event: any) {
     this.currentPage = event
   }
   disableButton() {
-    this.disableButtonvalue = !this.requestedBy && !this.tin
+    this.disableButtonvalue = !this.requestedBy && !this.tin && !this.city
+  }
+  emptySearch() {
+    if (!this.requestedBy && !this.tin && !this.city) {
+      this.ngOnInit()
+    }
   }
   search() {
-    this.http.ocrListSearch(this.requestedBy, this.tin).subscribe((value) => {
+    this.http.ocrListSearch(this.requestedBy, this.tin, this.city).subscribe((value) => {
       this.data = value.data
       this.totalItem = this.data.length
     })

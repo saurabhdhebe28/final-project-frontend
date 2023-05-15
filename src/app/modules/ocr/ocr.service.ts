@@ -30,8 +30,8 @@ export class OcrService {
     let endpoint = 'http://localhost:3000/orc/orcList'
     return this.apiAdapter.get(endpoint)
   }
-  ocrListSearch(requestedBy: any, tin: any) {
-    let endpoint = `http://localhost:3000/orc/search?requestedBy=${requestedBy}&tin=${tin}`
+  ocrListSearch(requestedBy: any, tin: any, city: any) {
+    let endpoint = `http://localhost:3000/orc/search?requestedBy=${requestedBy}&tin=${tin}&city=${city}`
     return this.apiAdapter.get(endpoint)
   }
   gethtmlTemplate(url: any) {
@@ -43,6 +43,6 @@ export class OcrService {
   }
   downLoadFile(header: any) {
     let endpoint = 'http://localhost:3000/orc/download_file'
-    return this.apiAdapter.getWithHeaders(endpoint,header)
+    return this.apiAdapter.getWithHeaders(endpoint, header)
   }
 }

@@ -21,7 +21,7 @@ export class LoginComponent {
       if (data.status == true) {
         this.authService.loginStatus()
         localStorage.setItem('token', data.token)
-        this.router.navigate(['/ocrList'])
+        this.router.navigate(['/ocr/ocrList'])
       }
     })
   }

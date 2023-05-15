@@ -4,12 +4,17 @@
             <div class="col-md-4 form-group">
                 <label for="requestedBy">Requested By:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="requestedBy"
-                    [(ngModel)]="requestedBy" (input)="disableButton()">
+                    [(ngModel)]="requestedBy" (input)="disableButton()" (keyup)="emptySearch()">
             </div>
             <div class="col-md-4 form-group">
                 <label for="tin">TIN Number:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="tin"
-                    (input)="disableButton()">
+                    (input)="disableButton()" (keyup)="emptySearch()">
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="tin">City:</label>
+                <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="city"
+                    (input)="disableButton()" (keyup)="emptySearch()">
             </div>
             <br>
             <div class="searchBtn">
@@ -21,7 +26,7 @@
 </div>
 <br>
 <br>
-<div *ngIf="(data && data.length != 0)" class="table btn-outline-primary"  class="table-primary">
+<div *ngIf="(data && data.length != 0)" class="table btn-outline-primary" class="table-primary">
     <table class="table  table-bordered">
         <thead class="thead-dark">
             <tr>

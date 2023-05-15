@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./add-ocr.component.css']
 })
 export class AddOcrComponent {
-  selectedOption: any
+  selectedOption: any = 'url'
 
   htmlContent: string = '';
   files: any = {
