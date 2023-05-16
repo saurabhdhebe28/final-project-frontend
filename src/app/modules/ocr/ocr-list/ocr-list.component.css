@@ -2,52 +2,50 @@
     width: 250px;
 } */
 .search {
-    margin-top: 20px;
-    margin-left: 50px;
+  margin-top: 20px;
+  margin-left: 50px;
 }
-.search form{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2%;
-    justify-content: center;
+.search form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  justify-content: center;
 }
 th {
-    text-transform: uppercase;
-    font-size: small;
-    background-color: #332e38;
-    color: #e1ded2;
-  }
+  text-transform: uppercase;
+  font-size: small;
+  background-color: #332e38;
+  color: #e1ded2;
+}
 
-
-  
-  td {
-    font-size: small;
-    background-color: white;
-    color: #332E38;
-  }
+td {
+  font-size: small;
+  background-color: white;
+  color: #332e38;
+}
 
 /* tr td {
     border: 2px solid black;
 } */
 
 .searchBtn {
-    margin-top: 20px;
-    margin-left: 350px
+  margin-top: 20px;
+  margin-left: 350px;
 }
 
 .clickable-cell {
-    cursor: pointer;
-    background-color: #f2f2f2;
-    padding: 10px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  padding: 10px;
 }
 
 .click-text {
-    color: #007bff;
-    font-weight: bold;
-    text-decoration: underline;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .wrap {
-    position: relative;
-    margin-left: 330px;
+  position: relative;
+  margin-left: 330px;
 }
