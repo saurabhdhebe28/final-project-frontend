@@ -100,9 +100,14 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="!(searchData && searchData.length > 0)">
+    <!-- <div *ngIf="!(searchData && searchData.length > 0)">
         <p>No data available.</p>
-    </div>
+    </div> -->
+    <div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
+      <div class="alert alert-danger text-center" role="alert">
+          Data Not Found
+      </div>
+  </div>
 </div>
 <br>
 <div class="sticky-bottom d-flex justify-content-center align-items-center">

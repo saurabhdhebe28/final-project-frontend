@@ -46,3 +46,7 @@ td {
 input {
   width: 400px;
 }
+.dataNotFound{
+  margin-left: 200px;
+  margin-top: 150px;
+}

@@ -17,6 +17,11 @@
     background-color: #332e38;
     color: #e1ded2;
   }
+  .dataNotFound{
+    margin-left: 200px;
+    margin-top: 150px;
+  }
+  
   
   td {
     font-size: small;

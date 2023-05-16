@@ -54,4 +54,8 @@
   .form-inline {
     display: flex;
   }
+  .dataNotFound{
+    margin-left: 200px;
+    margin-top: 150px;
+  }
   
