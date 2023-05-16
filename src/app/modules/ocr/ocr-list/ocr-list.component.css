@@ -7,13 +7,18 @@
 }
 .search form{
   display: flex;
-  /* flex-wrap: wrap;
-  gap: 20px; */
-  /* justify-content: center; */
+  flex-wrap: wrap;
+  gap: 20px; 
+  justify-content: center
 }
-.form-inline input{
+.dataNouFound{
+  margin-left: 240px;
+  margin-top: 100px;
+  
+}
+/* .form-inline input{
   width: 300px;
-}
+} */
 .form-inline label{
   font-weight: bold;
 }
