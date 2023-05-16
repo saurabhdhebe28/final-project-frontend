@@ -15,8 +15,6 @@ export class SidebarComponent {
   };
 
   toggleDropdown(name: any) {
-    this.isDropdownOpen[name] == false
-      ? (this.isDropdownOpen[name] = true)
-      : (this.isDropdownOpen[name] = false);
+    this.isDropdownOpen[name] == false ? (this.isDropdownOpen[name] = true) : (this.isDropdownOpen[name] = false);
   }
 }

@@ -11,6 +11,10 @@ import { OfferService } from '../../offers/offer.service';
 export class PurchasedListComponent {
   getUrl: string = 'http://localhost:3000/voucher/get-assigned-voucher';
   firstName: any = ''
+  lastName:any=''
+  voucherCode:any=''
+  merchant:any=''
+  brand:any=''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
@@ -44,6 +48,17 @@ export class PurchasedListComponent {
     this.disableButtonvalue = !this.firstName
   }
 
+  inp() {
+    if (
+      !this.firstName &&
+      !this.lastName &&
+      !this.voucherCode &&
+      !this.merchant &&
+      !this.brand
+    ) {
+      this.ngOnInit();
+    }
+  }
   redeem(id:any){
     console.log('id', this.data);
     
@@ -54,12 +69,20 @@ export class PurchasedListComponent {
     });
   }
   search() {
-    this.searchData = this.data
-    if (!this.firstName) {
-      this.ngOnInit()
-    }
+    this.searchData = this.data;
     this.searchData = this.data.filter((value: any) => {
-      return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
+      const first = value.firstName
+        ?.toLowerCase()
+        .includes(this.firstName?.toLowerCase());
+      const last = value.lastName?.toLowerCase().includes(this.lastName.toLowerCase());
+      const code = value.voucherCode?.includes(this.voucherCode);
+      const merchant = value.merchants
+        ?.toLowerCase()
+        .includes(this.merchant?.toLowerCase());
+      const brand = value.brands
+        ?.toLowerCase()
+        .includes(this.brand?.toLowerCase());
+      return first && code && last && merchant && brand;
     });
   }
   purchase(){
@@ -69,4 +92,5 @@ export class PurchasedListComponent {
       this.ngOnInit()
     })
   }
+
 }

@@ -12,6 +12,9 @@ export class VoucherListComponent {
   voucherTitle: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
+  voucherCode:any=''
+  merchants:any=''
+  brands:any=''
   currentPage: number = 1
   totalItem: number = 0
   data: any;
@@ -40,19 +43,37 @@ export class VoucherListComponent {
     this.currentPage = event
   }
 
+  inp() {
+    if (
+      !this.voucherTitle &&
+      !this.voucherCode &&
+      !this.merchants &&
+      !this.brands
+    ) {
+      this.ngOnInit();
+    }
+  }
   disableButton() {
     this.disableButtonvalue = !this.voucherTitle
   }
 
   search() {
-    this.searchData = this.data
-    if (!this.voucherTitle) {
-     this.ngOnInit()
-    }
-    this.searchData =this.data.filter((value: any) => {
-      return value.voucherTitle?.toLowerCase().startsWith(this.voucherTitle?.toLowerCase())
+    this.searchData = this.data;
+    this.searchData = this.data.filter((value: any) => {
+      const title = value.voucherTitle
+        ?.toLowerCase()
+        .includes(this.voucherTitle?.toLowerCase());
+      const code = value.voucherCode?.includes(this.voucherCode);
+      const merchant = value.merchants
+        ?.toLowerCase()
+        .includes(this.merchants?.toLowerCase());
+      const brand = value.brands
+        ?.toLowerCase()
+        .includes(this.brands?.toLowerCase());
+      return title && code && merchant && brand;
     });
   }
+  // }
   redeem(code: any) {
     const body = { offerCode: code }
     this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {

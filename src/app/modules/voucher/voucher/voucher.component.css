@@ -1,26 +1,31 @@
-form{
+form {
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
     margin-top: 50px;
 }
-div{
-    display:flex;
-    flex-direction:column;
+
+div {
+    display: flex;
+    flex-direction: column;
     margin: 10px;
 }
-input,select,textarea{
-    width:300px;
-    height:30px;
-    padding:2px 5px;
+
+input,select,textarea {
+    width: 300px;
+    height: 30px;
+    padding: 2px 5px;
 }
-textarea{
+
+textarea {
     height: 200px;
 }
-span,small{
-    color:red;
+
+span,small {
+    color: red;
 }
-button{
+
+button {
     width: 150px;
     padding: 5px 10px;
     border-radius: 5px;

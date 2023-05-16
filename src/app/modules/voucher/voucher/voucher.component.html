@@ -75,7 +75,7 @@
         {{ Brand }}
       </option>
     </select>
-    <small *ngIf="error.brands && details?.brands?.touched">Select Merchant </small>
+    <small *ngIf="error.brands && details?.brands?.touched">Select Brand </small>
   </div>
 
   <div>
@@ -143,7 +143,7 @@
       placeholder="Please enter voucher code"
     />
     <small *ngIf="error.voucherCode?.required">Enter voucher code </small>
-    <small *ngIf="error.voucherCode?.maxlength">max 10 characters allowed</small>
+    <small *ngIf="error.voucherCode?.maxlength">Max 10 characters allowed</small>
   </div>
 
   <div>
