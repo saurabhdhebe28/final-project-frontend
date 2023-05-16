@@ -37,6 +37,8 @@ export class PurchasedListComponent {
         );
       });
       this.data = value.data
+      console.log(this.data);
+      
       this.searchData = value.data
       
     })
@@ -60,9 +62,9 @@ export class PurchasedListComponent {
     }
   }
   redeem(id:any){
-    console.log('id', this.data);
     
     this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
+      
       this.userId='';
       this.voucherId='';
     this.ngOnInit();

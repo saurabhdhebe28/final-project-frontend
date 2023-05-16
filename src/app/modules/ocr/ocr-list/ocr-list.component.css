@@ -51,6 +51,11 @@
 .clickable-cell{
     background-color: rgb(213, 213, 232);
 }
+.click-text{
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .wrap {
     position: relative;
     margin-left: 330px;

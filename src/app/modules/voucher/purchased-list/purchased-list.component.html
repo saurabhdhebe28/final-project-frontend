@@ -118,6 +118,7 @@
           <td>{{value.voucherExpiryDate}}</td>
           <td>{{value.termsAndConditions}}</td>
           <td (click)="redeem(value.purchase_voucher_id)" *ngIf="value.status=='Available'">
+
             <button class="redeem">Redeem</button>
           </td>
           <td *ngIf="value.status == 'Unavailable'">
