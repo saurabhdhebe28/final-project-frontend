@@ -16,9 +16,18 @@ export class RedeemOfferListComponent {
   totalItem: number = 0
   data: any;
   searchData:any;
+  lastName: any;
+  offerCode: any;
+  merchant: any;
+  brand: any;
 
   constructor(private offerService: OfferService,private datePipe: DatePipe) {}
   ngOnInit(): void {
+    this.firstName = '';
+    this.lastName = '';
+    this.offerCode = '';
+    this.merchant = '';
+    this.brand = '';
     this.getPurchasedOffers()
   }
   getPurchasedOffers() {
@@ -36,16 +45,35 @@ export class RedeemOfferListComponent {
   onPageChange(event: any) {
     this.currentPage = event
   }
+  inp() {
+    if (
+      !this.firstName &&
+      !this.lastName &&
+      !this.offerCode &&
+      !this.merchant &&
+      !this.brand
+    ) {
+      this.ngOnInit();
+    }
+  }
   disableButton() {
     this.disableButtonvalue = !this.firstName
   }
   search() {
-    this.searchData = this.data
-    if (!this.firstName) {
-     this.ngOnInit()
-    }
-    this.searchData =this.data.filter((value: any) => {
-      return value.firstName.toLowerCase().startsWith(this.firstName.toLowerCase())
+    this.searchData = this.data;
+    this.searchData = this.data.filter((value: any) => {
+      const first = value.firstName
+        ?.toLowerCase()
+        .includes(this.firstName?.toLowerCase());
+      const last = value.lastName?.toLowerCase().includes(this.lastName.toLowerCase());
+      const code = value.offerCode?.includes(this.offerCode);
+      const merchant = value.merchants
+        ?.toLowerCase()
+        .includes(this.merchant?.toLowerCase());
+      const brand = value.brands
+        ?.toLowerCase()
+        .includes(this.brand?.toLowerCase());
+      return first && code && last && merchant && brand;
     });
   }
 }
