@@ -10,7 +10,6 @@
   }
   .assign form,
   .search form {
-    width: 60%;
     display: flex;
     flex-wrap: wrap;
     gap: 2%;

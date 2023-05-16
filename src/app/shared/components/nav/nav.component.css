@@ -2,12 +2,12 @@
     display: flex;
     justify-content: space-between;
     padding:10px;
-    background-color: #332E38;
+    background-color: #e1ded2;
 }
 .logo{
     font-size: larger;
     font-weight: 600;
-    color: #94ABBB;
+    color: #332e38;
     display: flex;
     align-items: center;
     margin-left: 50px;
