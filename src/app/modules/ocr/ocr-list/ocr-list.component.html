@@ -1,5 +1,5 @@
 <div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
+    <form class="form-inline">
             <div class="col-md-4 form-group">
                 <label for="requestedBy">Requested By:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="requestedBy"
@@ -15,10 +15,10 @@
                 <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="city"
                     (input)="disableButton()" (keyup)="emptySearch()">
             </div>
-            <br>
         </form>
+        <br>
             <div class="searchBtn">
-                <button class="btn btn-primary mx-4" type="submit" [disabled]="disableButtonvalue">Search</button>
+                <button class="btn btn-primary mx-4" (click)="search()" [disabled]="disableButtonvalue">Search</button>
                 <button class="btn btn-dark" type="reset">Reset</button>
         </div>
 </div>
