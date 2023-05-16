@@ -55,37 +55,6 @@
   <br />
   <br />
 
-
-
-  <!-- <div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
-        <div class="form-group mr-2">
-            <label for="userId">User ID</label>
-            <input type="text" class="form-control" placeholder="Enter User ID" name="userId"
-                [(ngModel)]="userId"/>
-        </div>
-        <div class="form-group mr-2">
-            <label for="voucherId">Voucher ID</label>
-            <input type="text" class="form-control" placeholder="Enter Voucher ID" name="voucherId"
-                [(ngModel)]="voucherId"/>
-        </div>
-        <button class="btn btn-primary" [disabled]="!userId || !voucherId" (click)="purchase()">Purchase</button>
-    </form>
-</div>
-
-
-<div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
-        <div class="form-group mr-2">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" placeholder="Enter First Name" name="firstName"
-                [(ngModel)]="firstName" (keyup)="search()">
-        </div>
-        <button class="btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
-    </form>
-</div>
-<br>
-<br> -->
   <div class="table">
     <table *ngIf="searchData && searchData.length != 0" class="table-primary">
       <thead class="thead-dark">
@@ -126,11 +95,11 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
+    </div>
     <div *ngIf="!(searchData && searchData.length > 0)">
       <p>No data available.</p>
     </div>
-  </div>
-  <br>
-  <div class="sticky-bottom d-flex justify-content-center align-items-center">
-    <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
   </div>

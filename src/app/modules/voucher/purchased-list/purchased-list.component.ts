@@ -11,18 +11,18 @@ import { OfferService } from '../../offers/offer.service';
 export class PurchasedListComponent {
   getUrl: string = 'http://localhost:3000/voucher/get-assigned-voucher';
   firstName: any = ''
-  lastName:any=''
-  voucherCode:any=''
-  merchant:any=''
-  brand:any=''
+  lastName: any = ''
+  voucherCode: any = ''
+  merchant: any = ''
+  brand: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
   totalItem: number = 0
   data: any;
   searchData: any;
-  userId:any;
-  voucherId:any;
+  userId: any;
+  voucherId: any;
 
   constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class PurchasedListComponent {
       });
       this.data = value.data
       this.searchData = value.data
-      
+
     })
   }
   onPageChange(event: any) {
@@ -59,13 +59,14 @@ export class PurchasedListComponent {
       this.ngOnInit();
     }
   }
-  redeem(id:any){
+  redeem(id: any) {
     console.log('id', this.data);
-    
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
-      this.userId='';
-      this.voucherId='';
-    this.ngOnInit();
+
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', { purchaseVoucherId: id }).subscribe((data: any) => {
+      console.log(data)
+      this.userId = '';
+      this.voucherId = '';
+      this.ngOnInit();
     });
   }
   search() {
@@ -85,10 +86,10 @@ export class PurchasedListComponent {
       return first && code && last && merchant && brand;
     });
   }
-  purchase(){
-    this.voucherService.assignVoucher('http://localhost:3000/voucher/assign-voucher',{userId:this.userId,voucherId:this.voucherId}).subscribe((data:any)=>{
-      this.userId=''
-      this.voucherId=''
+  purchase() {
+    this.voucherService.assignVoucher('http://localhost:3000/voucher/assign-voucher', { userId: this.userId, voucherId: this.voucherId }).subscribe((data: any) => {
+      this.userId = ''
+      this.voucherId = ''
       this.ngOnInit()
     })
   }
