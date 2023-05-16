@@ -1,15 +1,20 @@
-/* input {
-    width: 250px;
-} */
+
 .search {
   margin-top: 20px;
   margin-left: 50px;
 }
-.search form {
+
+.form-inline {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
-  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+}
+.form-inline label{
+  font-weight: bold;
+}
+
+.form-group {
+  margin-right: 10px;
 }
 th {
   text-transform: uppercase;
@@ -24,13 +29,10 @@ td {
   color: #332e38;
 }
 
-/* tr td {
-    border: 2px solid black;
-} */
 
 .searchBtn {
   margin-top: 20px;
-  margin-left: 350px;
+  margin-left: 425px;
 }
 
 .clickable-cell {
@@ -47,5 +49,9 @@ td {
 
 .wrap {
   position: relative;
-  margin-left: 330px;
+  margin-left: 425px;
+}
+.dataNotFound{
+  margin-left: 200px;
+  margin-top: 150px;
 }
