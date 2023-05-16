@@ -20,6 +20,7 @@ export class OcrListComponent implements OnInit {
   currentPage: number = 1
   totalItem: number = 0
   data: any
+  
   ngOnInit(): void {
     this.getOcrData()
   }
@@ -49,7 +50,6 @@ export class OcrListComponent implements OnInit {
       this.data = value.data
       this.totalItem = this.data.length
     })
-
   }
 
   redirect(url: any) {
