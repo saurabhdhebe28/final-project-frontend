@@ -44,7 +44,7 @@ export class OcrListComponent implements OnInit {
       this.ngOnInit()
     }
   }
-  search() {
+  search() { 
     this.http.ocrListSearch(this.requestedBy, this.tin, this.city).subscribe((value) => {
       this.data = value.data
       this.totalItem = this.data.length
