@@ -70,8 +70,8 @@
 </div>
 <br />
 <br />
-<div class="table">
-  <table *ngIf="searchData && searchData.length != 0" class="table-primary">
+<div class="table" *ngIf="searchData && searchData.length != 0">
+  <table  class="table-primary">
     <thead class="thead-dark">
       <tr>
         <th scope="col">First Name</th>
@@ -116,7 +116,12 @@
 </div>
 
 <br />
-<div *ngIf="!(searchData && searchData.length > 0)">
+<!-- <div *ngIf="!(searchData && searchData.length > 0)">
   <p>No data available.</p>
+</div> -->
+<div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
+  <div class="alert alert-danger text-center" role="alert">
+      Data Not Found
+  </div>
 </div>
 </div>

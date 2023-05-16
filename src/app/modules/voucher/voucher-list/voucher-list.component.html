@@ -3,29 +3,60 @@
     <form class="form-inline" (ngSubmit)="search()">
       <div class="form-group mr-2">
         <label for="voucherTitle">Voucher Title:</label>
-        <input type="text" class="form-control" placeholder="Enter Voucher Title" name="voucherTitle"
-          [(ngModel)]="voucherTitle" (keyup)="inp()" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Voucher Title"
+          name="voucherTitle"
+          [(ngModel)]="voucherTitle"
+          (keyup)="inp()"
+        />
       </div>
       <div class="form-group mr-2">
         <label for="voucherCode">Voucher Code:</label>
-        <input type="text" class="form-control" placeholder="Enter Voucher Code" name="voucherCode"
-          [(ngModel)]="voucherCode" (keyup)="inp()" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Voucher Code"
+          name="voucherCode"
+          [(ngModel)]="voucherCode"
+          (keyup)="inp()"
+        />
       </div>
       <div class="form-group mr-2">
         <label for="merchants">Merchant:</label>
-        <input type="text" class="form-control" placeholder="Enter merchant" name="merchants" [(ngModel)]="merchants"
-          (keyup)="inp()" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter merchant"
+          name="merchants"
+          [(ngModel)]="merchants"
+          (keyup)="inp()"
+        />
       </div>
       <div class="form-group mr-2">
         <label for="brands">Brand:</label>
-        <input type="text" class="form-control" placeholder="Enter Brand" name="brands" [(ngModel)]="brands"
-          (keyup)="inp()" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Brand"
+          name="brands"
+          [(ngModel)]="brands"
+          (keyup)="inp()"
+        />
       </div>
     </form>
     <div>
-      <button class="searchbtn btn btn-primary" [disabled]="
-            !this.voucherTitle && !this.voucherCode && !this.merchants && !this.brands
-          " (click)="search()">
+      <button
+        class="searchbtn btn btn-primary"
+        [disabled]="
+          !this.voucherTitle &&
+          !this.voucherCode &&
+          !this.merchants &&
+          !this.brands
+        "
+        (click)="search()"
+      >
         Search
       </button>
       <button class="searchbtn btn btn-dark" (click)="ngOnInit()" type="reset">
@@ -35,8 +66,8 @@
   </div>
   <br />
   <br />
-  <div class="table">
-    <table *ngIf="searchData && searchData.length != 0" class="table-primary">
+  <div class="table" *ngIf="searchData && searchData.length != 0">
+    <table class="table-primary">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Voucher Title</th>
@@ -52,31 +83,41 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let value of searchData | paginate
-            : {
-                itemsPerPage:itemsPerPage ,
-                currentPage:currentPage ,
-                totalItems: totalItem
-              }
-               let i=index ">
-          <td>{{value.voucherTitle}}</td>
-          <td>{{value.voucherCode}}</td>
-          <td>{{value.pointRate}}</td>
-          <td>{{value.merchants}}</td>
-          <td>{{value.brands}}</td>
-          <td>{{value.denominationStep}}</td>
-          <td>{{value.denominationStart}}</td>
-          <td>{{value.denominationEnd}}</td>
-          <td>{{value.voucherExpiryDate}}</td>
-          <td>{{value.termsAndConditions}}</td>
+        <tr
+          *ngFor="
+            let value of searchData
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: currentPage,
+                    totalItems: totalItem
+                  };
+            let i = index
+          "
+        >
+          <td>{{ value.voucherTitle }}</td>
+          <td>{{ value.voucherCode }}</td>
+          <td>{{ value.pointRate }}</td>
+          <td>{{ value.merchants }}</td>
+          <td>{{ value.brands }}</td>
+          <td>{{ value.denominationStep }}</td>
+          <td>{{ value.denominationStart }}</td>
+          <td>{{ value.denominationEnd }}</td>
+          <td>{{ value.voucherExpiryDate }}</td>
+          <td>{{ value.termsAndConditions }}</td>
         </tr>
       </tbody>
     </table>
-    <br>
-    <div class="d-flex justify-content-center align-items-center">
-      <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
-    </div>
-    <div *ngIf="!(searchData && searchData.length > 0)">
-      <p>No data available.</p>
+    <br />
+    <div class="sticky-bottom d-flex justify-content-center align-items-center">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
     </div>
   </div>
+  <div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
+    <div class="alert alert-danger text-center" role="alert">
+      Data Not Found
+    </div>
+  </div>
+</div>

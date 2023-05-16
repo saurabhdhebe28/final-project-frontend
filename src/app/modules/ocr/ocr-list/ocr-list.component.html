@@ -1,26 +1,26 @@
 <div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
-            <div class="col-md-4 form-group">
+    <form class="form-inline">
+            <div class="form-group">
                 <label for="requestedBy">Requested By:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="requestedBy"
                     [(ngModel)]="requestedBy" (input)="disableButton()" (keyup)="emptySearch()">
             </div>
-            <div class="col-md-4 form-group">
+            <div class="form-group">
                 <label for="tin">TIN Number:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="tin"
                     (input)="disableButton()" (keyup)="emptySearch()">
             </div>
-            <div class="col-md-4 form-group">
+            <div class="form-group">
                 <label for="tin">City:</label>
                 <input type="text" class="form-control" placeholder="Enter Here" name="tin" [(ngModel)]="city"
                     (input)="disableButton()" (keyup)="emptySearch()">
             </div>
-            <br>
         </form>
+        <br>
             <div class="searchBtn">
-                <button class="btn btn-primary mx-4" type="submit" [disabled]="disableButtonvalue">Search</button>
+                <button class="btn btn-primary mx-4" (click)="search()" [disabled]="disableButtonvalue">Search</button>
                 <button class="btn btn-dark" type="reset">Reset</button>
-        </div>
+        </div>         
 </div>
 <br>
 <br>
@@ -70,6 +70,8 @@
         <pagination-controls (pageChange)=" onPageChange($event)"></pagination-controls>
     </div>
 </div>
-<div *ngIf="!(data && data.length > 0)">
-    <p>No data available.</p>
+<div *ngIf="!(data && data.length > 0)" class="dataNotFound">
+    <div class="alert alert-danger text-center" role="alert">
+        Data Not Found
+    </div>
 </div>
