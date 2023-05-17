@@ -19,4 +19,7 @@ export class OfferService {
   assignOffer(url:any,data:any){
     return this.apiAdapter.post(url,data)
   }
+  getByMonth(url:any){
+    return this.apiAdapter.get(url)
+  }
 }

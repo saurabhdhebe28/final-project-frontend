@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OfferService } from '../../offers/offer.service';
 import { VoucherService } from '../voucher.service';
 import { DatePipe } from '@angular/common';
+import * as echarts from 'echarts';
 
 @Component({
   selector: 'app-redeem-voucher-list',
@@ -9,20 +10,36 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./redeem-voucher-list.component.css']
 })
 export class RedeemVoucherListComponent {
-  getUrl:string='http://localhost:3000/voucher/redeem-list';
+  getUrl: string = 'http://localhost:3000/voucher/redeem-list';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
-  voucherCode:any=''
-  brand:any=''
-  merchant:any=''
+  voucherCode: any = ''
+  brand: any = ''
+  merchant: any = ''
   totalItem: number = 0
   data: any;
-  lastName:any=''
+  lastName: any = ''
+  chartData: any = ''
+  labelData: any = ''
+  realData: any = ''
+  colorData: any = ''
   searchData: any;
-  constructor(private voucherService: VoucherService,private datePipe: DatePipe) { }
+  constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
   ngOnInit(): void {
+    const body = {}
+    this.voucherService.redeemVoucher(this.getUrl, body).subscribe(res => {
+      this.chartData = res
+      if (this.chartData != null) {
+        for (let i = 0; i < this.chartData.length; i++) {
+          // console.log(this.chartData[i]);
+          this.labelData.push(this.chartData[i])
+
+        }
+      }
+    })
+    this.createBarChart()
     this.getPurchaseVoucher()
   }
   getPurchaseVoucher() {
@@ -71,4 +88,27 @@ export class RedeemVoucherListComponent {
       return first && code && last && merchant && brand;
     });
   }
+  createBarChart(): void {
+    const chartDom = document.getElementById('barChart')!;
+    const myChart = echarts.init(chartDom);
+    const option = {
+      title: {
+        text: 'Offers and Vouchers Redeemed'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [120, 200, 150, 80, 70, 110],
+        type: 'bar'
+      }]
+    };
+
+    myChart.setOption(option);
+  }
+
 }

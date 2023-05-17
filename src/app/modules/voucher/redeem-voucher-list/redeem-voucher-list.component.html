@@ -4,41 +4,41 @@
       <div class="form-group mr-2">
         <label for="firstName">First Name</label>
         <input
-          type="text"
-          class="form-control"
+        type="text"
+        class="form-control"
           placeholder="Enter First Name"
           name="firstName"
           [(ngModel)]="firstName"
           (keyup)="inp()"
-        />
-      </div>
-      <div class="form-group mr-2">
-        <label for="lastName">Last Name</label>
-        <input
+          />
+        </div>
+        <div class="form-group mr-2">
+          <label for="lastName">Last Name</label>
+          <input
           type="text"
           class="form-control"
           placeholder="Enter last Name"
           name="lastName"
           [(ngModel)]="lastName"
           (keyup)="inp()"
-        />
-      </div>
+          />
+        </div>
       <div class="form-group mr-2">
         <label for="voucherCode">Voucher Code</label>
         <input
-          type="text"
-          class="form-control"
-          placeholder="Enter voucher code"
-          name="voucherCode"
+        type="text"
+        class="form-control"
+        placeholder="Enter voucher code"
+        name="voucherCode"
           [(ngModel)]="voucherCode"
           (keyup)="inp()"
-        />
+          />
       </div>
       <div class="form-group mr-2">
         <label for="merchant">Merchant</label>
         <input
-          type="text"
-          class="form-control"
+        type="text"
+        class="form-control"
           placeholder="Enter Merchant"
           name="merchant"
           [(ngModel)]="merchant"
@@ -48,26 +48,26 @@
       <div class="form-group mr-2">
         <label for="brand">Brand</label>
         <input
-          type="text"
-          class="form-control"
-          placeholder="Enter Brand"
-          name="brand"
-          [(ngModel)]="brand"
-          (keyup)="inp()"
+        type="text"
+        class="form-control"
+        placeholder="Enter Brand"
+        name="brand"
+        [(ngModel)]="brand"
+        (keyup)="inp()"
         />
       </div>
     </form>
     <div>
       <button
-        class="searchbtn btn btn-primary"
-        [disabled]="
-          !firstName && !lastName && !voucherCode && !merchant && !brand
-        "
-        (click)="search()"
+      class="searchbtn btn btn-primary"
+      [disabled]="
+      !firstName && !lastName && !voucherCode && !merchant && !brand
+      "
+      (click)="search()"
       >
-        Search
-      </button>
-      <button class="searchbtn btn btn-dark" (click)="ngOnInit()">Reset</button>
+      Search
+    </button>
+    <button class="searchbtn btn btn-dark" (click)="ngOnInit()">Reset</button>
     </div>
   </div>
   <br />
@@ -88,21 +88,21 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="
-            let value of searchData
-              | paginate
-                : {
-                    itemsPerPage: itemsPerPage,
-                    currentPage: currentPage,
-                    totalItems: totalItem
-                  };
-            let i = index
-          "
+        *ngFor="
+        let value of searchData
+        | paginate
+        : {
+          itemsPerPage: itemsPerPage,
+          currentPage: currentPage,
+          totalItems: totalItem
+        };
+        let i = index
+        "
         >
-          <td>{{ value.firstName }}</td>
-          <td>{{ value.lastName }}</td>
-          <td>{{ value.voucherCode }}</td>
-          <td>{{ value.merchants }}</td>
+        <td>{{ value.firstName }}</td>
+        <td>{{ value.lastName }}</td>
+        <td>{{ value.voucherCode }}</td>
+        <td>{{ value.merchants }}</td>
           <td>{{ value.brands }}</td>
           <td>{{ value.voucherTitle }}</td>
           <td>{{ value.voucherExpiryDate }}</td>
@@ -113,7 +113,7 @@
     <br />
     <div class="sticky-bottom d-flex justify-content-center align-items-center">
       <pagination-controls
-        (pageChange)="onPageChange($event)"
+      (pageChange)="onPageChange($event)"
       ></pagination-controls>
     </div>
     <!-- <div *ngIf="!(searchData && searchData.length > 0)">
@@ -121,6 +121,9 @@
     </div> -->
   </div>
 </div>
+
 <div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
   <div class="alert alert-danger text-center" role="alert">Data Not Found</div>
+</div>
+<div id="barChart" style="width: 600px; height: 400px;">
 </div>

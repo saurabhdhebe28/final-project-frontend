@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OfferService } from '../offer.service';
 import { DatePipe } from '@angular/common';
+import * as echarts from 'echarts';
 
 @Component({
   selector: 'app-redeem-offer-list',
@@ -20,6 +21,8 @@ export class RedeemOfferListComponent {
   offerCode: any;
   merchant: any;
   brand: any;
+  chartOptions: any;
+  seriesData: any[] = [];
 
   constructor(private offerService: OfferService,private datePipe: DatePipe) {}
   ngOnInit(): void {
@@ -29,7 +32,30 @@ export class RedeemOfferListComponent {
     this.merchant = '';
     this.brand = '';
     this.getPurchasedOffers()
+    this.chartOptions = {
+      // Set your chart options here
+      title: {
+        text: 'Dynamic Chart'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec'] 
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: 'Data',
+          type: 'bar',
+          data: [0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      ]
+    };
+
+
   }
+  
   getPurchasedOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
       value.data.map((ele: any) => {
@@ -41,6 +67,23 @@ export class RedeemOfferListComponent {
       this.searchData= value.data;
       this.data = value.data;
     })
+    this.offerService.getByMonth('http://localhost:3000/offers/get-by-month').subscribe((value:any)=>{
+      value.data.map((ele:any)=>{
+        this.chartOptions.series[0].data[ele.month-1]= ele.count
+      })
+      const chartElement = document.getElementById('chartContainer');
+      console.log(chartElement);
+      
+      if (chartElement) {
+        const myChart = echarts.init(chartElement);
+        console.log(myChart);
+        
+        myChart.setOption(this.chartOptions);
+      }
+    console.log(this.chartOptions);
+    
+    })
+
   }
   onPageChange(event: any) {
     this.currentPage = event
@@ -49,7 +92,7 @@ export class RedeemOfferListComponent {
     if (
       !this.firstName &&
       !this.lastName &&
-      !this.offerCode &&
+      // !this.offerCode &&
       !this.merchant &&
       !this.brand
     ) {
