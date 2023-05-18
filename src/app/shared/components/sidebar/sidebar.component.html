@@ -1,43 +1,49 @@
 <ul class="sidebar">
-    <li (click)="toggleDropdown('ocr')" class="item">OCR</li>
-    <ul class="dropdown" *ngIf="isDropdownOpen?.ocr == true">
-        <a routerLink="/ocr/addOcr">
-            <li class="menu">Add ocr</li>
-        </a>
-        <a routerLink="/ocr/ocrList">
-            <li class="menu">ocr list</li>
-        </a>
-    </ul>
+  <li (click)="toggleDropdown('ocr')" class="item">Dashboard</li>
+  <ul class="dropdown" *ngIf="isDropdownOpen?.dashboard == true">
+    <a routerLink="/dashboard/charts">
+      <li class="menu">Charts</li>
+    </a>
+  </ul>
+  <li (click)="toggleDropdown('ocr')" class="item">OCR</li>
+  <ul class="dropdown" *ngIf="isDropdownOpen?.ocr == true">
+    <a routerLink="/ocr/addOcr">
+      <li class="menu">Add ocr</li>
+    </a>
+    <a routerLink="/ocr/ocrList">
+      <li class="menu">ocr list</li>
+    </a>
+  </ul>
 
-    <li (click)="toggleDropdown('offers')" class="item">Offers</li>
-    <ul class="dropdown" *ngIf="isDropdownOpen?.offers">
-        <a routerLink="/offers/create-offer">
-            <li class="menu">Add Offer</li>
-        </a>
-        <a routerLink="/offers/offer-list">
-            <li class="menu">Offer List</li>
-        </a>
-        <a routerLink="/offers/assigned-offer-list">
-            <li class="menu">Assigned Offer List</li>
-        </a>
-        <a routerLink="/offers/redeemed-offer-list">
-            <li class="menu">Redeemed Offer List</li>
-        </a>
-    </ul>
+  <li (click)="toggleDropdown('offers')" class="item">Offers</li>
+  <ul class="dropdown" *ngIf="isDropdownOpen?.offers">
+    <a routerLink="/offers/create-offer">
+      <li class="menu">Add Offer</li>
+    </a>
+    <a routerLink="/offers/offer-list">
+      <li class="menu">Offer List</li>
+    </a>
+    <a routerLink="/offers/assigned-offer-list">
+      <li class="menu">Assigned Offer List</li>
+    </a>
+    <a routerLink="/offers/redeemed-offer-list">
+      <li class="menu">Redeemed Offer List</li>
+    </a>
+  </ul>
 
-    <li (click)="toggleDropdown('voucher')" class="item">Voucher</li>
-    <ul class="dropdown" *ngIf="isDropdownOpen?.voucher">
-        <a routerLink="/voucher/create-voucher">
-            <li class="menu">Create Voucher</li>
-        </a>
-        <a routerLink="/voucher/voucher-list">
-            <li class="menu">Voucher List</li>
-        </a>
-        <a routerLink="/voucher/purchased-voucher-list">
-            <li class="menu">Purchased Voucher List</li>
-        </a>
-        <a routerLink="/voucher/redeemed-voucher-list">
-            <li class="menu">Redeemed Voucher List</li>
-        </a>
-    </ul>
+  <li (click)="toggleDropdown('voucher')" class="item">Voucher</li>
+  <ul class="dropdown" *ngIf="isDropdownOpen?.voucher">
+    <a routerLink="/voucher/create-voucher">
+      <li class="menu">Create Voucher</li>
+    </a>
+    <a routerLink="/voucher/voucher-list">
+      <li class="menu">Voucher List</li>
+    </a>
+    <a routerLink="/voucher/purchased-voucher-list">
+      <li class="menu">Purchased Voucher List</li>
+    </a>
+    <a routerLink="/voucher/redeemed-voucher-list">
+      <li class="menu">Redeemed Voucher List</li>
+    </a>
+  </ul>
 </ul>
