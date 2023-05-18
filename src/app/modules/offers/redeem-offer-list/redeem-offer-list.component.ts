@@ -47,7 +47,7 @@ export class RedeemOfferListComponent {
       series: [
         {
           name: 'Data',
-          type: 'bar',
+          type: 'pie',
           data: [0,0,0,0,0,0,0,0,0,0,0,0]
         }
       ]
