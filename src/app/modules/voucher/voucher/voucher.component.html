@@ -86,7 +86,7 @@
     <input #denominationStart type="text" (keyup)="getData('denominationStart')" formControlName="denominationStart"
       [(ngModel)]="inpValue.denominationStart" placeholder="Please denomination start" />
     <div
-      *ngIf="(submitted && voucherForm.get('denomainationStart')?.invalid) || (voucherForm.get('denominationStart')?.invalid && voucherForm.get('denomination')?.dirty || voucherForm.get('denominationStart')?.touched)"
+      *ngIf="(submitted && voucherForm.get('denominationStart')?.invalid) || (voucherForm.get('denominationStart')?.invalid && voucherForm.get('denominationStart')?.dirty || voucherForm.get('denominationStart')?.touched)"
       style="color:red">
       <small *ngIf="voucherForm.get('denominationStart')?.hasError('required')">Please enter denomination start </small>
       <small *ngIf="voucherForm.get('denominationStart')?.hasError('pattern')">Only numbers allowed</small>
@@ -98,7 +98,7 @@
     <input #denominationEnd type="text" (keyup)="getData('denominationEnd')" formControlName="denominationEnd"
       [(ngModel)]="inpValue.denominationEnd" placeholder="Please enter denomination end" />
     <div
-      *ngIf="(submitted && voucherForm.get('denomonaitionEnd')?.invalid) || (voucherForm.get('denominationEnd')?.invalid && voucherForm.get('denominationEnd')?.dirty || voucherForm.get('denominationEnd')?.touched)"
+      *ngIf="(submitted && voucherForm.get('denominationEnd')?.invalid) || (voucherForm.get('denominationEnd')?.invalid && voucherForm.get('denominationEnd')?.dirty || voucherForm.get('denominationEnd')?.touched)"
       style="color: red;">
       <small *ngIf="voucherForm.get('denominationEnd')?.hasError('required')">Please enter denomination end </small>
       <small *ngIf="voucherForm.get('denominationEnd')?.hasError('pattern')">Only numbers allowed</small>
@@ -146,7 +146,7 @@
 
 </form>
 <div>
-  <button (click)="createVoucher()">
+  <button (click)="createVoucher()" >
     Create Voucher
   </button>
 </div>
