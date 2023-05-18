@@ -3,30 +3,15 @@
     <form class="form-inline" (ngSubmit)="search()">
       <div class="form-group mr-2">
         <label for="userId">User ID</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter User ID"
-          name="userId"
-          [(ngModel)]="userId"
-        />
+        <input type="text" class="form-control" placeholder="Enter User ID" name="userId" [(ngModel)]="userId" />
       </div>
       <div class="form-group mr-2">
         <label for="offerId">Voucher ID</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter Voucher ID"
-          name="voucherId"
-          [(ngModel)]="voucherId"
-        />
+        <input type="text" class="form-control" placeholder="Enter Voucher ID" name="voucherId"
+          [(ngModel)]="voucherId" />
       </div>
     </form>
-    <button
-      class="btn btn-primary"
-      [disabled]="!userId || !voucherId"
-      (click)="purchase()"
-    >
+    <button class="btn btn-primary" [disabled]="!userId || !voucherId" (click)="purchase()">
       Assign
     </button>
   </div>
@@ -34,68 +19,34 @@
     <form class="form-inline" (ngSubmit)="search()">
       <div class="form-group mr-2">
         <label for="firstName">First Name</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter First Name"
-          name="firstName"
-          [(ngModel)]="firstName"
-          (keyup)="inp()"
-        />
+        <input type="text" class="form-control" placeholder="Enter First Name" name="firstName" [(ngModel)]="firstName"
+          (keyup)="inp()" />
       </div>
       <div class="form-group mr-2">
         <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter last Name"
-          name="lastName"
-          [(ngModel)]="lastName"
-          (keyup)="inp()"
-        />
+        <input type="text" class="form-control" placeholder="Enter last Name" name="lastName" [(ngModel)]="lastName"
+          (keyup)="inp()" />
       </div>
       <div class="form-group mr-2">
         <label for="voucherCode">Voucher Code</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter voucher code"
-          name="voucherCode"
-          [(ngModel)]="voucherCode"
-          (keyup)="inp()"
-        />
+        <input type="text" class="form-control" placeholder="Enter voucher code" name="voucherCode"
+          [(ngModel)]="voucherCode" (keyup)="inp()" />
       </div>
       <div class="form-group mr-2">
         <label for="merchant">Merchant</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter Merchant"
-          name="merchant"
-          [(ngModel)]="merchant"
-          (keyup)="inp()"
-        />
+        <input type="text" class="form-control" placeholder="Enter Merchant" name="merchant" [(ngModel)]="merchant"
+          (keyup)="inp()" />
       </div>
       <div class="form-group mr-2">
         <label for="brand">Brand</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter Brand"
-          name="brand"
-          [(ngModel)]="brand"
-          (keyup)="inp()"
-        />
+        <input type="text" class="form-control" placeholder="Enter Brand" name="brand" [(ngModel)]="brand"
+          (keyup)="inp()" />
       </div>
     </form>
     <div>
-      <button
-        class="searchbtn btn btn-primary"
-        [disabled]="
+      <button class="searchbtn btn btn-primary" [disabled]="
           !firstName && !lastName && !voucherCode && !merchant && !brand
-        "
-        (click)="search()"
-      >
+        " (click)="search()">
         Search
       </button>
       <button class="searchbtn btn btn-dark" (click)="ngOnInit()">Reset</button>
@@ -103,38 +54,6 @@
   </div>
   <br />
   <br />
-
-
-
-  <!-- <div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
-        <div class="form-group mr-2">
-            <label for="userId">User ID</label>
-            <input type="text" class="form-control" placeholder="Enter User ID" name="userId"
-                [(ngModel)]="userId"/>
-        </div>
-        <div class="form-group mr-2">
-            <label for="voucherId">Voucher ID</label>
-            <input type="text" class="form-control" placeholder="Enter Voucher ID" name="voucherId"
-                [(ngModel)]="voucherId"/>
-        </div>
-        <button class="btn btn-primary" [disabled]="!userId || !voucherId" (click)="purchase()">Purchase</button>
-    </form>
-</div>
-
-
-<div class="search">
-    <form class="form-inline" (ngSubmit)="search()">
-        <div class="form-group mr-2">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" placeholder="Enter First Name" name="firstName"
-                [(ngModel)]="firstName" (keyup)="search()">
-        </div>
-        <button class="btn btn-dark" (click)="ngOnInit()" type="reset">Reset</button>
-    </form>
-</div>
-<br>
-<br> -->
   <div class="table">
     <table *ngIf="searchData && searchData.length != 0" class="table-primary">
       <thead class="thead-dark">
@@ -151,8 +70,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="
+        <tr *ngFor="
             let value of searchData
               | paginate
                 : {
@@ -161,8 +79,7 @@
                     totalItems: totalItem
                   };
             let i = index
-          "
-        >
+          ">
           <td>{{ value.firstName }}</td>
           <td>{{ value.lastName }}</td>
           <td>{{ value.voucherCode }}</td>
@@ -171,10 +88,7 @@
           <td>{{ value.voucherTitle }}</td>
           <td>{{ value.voucherExpiryDate }}</td>
           <td>{{ value.termsAndConditions }}</td>
-          <td
-            (click)="redeem(value.purchase_voucher_id)"
-            *ngIf="value.status == 'Available'"
-          >
+          <td (click)="redeem(value.purchase_voucher_id)" *ngIf="value.status == 'Available'">
             <button class="redeem">Redeem</button>
           </td>
           <td *ngIf="value.status == 'Unavailable'">
@@ -185,7 +99,7 @@
     </table>
     <div *ngIf="!(searchData && searchData.length > 0)">
       <p>No data available.</p>
-    </div> 
+    </div>
   </div>
   <div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
     <div class="alert alert-danger text-center" role="alert">

@@ -18,8 +18,6 @@
       *ngIf="(submitted && voucherForm.get('voucherImage')?.invalid)||(voucherForm.get('voucherImage')?.invalid && voucherForm.get('voucherImage')?.dirty || voucherForm.get('voucherImage')?.touched) "
       style="color:red">
       <small *ngIf="voucherForm.get('voucherImage')?.hasError('required')">Select image </small>
-      <!-- <small *ngIf="voucherForm.get('voucherImage')?.hasError('pattern')">Max 10 characters allowed</small> -->
-      <!-- <small *ngIf="error.voucherImage?.required && details?.voucherImage?.touched">Voucher Image is required</small> -->
       <small *ngIf="error.voucherImage?.image && details?.voucherImage?.touched">Invalid file type (only JPEG, PNG and
         JPG are allowed)</small>
       <small *ngIf="error.voucherImage?.size && details?.voucherImage?.touched">Max Size 500KB allowed</small>
@@ -118,9 +116,6 @@
       style="color:red">
       <small *ngIf="voucherForm.get('voucherCode')?.hasError('required')">Please select date </small>
     </div>
-    <!-- <small *ngIf="error.voucherExpiryDate?.required && details?.voucherExpiryDate?.touched">Please Select Date </small> -->
-    <!-- <small *ngIf="error.voucherExpiryDate?.date && details?.voucherExpiryDate?.touched">Please Select valid Date -->
-    <!-- </small> -->
   </div>
 
   <div>

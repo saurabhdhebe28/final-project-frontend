@@ -38,7 +38,7 @@ export class PurchasedListComponent {
       });
       this.data = value.data
       console.log(this.data);
-      
+
       this.searchData = value.data
 
     })
@@ -61,13 +61,13 @@ export class PurchasedListComponent {
       this.ngOnInit();
     }
   }
-  redeem(id:any){
-    
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
-      
-      this.userId='';
-      this.voucherId='';
-    this.ngOnInit();
+  redeem(id: any) {
+
+    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', { purchaseVoucherId: id }).subscribe((data: any) => {
+
+      this.userId = '';
+      this.voucherId = '';
+      this.ngOnInit();
     });
   }
   search() {

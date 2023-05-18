@@ -12,9 +12,9 @@ export class VoucherListComponent {
   voucherTitle: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
-  voucherCode:any=''
-  merchants:any=''
-  brands:any=''
+  voucherCode: any = ''
+  merchants: any = ''
+  brands: any = ''
   currentPage: number = 1
   totalItem: number = 0
   data: any;
@@ -26,7 +26,7 @@ export class VoucherListComponent {
     this.getVoucher();
   }
 
-  getVoucher(){
+  getVoucher() {
     this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
       voucher.data.map((ele: any) => {
         ele.voucherExpiryDate = this.datePipe.transform(
@@ -34,7 +34,7 @@ export class VoucherListComponent {
           'dd-MM-yyyy'
         );
       });
-      this.searchData= voucher.data;
+      this.searchData = voucher.data;
       this.data = voucher.data;
     })
   }
@@ -73,7 +73,6 @@ export class VoucherListComponent {
       return title && code && merchant && brand;
     });
   }
-  // }
   redeem(code: any) {
     const body = { offerCode: code }
     this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
