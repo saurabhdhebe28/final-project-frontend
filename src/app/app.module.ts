@@ -29,7 +29,7 @@ import { DatePipe } from '@angular/common';
       positionClass: 'toast-top-center'
     }),
     BrowserAnimationsModule
-
+    
   ],
   providers: [
     DatePipe,
