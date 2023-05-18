@@ -110,5 +110,4 @@ export class RedeemVoucherListComponent {
 
     myChart.setOption(option);
   }
-
 }

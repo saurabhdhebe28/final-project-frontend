@@ -30,6 +30,7 @@ export class VoucherComponent {
   files:any={voucherImage:''}
   today:any
   minDate:String
+  submitted=false
 
   constructor(private voucherService: VoucherService, private datePipe: DatePipe,private toastr:ToastrService) {
     this.today = new Date();
@@ -58,7 +59,10 @@ export class VoucherComponent {
 
 getData(name:any){
   this.details[name] = this.voucherForm.get(name);
+  
     this.error[name] = this.details[name].errors;
+    console.log(this.error);
+    
 }
 
 checkDate() {
@@ -87,6 +91,7 @@ file(e:any){
 }
 
 createVoucher() {
+  this.submitted=true
   const formData = new FormData()
   formData.append('voucherTitle',this.inpValue.voucherTitle)
   formData.append('voucherImage',this.files.voucherImage)
