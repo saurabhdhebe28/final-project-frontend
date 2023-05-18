@@ -1,154 +1,279 @@
 <div class="hero">
-<form [formGroup]="offers" action="">
-  <div>
-    <label for="offerTitle">Offer Title<span>*</span></label>
-    <input
-      #offerTitle
-      (keyup)="getData('offerTitle')"
-      [(ngModel)]="inpValue.offerTitle"
-      type="text"
-      formControlName="offerTitle"
-      placeholder="Please enter title for the offer"
-    />
-    <small *ngIf="error.offerTitle">Offer title is required</small>
-  </div>
+  <form [formGroup]="offers" action="">
+    <div>
+      <label for="offerTitle">Offer Title<span>*</span></label>
+      <input
+        #offerTitle
+        (keyup)="getData('offerTitle')"
+        [(ngModel)]="inpValue.offerTitle"
+        type="text"
+        formControlName="offerTitle"
+        placeholder="Please enter title for the offer"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('offerTitle')?.invalid) ||
+          (offers.get('offerTitle')?.invalid &&
+            offers.get('offerTitle')?.dirty) ||
+          offers.get('offerTitle')?.touched
+        "
+      >
+        <small *ngIf="offers.get('offerTitle')?.hasError('required')"
+          >Offer title is required</small
+        >
+      </div>
+    </div>
 
-  <div>
-    <label for="offerImage">Offer Image<span>*</span></label>
-    <input
-      #offerImageori
-      type="file"
-      [(ngModel)]="inpValue.offerImage"
-      formControlName="offerImage"
-      (ngModelChange)="getData('offerImage')"
-      (change)="file($event)"
-    />
-    <small *ngIf="error.offerImage?.required && details?.offerImage?.touched">Offer Image is required</small>
-    <small *ngIf="error.offerImage?.image && details?.offerImage?.touched">Invalid file type (only JPEG, PNG and JPG are allowed)</small>
-    <small *ngIf="error.offerImage?.size && details?.offerImage?.touched">Max Size 500KB allowed</small>
-  </div>
+    <div>
+      <label for="offerImage">Offer Image<span>*</span></label>
+      <input
+        #offerImageori
+        type="file"
+        [(ngModel)]="inpValue.offerImage"
+        formControlName="offerImage"
+        (ngModelChange)="getData('offerImage')"
+        (change)="file($event)"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('offerImage')?.invalid) ||
+          (offers.get('offerImage')?.invalid &&
+            offers.get('offerImage')?.dirty) ||
+          offers.get('offerImage')?.touched
+        "
+      >
+        <small *ngIf="offers.get('offerImage')?.hasError('required')"
+          >Offer Image is required</small
+        >
+        <small *ngIf="error.offerImage?.image"
+          >Invalid file type (only JPEG, PNG and JPG are allowed)</small
+        >
+        <small *ngIf="error.offerImage?.size">Max Size 500KB allowed</small>
+      </div>
+    </div>
 
-  <div>
-    <label for="offerCode">Offer Code<span>*</span></label>
-    <input
-      #offerCode
-      type="text"
-      (keyup)="getData('offerCode')"
-      [(ngModel)]="inpValue.offerCode"
-      formControlName="offerCode"
-      placeholder="Please enter offer code"
-    />
-    <small *ngIf="error.offerCode?.required">Enter offerCode </small>
-    <small *ngIf="error.offerCode?.maxlength">max 10 characters allowed</small>
-  </div>
+    <div>
+      <label for="offerCode">Offer Code<span>*</span></label>
+      <input
+        #offerCode
+        type="text"
+        (keyup)="getData('offerCode')"
+        [(ngModel)]="inpValue.offerCode"
+        formControlName="offerCode"
+        placeholder="Please enter offer code"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('offerCode')?.invalid) ||
+          (offers.get('offerCode')?.invalid &&
+            offers.get('offerCode')?.dirty) ||
+          offers.get('offerCode')?.touched
+        "
+      >
+        <small *ngIf="offers.get('offerCode')?.hasError('required')"
+          >Enter offerCode
+        </small>
+        <small *ngIf="offers.get('offerCode')?.hasError('maxlength')"
+          >max 10 characters allowed</small
+        >
+      </div>
+    </div>
 
-  <div>
-    <label for="Merchant">Merchant <span>*</span></label>
-    <select
-      formControlName="merchant"
-      [(ngModel)]="inpValue.merchant"
-      (ngModelChange)="getData('merchant')"
-      name="Merchant"
-      id="Merchant"
-    >
-      <option selected disabled value="">Select</option>
-      <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
-        {{ Merchant }}
-      </option>
-    </select>
-    <small *ngIf="error.merchant && details?.merchant?.touched">Select Merchant </small>
-  </div>
+    <div>
+      <label for="Merchant">Merchant <span>*</span></label>
+      <select
+        formControlName="merchant"
+        [(ngModel)]="inpValue.merchant"
+        (ngModelChange)="getData('merchant')"
+        name="Merchant"
+        id="Merchant"
+      >
+        <option selected disabled value="">Select</option>
+        <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
+          {{ Merchant }}
+        </option>
+      </select>
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('merchant')?.invalid) ||
+          (offers.get('merchant')?.invalid && offers.get('merchant')?.dirty) ||
+          offers.get('merchant')?.touched
+        "
+      >
+        <small *ngIf="offers.get('merchant')?.hasError('required')"
+          >Select Merchant
+        </small>
+      </div>
+    </div>
 
-  <div>
-    <label for="brands">Brands <span>*</span></label>
-    <select
-      formControlName="brands"
-      [(ngModel)]="inpValue.brands"
-      (ngModelChange)="getData('brands')"
-      name="brands"
-      id="brands"
-    >
-      <option disabled selected value="">Select</option>
-      <option *ngFor="let Brand of Brands" value="{{ Brand }}">
-        {{ Brand }}
-      </option>
-    </select>
-    <small *ngIf="error.brands && details?.brands?.touched">Select Merchant </small>
-  </div>
+    <div>
+      <label for="brands">Brands <span>*</span></label>
+      <select
+        formControlName="brands"
+        [(ngModel)]="inpValue.brands"
+        (ngModelChange)="getData('brands')"
+        name="brands"
+        id="brands"
+      >
+        <option disabled selected value="">Select</option>
+        <option *ngFor="let Brand of Brands" value="{{ Brand }}">
+          {{ Brand }}
+        </option>
+      </select>
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('brands')?.invalid) ||
+          (offers.get('brands')?.invalid && offers.get('brands')?.dirty) ||
+          offers.get('brands')?.touched
+        "
+      >
+        <small *ngIf="offers.get('brands')?.hasError('required')"
+          >Select Merchant
+        </small>
+      </div>
+    </div>
 
-  <div>
-    <label for="offerType">Offer Type <span>*</span></label>
-    <select
-      formControlName="offerType"
-      [(ngModel)]="inpValue.offerType"
-      (ngModelChange)="getData('offerType')"
-      name="offerType"
-      id="offerType"
-    >
-      <option disabled selected value="">Select</option>
-      <option value="PIN">PIN</option>
-      <option value="Merchant Code">Merchant Code</option>
-    </select>
-    <small *ngIf="error.offerType && details?.offerType?.touched">Select Offer Type </small>
-  </div>
+    <div>
+      <label for="offerType">Offer Type <span>*</span></label>
+      <select
+        formControlName="offerType"
+        [(ngModel)]="inpValue.offerType"
+        (ngModelChange)="getData('offerType')"
+        name="offerType"
+        id="offerType"
+      >
+        <option disabled selected value="">Select</option>
+        <option value="PIN">PIN</option>
+        <option value="Merchant Code">Merchant Code</option>
+      </select>
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('offerType')?.invalid) ||
+          (offers.get('offerType')?.invalid &&
+            offers.get('offerType')?.dirty) ||
+          offers.get('offerType')?.touched
+        "
+      >
+        <small *ngIf="offers.get('offerType')?.hasError('required')"
+          >Select Offer Type
+        </small>
+      </div>
+    </div>
 
-  <div>
-    <label for="minAmount">Minimun Amount<span>*</span></label>
-    <input
-      #minAmount
-      type="text"
-      [(ngModel)]="inpValue.minAmount"
-      (keyup)="getData('minAmount')"
-      formControlName="minAmount"
-      placeholder="Select Min Amount"
-    />
-    <small *ngIf="error.minAmount?.required">This field is required </small>
-    <small *ngIf="error.minAmount?.pattern">Only numbers are allowed</small>
-  </div>
+    <div>
+      <label for="minAmount">Minimun Amount<span>*</span></label>
+      <input
+        #minAmount
+        type="text"
+        [(ngModel)]="inpValue.minAmount"
+        (keyup)="getData('minAmount')"
+        formControlName="minAmount"
+        placeholder="Select Min Amount"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('minAmount')?.invalid) ||
+          (offers.get('minAmount')?.invalid &&
+            offers.get('minAmount')?.dirty) ||
+          offers.get('minAmount')?.touched
+        "
+      >
+        <small *ngIf="offers.get('minAmount')?.hasError('required')"
+          >This field is required
+        </small>
+        <small *ngIf="offers.get('minAmount')?.hasError('pattern')"
+          >Only numbers are allowed</small
+        >
+      </div>
+    </div>
 
-  <div>
-    <label for="limit">Limit<span>*</span></label>
-    <input
-      #limit
-      type="text"
-      [(ngModel)]="inpValue.limit"
-      (keyup)="getData('limit')"
-      formControlName="limit"
-      placeholder="Enter limit"
-    />
-    <small *ngIf="error.limit?.pattern">Only numbers are allowed</small>
-    <small *ngIf="error.limit?.required">limit field is required </small>
-  </div>
+    <div>
+      <label for="limit">Limit<span>*</span></label>
+      <input
+        #limit
+        type="text"
+        [(ngModel)]="inpValue.limit"
+        (keyup)="getData('limit')"
+        formControlName="limit"
+        placeholder="Enter limit"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('limit')?.invalid) ||
+          (offers.get('limit')?.invalid && offers.get('limit')?.dirty) ||
+          offers.get('limit')?.touched
+        "
+      >
+        <small *ngIf="offers.get('limit')?.hasError('required')"
+          >Only numbers are allowed</small
+        >
+        <small *ngIf="offers.get('limit')?.hasError('required')"
+          >limit field is required
+        </small>
+      </div>
+    </div>
 
-  <div>
-    <label for="offerExpiry">Offer expiry code<span>*</span></label>
-    <input
-      #offerExpiryDate
-      type="date"
-      [(ngModel)]="inpValue.offerExpiry"
-      (change)="getData('offerExpiry')"
-      (blur)="checkDate()"
-      formControlName="offerExpiry"
-      [min]="minDate"
-    />
-    <small *ngIf="error.offerExpiry?.required && details?.offerExpiry?.touched">Please Select Date </small>
-    <small *ngIf="error.offerExpiry?.date && details?.offerExpiry?.touched">Please Select valid Date </small>
-  </div>
+    <div>
+      <label for="offerExpiry">Offer expiry code<span>*</span></label>
+      <input
+        #offerExpiryDate
+        type="date"
+        [(ngModel)]="inpValue.offerExpiry"
+        (change)="getData('offerExpiry')"
+        (blur)="checkDate()"
+        formControlName="offerExpiry"
+        [min]="minDate"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('offerExpiry')?.invalid) ||
+          (offers.get('offerExpiry')?.invalid &&
+            offers.get('offerExpiry')?.dirty) ||
+          offers.get('offerExpiry')?.touched
+        "
+      >
+        <small *ngIf="offers.get('offerExpiry')?.hasError('required')"
+          >Please Select Date
+        </small>
+        <small *ngIf="error.offerExpiry?.date && details?.offerExpiry?.touched"
+          >Please Select valid Date
+        </small>
+      </div>
+    </div>
 
-  <div>
-    <label for="terms">Terms & Conditions<span>*</span></label>
-    <textarea
-      #offerExpiryDate
-      type="text"
-      [(ngModel)]="inpValue.terms"
-      (ngModelChange)="getData('terms')"
-      formControlName="terms"
-    ></textarea>
-    <small *ngIf="error.terms && details?.terms?.touched">Enter terms and Conditions </small>
+    <div>
+      <label for="terms">Terms & Conditions<span>*</span></label>
+      <textarea
+        #offerExpiryDate
+        type="text"
+        [(ngModel)]="inpValue.terms"
+        (ngModelChange)="getData('terms')"
+        formControlName="terms"
+      ></textarea>
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && offers.get('terms')?.invalid) ||
+          (offers.get('terms')?.invalid && offers.get('terms')?.dirty) ||
+          offers.get('terms')?.touched
+        "
+      >
+        <small *ngIf="offers.get('terms')?.hasError('required')"
+          >Enter terms and Conditions
+        </small>
+      </div>
+    </div>
+  </form>
+  <div class="btn">
+    <button (click)="createOffer()">Create Offer</button>
   </div>
-
-</form>
-<div class="btn">
-  <button (click)="createOffer()" [disabled]="!offers.valid">Create Offer</button>
-</div>
 </div>

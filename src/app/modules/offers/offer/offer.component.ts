@@ -30,8 +30,13 @@ export class OfferComponent {
     offerImage: '',
   };
   today: any;
+  submitted = false;
 
-  constructor(private offerService: OfferService, private datePipe: DatePipe,private toastr:ToastrService) {
+  constructor(
+    private offerService: OfferService,
+    private datePipe: DatePipe,
+    private toastr: ToastrService
+  ) {
     this.today = new Date();
     const year = this.today.getFullYear();
     const month = this.today.getMonth() + 1;
@@ -68,7 +73,7 @@ export class OfferComponent {
       this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd');
       this.inpValue.offerExpiry = this.today;
       console.log(this.today);
-      this.toastr.error('invalid Date')
+      this.toastr.error('invalid Date');
       this.error['offerExpiry'] = { date: true };
       setTimeout(() => {
         this.error['offerExpiry'] = { date: false };
@@ -79,7 +84,7 @@ export class OfferComponent {
 
   getData(name: any) {
     this.details[name] = this.offers.get(name);
-    this.error[name] = this.details[name].errors;    
+    this.error[name] = this.details[name].errors;
   }
 
   file(e: any) {
@@ -95,23 +100,28 @@ export class OfferComponent {
   }
 
   createOffer() {
-    const formData = new FormData();
-    formData.append('offerTitle', this.inpValue.offerTitle);
-    formData.append('offerImage', this.files.offerImage);
-    formData.append('offerCode', this.inpValue.offerCode);
-    formData.append('merchant', this.inpValue.merchant);
-    formData.append('brand', this.inpValue.brands);
-    formData.append('minAmount', this.inpValue.minAmount);
-    formData.append('offerType', this.inpValue.offerType);
-    formData.append('limit', this.inpValue.limit);
-    formData.append('offerExpiry', this.inpValue.offerExpiry);
-    formData.append('terms', this.inpValue.terms);
+    // console.log(this.error);
+    console.log(this.offers.get('offerImage')?.hasError('imageValidator'));
 
-    this.offerService
-      .craeteOffer('http://localhost:3000/offers/create-offer', formData)
-      .subscribe((data: any) => {
-       this.offers.reset()
-      });
+    this.submitted = true;
+    if (this.offers.valid) {
+      const formData = new FormData();
+      formData.append('offerTitle', this.inpValue.offerTitle);
+      formData.append('offerImage', this.files.offerImage);
+      formData.append('offerCode', this.inpValue.offerCode);
+      formData.append('merchant', this.inpValue.merchant);
+      formData.append('brand', this.inpValue.brands);
+      formData.append('minAmount', this.inpValue.minAmount);
+      formData.append('offerType', this.inpValue.offerType);
+      formData.append('limit', this.inpValue.limit);
+      formData.append('offerExpiry', this.inpValue.offerExpiry);
+      formData.append('terms', this.inpValue.terms);
 
+      this.offerService
+        .craeteOffer('http://localhost:3000/offers/create-offer', formData)
+        .subscribe((data: any) => {
+          this.offers.reset();
+        });
+    }
   }
 }
