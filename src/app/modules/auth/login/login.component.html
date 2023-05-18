@@ -1,43 +1,69 @@
 <div class="loginForm">
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="emailId">Email Id:</label>
-            <br>
-            <input id="emailId" type="text" formControlName="emailId" class="form-control">
-            <div style="color: red;"
-                *ngIf="loginForm.get('emailId')?.invalid && (loginForm.get('emailId')?.dirty || loginForm.get('emailId')?.touched)">
-                <div *ngIf="loginForm.get('emailId')?.hasError('required')">
-                    Email Field Is Required
-                </div>
-                <div *ngIf="loginForm.get('emailId')?.hasError('email')">
-                    Email Format is not valid
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password">password:</label>
-            <br>
-            <input id="password" type="password" formControlName="password" class="form-control">
-            <div style="color: red;"
-                *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-                <div *ngIf="loginForm.get('password')?.hasError('required')">
-                    Password Field is Required
-                </div>
-                <div *ngIf="loginForm.get('password')?.hasError('minlength')">
-                    Password must be greater that 3 digit
-                </div>
-                <div *ngIf="loginForm.get('password')?.hasError('maxlength')">
-                    Password must be less the 12 character
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="mx-4">
-            <button class="btn btn-primary mx-4" type="submit" [disabled]="loginForm.invalid">Login</button>
-            <button class="btn btn-dark" type="reset">Reset</button>
-        </div>
-        <p class="mt-3 font-weight-normal">Dont Have An Account<a routerLink="/auth/signup"><strong>SignUp</strong></a>
-        </p>
-    </form>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="emailId">Email Id:</label>
+      <br />
+      <input
+        id="emailId"
+        type="text"
+        formControlName="emailId"
+        class="form-control"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && loginForm.get('emailId')?.invalid) ||
+          (loginForm.get('emailId')?.invalid &&
+            (loginForm.get('emailId')?.dirty ||
+              loginForm.get('emailId')?.touched))
+        "
+      >
+        <small *ngIf="loginForm.get('emailId')?.hasError('required')">
+          Email Field Is Required
+        </small>
+        <small *ngIf="loginForm.get('emailId')?.hasError('email')">
+          Email Format is not valid
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">password:</label>
+      <br />
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <div
+        style="color: red"
+        *ngIf="
+          (submitted && loginForm.get('password')?.invalid) ||
+          (loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.dirty) ||
+          loginForm.get('password')?.touched
+        "
+      >
+        <small *ngIf="loginForm.get('password')?.hasError('required')">
+          Password Field is Required
+        </small>
+        <small *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Password must be greater that 3 digit
+        </small>
+        <small *ngIf="loginForm.get('password')?.hasError('maxlength')">
+          Password must be less the 12 character
+        </small>
+      </div>
+    </div>
+    <br />
+    <div class="mx-4">
+      <button class="btn btn-primary mx-4" type="submit">Login</button>
+      <button class="btn btn-dark" type="reset">Reset</button>
+    </div>
+    <p class="mt-3 font-weight-normal">
+      Dont Have An Account<a routerLink="/auth/signup"
+        ><strong>SignUp</strong></a
+      >
+    </p>
+  </form>
 </div>
