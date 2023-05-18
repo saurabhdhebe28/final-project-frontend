@@ -8,15 +8,16 @@ import * as echarts from 'echarts';
   templateUrl: './redeem-offer-list.component.html',
   styleUrls: ['./redeem-offer-list.component.css']
 })
+
 export class RedeemOfferListComponent {
-  getUrl:string='http://localhost:3000/offers/redeem-list';
+  getUrl: string = 'http://localhost:3000/offers/redeem-list';
   firstName: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
   currentPage: number = 1
   totalItem: number = 0
   data: any;
-  searchData:any;
+  searchData: any;
   lastName: any;
   offerCode: any;
   merchant: any;
@@ -24,7 +25,7 @@ export class RedeemOfferListComponent {
   chartOptions: any;
   seriesData: any[] = [];
 
-  constructor(private offerService: OfferService,private datePipe: DatePipe) {}
+  constructor(private offerService: OfferService, private datePipe: DatePipe) { }
   ngOnInit(): void {
     this.firstName = '';
     this.lastName = '';
@@ -35,11 +36,11 @@ export class RedeemOfferListComponent {
     this.chartOptions = {
       // Set your chart options here
       title: {
-        text: 'Dynamic Chart'
+        text: 'Offer redeemed list'
       },
       xAxis: {
         type: 'category',
-        data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec'] 
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },
       yAxis: {
         type: 'value'
@@ -47,15 +48,15 @@ export class RedeemOfferListComponent {
       series: [
         {
           name: 'Data',
-          type: 'pie',
-          data: [0,0,0,0,0,0,0,0,0,0,0,0]
+          type: 'bar',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }
       ]
     };
 
 
   }
-  
+
   getPurchasedOffers() {
     this.offerService.getOffer(this.getUrl).subscribe((value: any) => {
       value.data.map((ele: any) => {
@@ -64,24 +65,24 @@ export class RedeemOfferListComponent {
           'dd-MM-yyyy'
         );
       });
-      this.searchData= value.data;
+      this.searchData = value.data;
       this.data = value.data;
     })
-    this.offerService.getByMonth('http://localhost:3000/offers/get-by-month').subscribe((value:any)=>{
-      value.data.map((ele:any)=>{
-        this.chartOptions.series[0].data[ele.month-1]= ele.count
+    this.offerService.getByMonth('http://localhost:3000/offers/get-by-month').subscribe((value: any) => {
+      value.data.map((ele: any) => {
+        this.chartOptions.series[0].data[ele.month - 1] = ele.count
       })
       const chartElement = document.getElementById('chartContainer');
       console.log(chartElement);
-      
+
       if (chartElement) {
         const myChart = echarts.init(chartElement);
         console.log(myChart);
-        
+
         myChart.setOption(this.chartOptions);
       }
-    console.log(this.chartOptions);
-    
+      console.log(this.chartOptions);
+
     })
 
   }
@@ -92,7 +93,6 @@ export class RedeemOfferListComponent {
     if (
       !this.firstName &&
       !this.lastName &&
-      // !this.offerCode &&
       !this.merchant &&
       !this.brand
     ) {
