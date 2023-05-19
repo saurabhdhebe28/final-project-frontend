@@ -5,28 +5,31 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-voucher-list',
   templateUrl: './voucher-list.component.html',
-  styleUrls: ['./voucher-list.component.css']
+  styleUrls: ['./voucher-list.component.css'],
 })
 export class VoucherListComponent {
   getUrl: string = 'http://localhost:3000/voucher/get-voucher';
   voucherTitle: any = ''
   disableButtonvalue = true
   itemsPerPage: number = 4
-  voucherCode:any=''
-  merchants:any=''
-  brands:any=''
+  voucherCode: any = ''
+  merchants: any = ''
+  brands: any = ''
   currentPage: number = 1
   totalItem: number = 0
   data: any;
   searchData: any;
 
-  constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
+  constructor(
+    private voucherService: VoucherService,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.getVoucher();
   }
 
-  getVoucher(){
+  getVoucher() {
     this.voucherService.getVoucher('http://localhost:3000/voucher/get-voucher').subscribe((voucher: any) => {
       voucher.data.map((ele: any) => {
         ele.voucherExpiryDate = this.datePipe.transform(
@@ -34,13 +37,13 @@ export class VoucherListComponent {
           'dd-MM-yyyy'
         );
       });
-      this.searchData= voucher.data;
+      this.searchData = voucher.data;
       this.data = voucher.data;
     })
   }
 
   onPageChange(event: any) {
-    this.currentPage = event
+    this.currentPage = event;
   }
 
   inp() {
@@ -54,7 +57,7 @@ export class VoucherListComponent {
     }
   }
   disableButton() {
-    this.disableButtonvalue = !this.voucherTitle
+    this.disableButtonvalue = !this.voucherTitle;
   }
 
   search() {
@@ -73,13 +76,13 @@ export class VoucherListComponent {
       return title && code && merchant && brand;
     });
   }
-  // }
   redeem(code: any) {
-    const body = { offerCode: code }
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
-      console.log(data);
-
-    });
+    const body = { offerCode: code };
+    this.voucherService
+      .redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body)
+      .subscribe((data: any) => {
+        console.log(data);
+      });
     this.getVoucher();
   }
 }

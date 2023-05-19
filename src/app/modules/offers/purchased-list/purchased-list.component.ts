@@ -74,9 +74,7 @@ export class PurchasedListComponent {
   search() {
     this.searchData = this.data;
     this.searchData = this.data.filter((value: any) => {
-      const first = value.firstName
-        ?.toLowerCase()
-        .includes(this.firstName?.toLowerCase());
+      const first = value.firstName?.toLowerCase().includes(this.firstName?.toLowerCase());
       const last = value.lastName?.toLowerCase().includes(this.lastName.toLowerCase());
       const code = value.offerCode?.includes(this.offerCode);
       const merchant = value.merchants

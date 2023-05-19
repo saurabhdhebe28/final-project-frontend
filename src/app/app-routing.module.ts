@@ -7,36 +7,49 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'auth',
-    pathMatch: "full"
+    pathMatch: 'full',
   },
   {
     path: 'voucher',
-    loadChildren: () => import('./modules/voucher/voucher.module').then((b) => b.VoucherModule),
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./modules/voucher/voucher.module').then((b) => b.VoucherModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'offers',
-    loadChildren: () => import('./modules/offers/offers.module').then((b) => b.OffersModule),
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./modules/offers/offers.module').then((b) => b.OffersModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'ocr',
-    loadChildren: () => import('./modules/ocr/ocr.module').then((b) => b.OcrModule),
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./modules/ocr/ocr.module').then((b) => b.OcrModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then((b) => b.AuthModule),
-    canActivate: [LoginGuard]
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((b) => b.AuthModule),
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (b) => b.DashboardModule
+      ),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
-    loadChildren:()=>import('./modules/auth/auth.module').then((b)=>b.AuthModule)
-  }
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((b) => b.AuthModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

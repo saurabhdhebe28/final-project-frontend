@@ -1,0 +1,63 @@
+<div class="upperContainer">
+  <div class="box">
+    <p>Total Offers</p>
+    <h1>{{ totalCount.totalOffer }}</h1>
+  </div>
+  <div class="box">
+    <p>Total Redeemed Offers</p>
+    <h1>{{ totalCount.redeemedOffer }}</h1>
+  </div>
+  <div class="box">
+    <p>Total Vouchers</p>
+    <h1>{{ totalCount.totalVoucher }}</h1>
+  </div>
+  <div class="box">
+    <p>Total Redeemed Vouchers</p>
+    <h1>{{ totalCount.redeemedVoucher }}</h1>
+  </div>
+</div>
+<br />
+<div class="chartContainer">
+  <div class="chart" id="lineContainer"></div>
+  <div class="chart" id="barContainer"></div>
+</div>
+<div class="pieChartContainer">
+  <div class="select">
+    <!-- <div>
+      <label for="month-select">Select a month:</label>
+      <select id="month-select" (change)="pie()" [(ngModel)]="selectedMonth">
+        <option value="Jan">January</option>
+        <option value="Feb">February</option>
+        <option value="Mar">March</option>
+        <option value="Apr">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="Aug">August</option>
+        <option value="Sep">September</option>
+        <option value="Oct">October</option>
+        <option value="Nov">November</option>
+        <option value="Dec">December</option>
+      </select>
+    </div> -->
+    <label for="month">Select Month<span style="color: red">* </span>: </label>
+    <select
+      [(ngModel)]="selectedMonth"
+      name="month"
+      (change)="pie()"
+      id="month"
+    >
+      <!-- <option selected value="{{ months[defaultMonth] }}">
+        {{ months[defaultMonth] }}
+      </option> -->
+      <option
+        *ngFor="let month of months"
+        [selected]="month == months[defaultMonth]"
+        value="{{ month }}"
+      >
+        {{ month }}
+      </option>
+    </select>
+  </div>
+  <div class="chart2" id="pieContainer"></div>
+</div>
