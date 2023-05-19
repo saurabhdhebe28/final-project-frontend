@@ -72,7 +72,6 @@ export class OfferComponent {
     if (Date.parse(this.inpValue.offerExpiry) < Date.parse(this.today)) {
       this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd');
       this.inpValue.offerExpiry = this.today;
-      console.log(this.today);
       this.toastr.error('invalid Date');
       this.error['offerExpiry'] = { date: true };
       setTimeout(() => {
@@ -100,9 +99,6 @@ export class OfferComponent {
   }
 
   createOffer() {
-    // console.log(this.error);
-    console.log(this.offers.get('offerImage')?.hasError('imageValidator'));
-
     this.submitted = true;
     if (this.offers.valid) {
       const formData = new FormData();

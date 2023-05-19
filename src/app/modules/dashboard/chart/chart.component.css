@@ -14,26 +14,59 @@
   font-weight: bold;
 }
 .upperContainer h1 {
-  color: blue;
-  margin-top: 50px;
-  margin-left: 90px;
+  color: #e1ded2;
+  margin-top:19%;
+ text-align: center;
 }
 .box {
   flex: 1;
   height: 200px;
   width: 200px;
-  background-color: #d9c8c8;
+  background-color: #486bbd;
+  color: #ffffff;
   margin: 20px;
-  box-shadow: 0px 2px 4px rgba(217, 98, 98, 0.2);
+  box-shadow: 0px 2px 4px rgba(79, 156, 214, 0.2);
+  border-radius: 15px;
 }
 
 .chartContainer {
   display: flex;
+  flex-wrap: wrap;
 }
-
+.pieChartContainer {
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  border: 1px solid rgb(143, 143, 143);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(143, 143, 143);
+}
+select {
+  margin-left: 10px;
+  width: 100px;
+  height: 30px;
+  padding: 2px 5px;
+}
 .chart {
   flex: 1;
   height: 400px;
   width: 600px;
   margin-right: 10px;
+  border: 1px solid rgb(143, 143, 143);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(234, 232, 232);
+}
+.chart2 {
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 400px;
+  width: 700px;
+
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(234, 232, 232);
 }

@@ -32,13 +32,21 @@ export class ChartComponent {
     'Nov',
     'Dec',
   ];
+  totalCount = {
+    totalOffer: 0,
+    redeemedOffer: 0,
+    totalVoucher: 0,
+    redeemedVoucher: 0,
+  };
 
   constructor(
     private offerService: OfferService,
     private datePipe: DatePipe,
     private voucherSerevice: VoucherService
-  ) {}
-  ngOnInit(): void {
+  ) {
+    let d = new Date();
+    this.defaultMonth = d.getMonth();
+    this.selectedMonth = this.months[this.defaultMonth];
 
     this.lineChartOptions = {
       title: {
@@ -78,6 +86,7 @@ export class ChartComponent {
         },
       ],
     };
+
     this.barChartOptions = {
       title: {
         text: 'Bar Chart',
@@ -115,7 +124,10 @@ export class ChartComponent {
         },
       ],
     };
-
+  }
+  ngOnInit(): void {
+    this.getCount();
+    this.pie();
     this.chartData();
   }
 
@@ -126,7 +138,18 @@ export class ChartComponent {
   pie1() {
     this.pieChartOptions = {
       title: {
-        text: 'Dynamic Chart',
+        text: 'Pie Chart',
+        subtext: 'Monthly Distribution',
+        left: 'center',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%) - {c} redeemed',
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Offers', 'Vouchers'],
       },
       series: [
         {
@@ -134,9 +157,16 @@ export class ChartComponent {
           type: 'pie',
           radius: '55%',
           data: [
-            { value: 0, name: 'offers' },
-            { value: 0, name: 'vouchers' },
+            { value: 0, name: 'Offers' },
+            { value: 0, name: 'Vouchers' },
           ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
         },
       ],
     };
@@ -147,8 +177,6 @@ export class ChartComponent {
     this.offerService
       .getByMonth('http://localhost:3000/offers/get-by-month')
       .subscribe((value: any) => {
-        console.log(value.data);
-
         value.data[0].map((ele: any) => {
           this.lineChartOptions.series[0].data[ele.month - 1] = ele.count;
           this.barChartOptions.series[0].data[ele.month - 1] = ele.count;
@@ -171,7 +199,7 @@ export class ChartComponent {
 
         const lineContainer = document.getElementById('lineContainer');
         const barContainer = document.getElementById('barContainer');
-        const PieContainer = document.getElementById('PieContainer');
+        const PieContainer = document.getElementById('pieContainer');
         if (lineContainer) {
           const myChart = echarts.init(lineContainer);
           myChart.setOption(this.lineChartOptions);
@@ -184,6 +212,28 @@ export class ChartComponent {
           const myChart = echarts.init(PieContainer);
           myChart.setOption(this.pieChartOptions);
         }
+      });
+  }
+  getCount() {
+    this.offerService
+      .getOffer('http://localhost:3000/offers/get-offers')
+      .subscribe((data) => {
+        this.totalCount.totalOffer = data.data.length;
+      });
+    this.offerService
+      .getOffer('http://localhost:3000/offers/redeem-list')
+      .subscribe((data) => {
+        this.totalCount.redeemedOffer = data.data.length;
+      });
+    this.voucherSerevice
+      .getVoucher('http://localhost:3000/voucher/get-voucher')
+      .subscribe((data) => {
+        this.totalCount.totalVoucher = data.data.length;
+      });
+    this.voucherSerevice
+      .getVoucher('http://localhost:3000/voucher/redeem-list')
+      .subscribe((data) => {
+        this.totalCount.redeemedVoucher = data.data.length;
       });
   }
 }

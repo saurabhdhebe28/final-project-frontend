@@ -22,8 +22,8 @@ import { DatePipe } from '@angular/common';
     AuthModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'toast-top-center',
+      timeOut: 1000,
+      positionClass: 'toast-top-right',
     }),
     BrowserAnimationsModule,
   ],

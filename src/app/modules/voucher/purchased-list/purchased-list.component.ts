@@ -6,27 +6,30 @@ import { OfferService } from '../../offers/offer.service';
 @Component({
   selector: 'app-purchased-list',
   templateUrl: './purchased-list.component.html',
-  styleUrls: ['./purchased-list.component.css']
+  styleUrls: ['./purchased-list.component.css'],
 })
 export class PurchasedListComponent {
   getUrl: string = 'http://localhost:3000/voucher/get-assigned-voucher';
-  firstName: any = ''
-  lastName:any=''
-  voucherCode:any=''
-  merchant:any=''
-  brand:any=''
-  disableButtonvalue = true
-  itemsPerPage: number = 4
-  currentPage: number = 1
-  totalItem: number = 0
+  firstName: any = '';
+  lastName: any = '';
+  voucherCode: any = '';
+  merchant: any = '';
+  brand: any = '';
+  disableButtonvalue = true;
+  itemsPerPage: number = 4;
+  currentPage: number = 1;
+  totalItem: number = 0;
   data: any;
   searchData: any;
-  userId:any;
-  voucherId:any;
+  userId: any;
+  voucherId: any;
 
-  constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
+  constructor(
+    private voucherService: VoucherService,
+    private datePipe: DatePipe
+  ) {}
   ngOnInit(): void {
-    this.getPurchasedVouchers()
+    this.getPurchasedVouchers();
   }
   getPurchasedVouchers() {
     this.voucherService.getVoucher(this.getUrl).subscribe((value: any) => {
@@ -36,18 +39,16 @@ export class PurchasedListComponent {
           'dd-MM-yyyy'
         );
       });
-      this.data = value.data
-      console.log(this.data);
-      
-      this.searchData = value.data
-      
-    })
+      this.data = value.data;
+
+      this.searchData = value.data;
+    });
   }
   onPageChange(event: any) {
-    this.currentPage = event
+    this.currentPage = event;
   }
   disableButton() {
-    this.disableButtonvalue = !this.firstName
+    this.disableButtonvalue = !this.firstName;
   }
 
   inp() {
@@ -61,14 +62,16 @@ export class PurchasedListComponent {
       this.ngOnInit();
     }
   }
-  redeem(id:any){
-    
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher',{purchaseVoucherId:id}).subscribe((data:any)=>{
-      
-      this.userId='';
-      this.voucherId='';
-    this.ngOnInit();
-    });
+  redeem(id: any) {
+    this.voucherService
+      .redeemVoucher('http://localhost:3000/voucher/redeem-voucher', {
+        purchaseVoucherId: id,
+      })
+      .subscribe((data: any) => {
+        this.userId = '';
+        this.voucherId = '';
+        this.ngOnInit();
+      });
   }
   search() {
     this.searchData = this.data;
@@ -76,7 +79,9 @@ export class PurchasedListComponent {
       const first = value.firstName
         ?.toLowerCase()
         .includes(this.firstName?.toLowerCase());
-      const last = value.lastName?.toLowerCase().includes(this.lastName.toLowerCase());
+      const last = value.lastName
+        ?.toLowerCase()
+        .includes(this.lastName.toLowerCase());
       const code = value.voucherCode?.includes(this.voucherCode);
       const merchant = value.merchants
         ?.toLowerCase()
@@ -87,12 +92,16 @@ export class PurchasedListComponent {
       return first && code && last && merchant && brand;
     });
   }
-  purchase(){
-    this.voucherService.assignVoucher('http://localhost:3000/voucher/assign-voucher',{userId:this.userId,voucherId:this.voucherId}).subscribe((data:any)=>{
-      this.userId=''
-      this.voucherId=''
-      this.ngOnInit()
-    })
+  purchase() {
+    this.voucherService
+      .assignVoucher('http://localhost:3000/voucher/assign-voucher', {
+        userId: this.userId,
+        voucherId: this.voucherId,
+      })
+      .subscribe((data: any) => {
+        this.userId = '';
+        this.voucherId = '';
+        this.ngOnInit();
+      });
   }
-
 }
