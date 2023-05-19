@@ -1,152 +1,311 @@
 <form [formGroup]="voucherForm" action="">
   <div>
     <label for="voucherTitle">Voucher Title<span>*</span></label>
-    <input #voucherTitle (keyup)="getData('voucherTitle')" type="text" [(ngModel)]="inpValue.voucherTitle"
-      formControlName="voucherTitle" placeholder="Please enter title for the voucher" />
+    <input
+      #voucherTitle
+      (keyup)="getData('voucherTitle')"
+      type="text"
+      [(ngModel)]="inpValue.voucherTitle"
+      formControlName="voucherTitle"
+      placeholder="Please enter title for the voucher"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('voucherTitle')?.invalid)||(voucherForm.get('voucherTitle')?.invalid && voucherForm.get('voucherTitle')?.dirty || voucherForm.get('voucherTitle')?.touched) "
-      style="color:red">
-      <small *ngIf="voucherForm.get('voucherTitle')?.hasError('required')">Enter voucher title </small>
+      *ngIf="
+        (submitted && voucherForm.get('voucherTitle')?.invalid) ||
+        (voucherForm.get('voucherTitle')?.invalid &&
+          voucherForm.get('voucherTitle')?.dirty) ||
+          voucherForm.get('voucherTitle')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('voucherTitle')?.hasError('required')"
+        >Enter voucher title
+      </small>
     </div>
   </div>
 
   <div>
     <label for="voucherImage">Voucher Image <span>*</span></label>
-    <input #voucherImage type="file" [(ngModel)]="inpValue.voucherImage" formControlName="voucherImage"
-      (ngModelChange)="getData('voucherImage')" (change)="file($event)" />
+    <input
+      #voucherImage
+      type="file"
+      [(ngModel)]="inpValue.voucherImage"
+      formControlName="voucherImage"
+      (ngModelChange)="getData('voucherImage')"
+      (change)="file($event)"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('voucherImage')?.invalid)||(voucherForm.get('voucherImage')?.invalid && voucherForm.get('voucherImage')?.dirty || voucherForm.get('voucherImage')?.touched) "
-      style="color:red">
-      <small *ngIf="voucherForm.get('voucherImage')?.hasError('required')">Select image </small>
-      <small *ngIf="error.voucherImage?.image && details?.voucherImage?.touched">Invalid file type (only JPEG, PNG and
-        JPG are allowed)</small>
-      <small *ngIf="error.voucherImage?.size && details?.voucherImage?.touched">Max Size 500KB allowed</small>
+      *ngIf="
+        (submitted && voucherForm.get('voucherImage')?.invalid) ||
+        (voucherForm.get('voucherImage')?.invalid &&
+          voucherForm.get('voucherImage')?.dirty) ||
+          voucherForm.get('voucherImage')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('voucherImage')?.hasError('required')"
+        >Select image
+      </small>
+      <small *ngIf="error.voucherImage?.image && details?.voucherImage?.touched"
+        >Invalid file type (only JPEG, PNG and JPG are allowed)</small
+      >
+      <small *ngIf="error.voucherImage?.size && details?.voucherImage?.touched"
+        >Max Size 500KB allowed</small
+      >
     </div>
   </div>
 
   <div>
     <label for="pointRate">Point Rate<span>*</span></label>
-    <input #pointRate type="text" (keyup)="getData('pointRate')" formControlName="pointRate"
-      placeholder="Please enter points" [(ngModel)]="inpValue.pointRate" />
+    <input
+      #pointRate
+      type="text"
+      (keyup)="getData('pointRate')"
+      formControlName="pointRate"
+      placeholder="Please enter points"
+      [(ngModel)]="inpValue.pointRate"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('pointRate')?.invalid)||(voucherForm.get('pointRate')?.invalid && voucherForm.get('pointRate')?.dirty || voucherForm.get('pointRate')?.touched) "
-      style="color:red">
-      <small *ngIf="voucherForm.get('pointRate')?.hasError('required')">Enter point rate </small>
-      <small *ngIf="voucherForm.get('pointRate')?.hasError('pattern')">Max 10 characters allowed</small>
+      *ngIf="
+        (submitted && voucherForm.get('pointRate')?.invalid) ||
+        (voucherForm.get('pointRate')?.invalid &&
+          voucherForm.get('pointRate')?.dirty) ||
+          voucherForm.get('pointRate')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('pointRate')?.hasError('required')"
+        >Enter point rate
+      </small>
+      <small *ngIf="voucherForm.get('pointRate')?.hasError('pattern')"
+        >Max 10 characters allowed</small
+      >
     </div>
   </div>
 
-
   <div>
     <label for="Merchant">Merchant <span>*</span></label>
-    <select formControlName="merchant" [(ngModel)]="inpValue.merchant" (ngModelChange)="getData('merchant')"
-      name="Merchant" id="Merchant">
+    <select
+      formControlName="merchant"
+      [(ngModel)]="inpValue.merchant"
+      (ngModelChange)="getData('merchant')"
+      name="Merchant"
+      id="Merchant"
+    >
       <option selected disabled value="">Select</option>
       <option *ngFor="let Merchant of merchants" value="{{ Merchant }}">
         {{ Merchant }}
       </option>
     </select>
     <div
-      *ngIf="(submitted && voucherForm.get('merchant')?.invalid) || (voucherForm.get('merchant')?.invalid && voucherForm.get('merchant')?.dirty || voucherForm.get('merchant')?.touched)"
-      style="color: red;">
-      <small *ngIf="voucherForm.get('merchant')?.hasError('required')">Please enter merchant </small>
+      *ngIf="
+        (submitted && voucherForm.get('merchant')?.invalid) ||
+        (voucherForm.get('merchant')?.invalid &&
+          voucherForm.get('merchant')?.dirty) ||
+          voucherForm.get('merchant')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('merchant')?.hasError('required')"
+        >Please enter merchant
+      </small>
     </div>
   </div>
 
   <div>
     <label for="brands">Brands <span>*</span></label>
-    <select formControlName="brands" [(ngModel)]="inpValue.brands" (ngModelChange)="getData('brands')" name="brands"
-      id="brands">
+    <select
+      formControlName="brands"
+      [(ngModel)]="inpValue.brands"
+      (ngModelChange)="getData('brands')"
+      name="brands"
+      id="brands"
+    >
       <option disabled selected value="">Select</option>
       <option *ngFor="let Brand of Brands" value="{{ Brand }}">
         {{ Brand }}
       </option>
     </select>
     <div
-      *ngIf="(submitted && voucherForm.get('brands')?.invalid) || (voucherForm.get('brands')?.invalid && voucherForm.get('brands')?.dirty || voucherForm.touched)"
-      style="color: red;">
-      <small *ngIf="voucherForm.get('brands')?.hasError('required')">Please enter brand </small>
+      *ngIf="
+        (submitted && voucherForm.get('brands')?.invalid) ||
+        (voucherForm.get('brands')?.invalid &&
+          voucherForm.get('brands')?.dirty) ||
+          voucherForm.get('brands')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('brands')?.hasError('required')"
+        >Please enter brand
+      </small>
     </div>
   </div>
 
   <div>
     <label for="denominationStep">Denomination Step <span>*</span></label>
-    <input #denominationStep type="text" (keyup)="getData('denominationStep')" formControlName="denominationStep"
-      [(ngModel)]="inpValue.denominationStep" placeholder="Please denomination step" />
+    <input
+      #denominationStep
+      type="text"
+      (keyup)="getData('denominationStep')"
+      formControlName="denominationStep"
+      [(ngModel)]="inpValue.denominationStep"
+      placeholder="Please denomination step"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('denominationStep')?.invalid) || (voucherForm.get('denominationStep')?.invalid && voucherForm.get('denominationStep')?.dirty || voucherForm.get('denominationStep')?.touched)"
-      style="color: red;">
-      <small *ngIf="voucherForm.get('denominationStep')?.hasError('required')">Please enter denomination step </small>
-      <small *ngIf="voucherForm.get('denominationStep')?.hasError('pattern')">Only numbers allowed</small>
+      *ngIf="
+        (submitted && voucherForm.get('denominationStep')?.invalid) ||
+        (voucherForm.get('denominationStep')?.invalid &&
+          voucherForm.get('denominationStep')?.dirty) ||
+          voucherForm.get('denominationStep')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('denominationStep')?.hasError('required')"
+        >Please enter denomination step
+      </small>
+      <small *ngIf="voucherForm.get('denominationStep')?.hasError('pattern')"
+        >Only numbers allowed</small
+      >
     </div>
   </div>
 
   <div>
     <label for="denominationStart">Denomination Start <span>*</span></label>
-    <input #denominationStart type="text" (keyup)="getData('denominationStart')" formControlName="denominationStart"
-      [(ngModel)]="inpValue.denominationStart" placeholder="Please denomination start" />
+    <input
+      #denominationStart
+      type="text"
+      (keyup)="getData('denominationStart')"
+      formControlName="denominationStart"
+      [(ngModel)]="inpValue.denominationStart"
+      placeholder="Please denomination start"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('denominationStart')?.invalid) || (voucherForm.get('denominationStart')?.invalid && voucherForm.get('denominationStart')?.dirty || voucherForm.get('denominationStart')?.touched)"
-      style="color:red">
-      <small *ngIf="voucherForm.get('denominationStart')?.hasError('required')">Please enter denomination start </small>
-      <small *ngIf="voucherForm.get('denominationStart')?.hasError('pattern')">Only numbers allowed</small>
+      *ngIf="
+        (submitted && voucherForm.get('denominationStart')?.invalid) ||
+        (voucherForm.get('denominationStart')?.invalid &&
+          voucherForm.get('denominationStart')?.dirty) ||
+          voucherForm.get('denominationStart')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('denominationStart')?.hasError('required')"
+        >Please enter denomination start
+      </small>
+      <small *ngIf="voucherForm.get('denominationStart')?.hasError('pattern')"
+        >Only numbers allowed</small
+      >
     </div>
   </div>
 
   <div>
     <label for="denominationEnd">Denomination End <span>*</span></label>
-    <input #denominationEnd type="text" (keyup)="getData('denominationEnd')" formControlName="denominationEnd"
-      [(ngModel)]="inpValue.denominationEnd" placeholder="Please enter denomination end" />
+    <input
+      #denominationEnd
+      type="text"
+      (keyup)="getData('denominationEnd')"
+      formControlName="denominationEnd"
+      [(ngModel)]="inpValue.denominationEnd"
+      placeholder="Please enter denomination end"
+    />
     <div
-      *ngIf="(submitted && voucherForm.get('denominationEnd')?.invalid) || (voucherForm.get('denominationEnd')?.invalid && voucherForm.get('denominationEnd')?.dirty || voucherForm.get('denominationEnd')?.touched)"
-      style="color: red;">
-      <small *ngIf="voucherForm.get('denominationEnd')?.hasError('required')">Please enter denomination end </small>
-      <small *ngIf="voucherForm.get('denominationEnd')?.hasError('pattern')">Only numbers allowed</small>
-
+      *ngIf="
+        (submitted && voucherForm.get('denominationEnd')?.invalid) ||
+        (voucherForm.get('denominationEnd')?.invalid &&
+          voucherForm.get('denominationEnd')?.dirty) ||
+          voucherForm.get('denominationEnd')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('denominationEnd')?.hasError('required')"
+        >Please enter denomination end
+      </small>
+      <small *ngIf="voucherForm.get('denominationEnd')?.hasError('pattern')"
+        >Only numbers allowed</small
+      >
     </div>
   </div>
 
   <div>
     <label for="voucherExpiryDate">Voucher Expiry Date <span>*</span></label>
-    <input #voucherExpiryDate type="date" (keyup)="getData('voucherExpiryDate')" (blur)="checkDate()"
-      [(ngModel)]="inpValue.voucherExpiryDate" formControlName="voucherExpiryDate" [min]="minDate" />
+    <input
+      #voucherExpiryDate
+      type="date"
+      (keyup)="getData('voucherExpiryDate')"
+      (blur)="checkDate()"
+      [(ngModel)]="inpValue.voucherExpiryDate"
+      formControlName="voucherExpiryDate"
+      [min]="minDate"
+    />
 
     <div
-      *ngIf="(submitted && voucherForm.get('voucherExpiryDate')?.invalid) || (voucherForm.get('voucherExpiryDate')?.invalid && voucherForm.get('voucherExpiryDate')?.dirty || voucherForm.get('voucherExpiryDate')?.touched)"
-      style="color:red">
-      <small *ngIf="voucherForm.get('voucherCode')?.hasError('required')">Please select date </small>
+      *ngIf="
+        (submitted && voucherForm.get('voucherExpiryDate')?.invalid) ||
+        (voucherForm.get('voucherExpiryDate')?.invalid &&
+          voucherForm.get('voucherExpiryDate')?.dirty) ||
+          voucherForm.get('voucherExpiryDate')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('voucherCode')?.hasError('required')"
+        >Please select date
+      </small>
     </div>
   </div>
 
   <div>
     <label for="voucherCode">Voucher code <span>*</span></label>
-    <input #voucherCode type="text" (keyup)="getData('voucherCode')" formControlName="voucherCode"
-      [(ngModel)]="inpValue.voucherCode" placeholder="Please enter voucher code" />
+    <input
+      #voucherCode
+      type="text"
+      (keyup)="getData('voucherCode')"
+      formControlName="voucherCode"
+      [(ngModel)]="inpValue.voucherCode"
+      placeholder="Please enter voucher code"
+    />
 
     <div
-      *ngIf="(submitted && voucherForm.get('voucherCode')?.invalid) || (voucherForm.get('voucherCode')?.invalid && voucherForm.get('voucherCode')?.dirty || voucherForm.get('voucherCode')?.touched)"
-      style="color: red">
-      <small *ngIf="voucherForm.get('voucherCode')?.hasError('required')">Enter terms and conditions</small>
-      <small *ngIf="voucherForm.get('voucherCode')?.hasError('maxlength')">Max length should be 10</small>
-
+      *ngIf="
+        (submitted && voucherForm.get('voucherCode')?.invalid) ||
+        (voucherForm.get('voucherCode')?.invalid &&
+          voucherForm.get('voucherCode')?.dirty) ||
+          voucherForm.get('voucherCode')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('voucherCode')?.hasError('required')"
+        >Enter terms and conditions</small
+      >
+      <small *ngIf="voucherForm.get('voucherCode')?.hasError('maxlength')"
+        >Max length should be 10</small
+      >
     </div>
   </div>
 
   <div>
     <label for="termsAndConditions">Terms and Conditions<span>*</span></label>
-    <textarea #offerExpiryDate type="text" [(ngModel)]="inpValue.termsAndConditions"
-      (ngModelChange)="getData('termsAndConditions')" formControlName="termsAndConditions"></textarea>
+    <textarea
+      #offerExpiryDate
+      type="text"
+      [(ngModel)]="inpValue.termsAndConditions"
+      (ngModelChange)="getData('termsAndConditions')"
+      formControlName="termsAndConditions"
+    ></textarea>
 
     <div
-      *ngIf="(submitted && voucherForm.get('termsAndConditions')?.invalid) || (voucherForm.get('termsAndConditions')?.invalid && voucherForm.get('termsAndConditions')?.dirty || voucherForm.get('termsAndConditions')?.touched) "
-      style="color:red">
-      <small *ngIf="voucherForm.get('termsAndConditions')?.hasError('required')">Enter terms and conditions</small>
+      *ngIf="
+        (submitted && voucherForm.get('termsAndConditions')?.invalid) ||
+        (voucherForm.get('termsAndConditions')?.invalid &&
+          voucherForm.get('termsAndConditions')?.dirty) ||
+          voucherForm.get('termsAndConditions')?.touched
+      "
+      style="color: red"
+    >
+      <small *ngIf="voucherForm.get('termsAndConditions')?.hasError('required')"
+        >Enter terms and conditions</small
+      >
     </div>
   </div>
-
 </form>
 <div>
-  <button (click)="createVoucher()" >
-    Create Voucher
-  </button>
+  <button (click)="createVoucher()">Create Voucher</button>
 </div>
