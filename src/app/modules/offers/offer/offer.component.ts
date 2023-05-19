@@ -112,11 +112,11 @@ export class OfferComponent {
       formData.append('limit', this.inpValue.limit);
       formData.append('offerExpiry', this.inpValue.offerExpiry);
       formData.append('terms', this.inpValue.terms);
-
       this.offerService
         .craeteOffer('http://localhost:3000/offers/create-offer', formData)
         .subscribe((data: any) => {
           this.offers.reset();
+          this.submitted = false;
         });
     }
   }
