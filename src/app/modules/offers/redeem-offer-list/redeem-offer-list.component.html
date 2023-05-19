@@ -1,149 +1,129 @@
 <div class="right">
-<div class="search">
-  <form class="form-inline" (ngSubmit)="search()">
-    <div class="form-group mr-2">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter First Name"
-        name="firstName"
-        [(ngModel)]="firstName"
-        (keyup)="inp()"
-      />
-    </div>
-    <div class="form-group mr-2">
-      <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter last Name"
-        name="lastName"
-        [(ngModel)]="lastName"
-        (keyup)="inp()"
-      />
-    </div>
-    <div class="form-group mr-2">
-      <label for="offerCode">Offer Code</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter offer code"
-        name="offerCode"
-        [(ngModel)]="offerCode"
-        (keyup)="inp()"
-      />
-    </div>
-    <div class="form-group mr-2">
-      <label for="merchant">Merchant</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter Merchant"
-        name="merchant"
-        [(ngModel)]="merchant"
-        (keyup)="inp()"
-      />
-    </div>
-    <div class="form-group mr-2">
-      <label for="brand">Brand</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter Brand"
-        name="brand"
-        [(ngModel)]="brand"
-        (keyup)="inp()"
-      />
-    </div>
-  </form>
-  <div>
-    <button
-      class="searchbtn btn btn-primary"
-      [disabled]="!firstName && !lastName && !offerCode && !merchant && !brand"
-      (click)="search()"
-    >
-      Search
-    </button>
-    <button class="searchbtn btn btn-dark" (click)="ngOnInit()">Reset</button>
-  </div>
-</div>
-<br />
-<br />
-<div class="table" *ngIf="searchData && searchData.length != 0">
-  <table  class="table-primary">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Offer Code</th>
-        <th scope="col">Merchant</th>
-        <th scope="col">Brand</th>
-        <th scope="col">Offer Type</th>
-        <th scope="col">Expiry Date</th>
-        <th scope="col">Terms & Conditions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
-          let value of searchData
-            | paginate
-              : {
-                  itemsPerPage: itemsPerPage,
-                  currentPage: currentPage,
-                  totalItems: totalItem
-                };
-          let i = index
+  <div class="search">
+    <form class="form-inline" (ngSubmit)="search()">
+      <div class="form-group mr-2">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter First Name"
+          name="firstName"
+          [(ngModel)]="firstName"
+          (keyup)="inp()"
+        />
+      </div>
+      <div class="form-group mr-2">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter last Name"
+          name="lastName"
+          [(ngModel)]="lastName"
+          (keyup)="inp()"
+        />
+      </div>
+      <div class="form-group mr-2">
+        <label for="offerCode">Offer Code</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter offer code"
+          name="offerCode"
+          [(ngModel)]="offerCode"
+          (keyup)="inp()"
+        />
+      </div>
+      <div class="form-group mr-2">
+        <label for="merchant">Merchant</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Merchant"
+          name="merchant"
+          [(ngModel)]="merchant"
+          (keyup)="inp()"
+        />
+      </div>
+      <div class="form-group mr-2">
+        <label for="brand">Brand</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Brand"
+          name="brand"
+          [(ngModel)]="brand"
+          (keyup)="inp()"
+        />
+      </div>
+    </form>
+    <div>
+      <button
+        class="searchbtn btn btn-primary"
+        [disabled]="
+          !firstName && !lastName && !offerCode && !merchant && !brand
         "
+        (click)="search()"
       >
-        <td>{{ value.firstName }}</td>
-        <td>{{ value.lastName }}</td>
-        <td>{{ value.offerCode }}</td>
-        <td>{{ value.merchants }}</td>
-        <td>{{ value.brands }}</td>
-        <td>{{ value.offerType }}</td>
-        <td>{{ value.offerExpiryDate }}</td>
-        <td>{{ value.termsAndConditions }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="sticky-bottom d-flex justify-content-center align-items-center">
-    <pagination-controls
-      (pageChange)="onPageChange($event)"
-    ></pagination-controls>
+        Search
+      </button>
+      <button class="searchbtn btn btn-dark" (click)="ngOnInit()">Reset</button>
+    </div>
   </div>
-</div>
+  <br />
+  <br />
+  <div class="table" *ngIf="searchData && searchData.length != 0">
+    <table class="table-primary">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Offer Code</th>
+          <th scope="col">Merchant</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Offer Type</th>
+          <th scope="col">Expiry Date</th>
+          <th scope="col">Terms & Conditions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let value of searchData
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: currentPage,
+                    totalItems: totalItem
+                  };
+            let i = index
+          "
+        >
+          <td>{{ value.firstName }}</td>
+          <td>{{ value.lastName }}</td>
+          <td>{{ value.offerCode }}</td>
+          <td>{{ value.merchants }}</td>
+          <td>{{ value.brands }}</td>
+          <td>{{ value.offerType }}</td>
+          <td>{{ value.offerExpiryDate }}</td>
+          <td>{{ value.termsAndConditions }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="sticky-bottom d-flex justify-content-center align-items-center">
+      <pagination-controls
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
+    </div>
+  </div>
 
-<br />
-<!-- <div *ngIf="!(searchData && searchData.length > 0)">
+  <br />
+  <!-- <div *ngIf="!(searchData && searchData.length > 0)">
   <p>No data available.</p>
 </div> -->
-<div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
-  <div class="alert alert-danger text-center" role="alert">
+  <div *ngIf="!(searchData && searchData.length > 0)" class="dataNotFound">
+    <div class="alert alert-danger text-center" role="alert">
       Data Not Found
+    </div>
   </div>
 </div>
-</div>
-
-
-<!-- graph -->
-<div id="lineContainer" style="width: 100%; height: 400px;"></div>
-<div id="barContainer" style="width: 100%; height: 400px;"></div>
-
-<div>
-  <label for="month">Select Month <span style="color:red">*</span></label>
-  <select
-    [(ngModel)]="selectedMonth"
-    name="month"
-    (change)="pie()"
-    id="month"
-  >
-    <option selected disabled value="{{defaultMonth}}">{{months[defaultMonth]}}</option>
-    <option *ngFor="let month of months" value="{{month}}">
-      {{ month }}
-    </option>
-  </select>
-</div>
-
-<div id="PieContainer" style="width: 100%; height: 400px;"></div>

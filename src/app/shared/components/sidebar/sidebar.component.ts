@@ -12,6 +12,7 @@ export class SidebarComponent {
     ocr: false,
     offers: false,
     voucher: false,
+    dashboard:false
   };
 
   toggleDropdown(name: any) {

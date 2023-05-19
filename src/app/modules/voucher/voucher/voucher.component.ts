@@ -8,7 +8,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-voucher',
   templateUrl: './voucher.component.html',
-  styleUrls: ['./voucher.component.css']
+  styleUrls: ['./voucher.component.css'],
 })
 export class VoucherComponent {
   inpValue: any = {
@@ -21,7 +21,7 @@ export class VoucherComponent {
     denominationEnd: '',
     voucherExpiryDate: '',
     voucherCode: '',
-    termsAndConditions: ''
+    termsAndConditions: '',
   };
   details: any = {};
   error: any = {};
@@ -68,8 +68,7 @@ export class VoucherComponent {
     if (Date.parse(this.inpValue.voucherExpiryDate) < Date.parse(this.today)) {
       this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd');
       this.inpValue.voucherExpiryDate = this.today;
-      console.log(this.today);
-      this.toastr.error('Invalid Date')
+      this.toastr.error('Invalid Date');
       this.error['voucherExpiryDate'] = { date: true };
       setTimeout(() => {
         this.error['voucherExpiryDate'] = { date: false };

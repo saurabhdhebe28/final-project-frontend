@@ -6,23 +6,36 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
+  submitted = false;
   loginForm = this.formBuilder.group({
-    emailId: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-    password: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(3)]]
-  })
+    emailId: [
+      '',
+      [Validators.required, Validators.email, Validators.minLength(5)],
+    ],
+    password: [
+      '',
+      [Validators.required, Validators.maxLength(12), Validators.minLength(3)],
+    ],
+  });
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   onSubmit() {
-    this.authService.login(this.loginForm.value).subscribe((data) => {
-      if (data.status == true) {
-        this.authService.loginStatus()
-        localStorage.setItem('token', data.token)
-        this.router.navigate(['/ocr/ocrList'])
-      }
-    })
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe((data) => {
+        if (data.status == true) {
+          this.authService.loginStatus();
+          localStorage.setItem('token', data.token);
+          this.router.navigate(['/dashboard/charts']);
+        }
+      });
+    }
   }
 }

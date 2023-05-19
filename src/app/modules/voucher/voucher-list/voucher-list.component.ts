@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-voucher-list',
   templateUrl: './voucher-list.component.html',
-  styleUrls: ['./voucher-list.component.css']
+  styleUrls: ['./voucher-list.component.css'],
 })
 export class VoucherListComponent {
   getUrl: string = 'http://localhost:3000/voucher/get-voucher';
@@ -20,7 +20,10 @@ export class VoucherListComponent {
   data: any;
   searchData: any;
 
-  constructor(private voucherService: VoucherService, private datePipe: DatePipe) { }
+  constructor(
+    private voucherService: VoucherService,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.getVoucher();
@@ -40,7 +43,7 @@ export class VoucherListComponent {
   }
 
   onPageChange(event: any) {
-    this.currentPage = event
+    this.currentPage = event;
   }
 
   inp() {
@@ -54,7 +57,7 @@ export class VoucherListComponent {
     }
   }
   disableButton() {
-    this.disableButtonvalue = !this.voucherTitle
+    this.disableButtonvalue = !this.voucherTitle;
   }
 
   search() {
@@ -74,11 +77,12 @@ export class VoucherListComponent {
     });
   }
   redeem(code: any) {
-    const body = { offerCode: code }
-    this.voucherService.redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body).subscribe((data: any) => {
-      console.log(data);
-
-    });
+    const body = { offerCode: code };
+    this.voucherService
+      .redeemVoucher('http://localhost:3000/voucher/redeem-voucher', body)
+      .subscribe((data: any) => {
+        console.log(data);
+      });
     this.getVoucher();
   }
 }

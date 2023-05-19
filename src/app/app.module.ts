@@ -12,11 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HeaderInterceptor } from './services/interceptor/header/header.interceptor';
 import { DatePipe } from '@angular/common';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,25 +22,24 @@ import { DatePipe } from '@angular/common';
     AuthModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'toast-top-center'
+      timeOut: 1000,
+      positionClass: 'toast-top-right',
     }),
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
   ],
   providers: [
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeaderInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
