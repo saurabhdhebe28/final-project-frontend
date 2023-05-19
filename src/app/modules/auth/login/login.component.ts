@@ -33,7 +33,7 @@ export class LoginComponent {
         if (data.status == true) {
           this.authService.loginStatus();
           localStorage.setItem('token', data.token);
-          this.router.navigate(['/ocr/ocrList']);
+          this.router.navigate(['/dashboard/charts']);
         }
       });
     }

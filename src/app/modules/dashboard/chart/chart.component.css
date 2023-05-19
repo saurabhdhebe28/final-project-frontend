@@ -1,0 +1,39 @@
+/* #lineContainer,
+#barContainer,
+#PieContainer {
+  width: 100%;
+  height: 400px;
+} */
+
+.upperContainer {
+  display: flex;
+}
+.upperContainer p {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.upperContainer h1 {
+  color: blue;
+  margin-top: 50px;
+  margin-left: 90px;
+}
+.box {
+  flex: 1;
+  height: 200px;
+  width: 200px;
+  background-color: #d9c8c8;
+  margin: 20px;
+  box-shadow: 0px 2px 4px rgba(217, 98, 98, 0.2);
+}
+
+.chartContainer {
+  display: flex;
+}
+
+.chart {
+  flex: 1;
+  height: 400px;
+  width: 600px;
+  margin-right: 10px;
+}
